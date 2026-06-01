@@ -1,0 +1,31 @@
+#include "app/Application.h"
+#include "app/GameLoop.h"
+
+#ifdef _WIN32
+#include "platform/Win32Window.h"
+#else
+#include "platform/MacWindow.h"
+#endif
+
+Application::Application(int width, int height, const char* title)
+    : m_framebuffer(width, height, 4) {
+#ifdef _WIN32
+    // Windows에서는 Win32 메시지 펌프 기반 창을 생성한다.
+    m_window = std::make_unique<Win32Window>(width, height, title);
+#else
+    // macOS에서는 Cocoa 기반 픽셀 출력 창을 생성한다.
+    m_window = std::make_unique<MacWindow>(width, height, title);
+#endif
+}
+
+Application::~Application() = default;
+
+void Application::Run() {
+    GameLoop::Run(*this);
+}
+
+void Application::OnRender() {
+    // 기본 앱은 창이 정상 표시되는지 확인할 수 있도록 단색 프레임을 출력한다.
+    m_framebuffer.Clear(Color(20, 20, 20));
+    m_window->Present(m_framebuffer);
+}
