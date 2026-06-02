@@ -268,10 +268,52 @@ CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Renderer.cpp -o CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.s
 
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLRenderer.cpp
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLRenderer.cpp
+
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLRenderer.cpp > CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.i
+
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLRenderer.cpp -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.s
+
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.cpp
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.cpp
+
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.cpp > CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.i
+
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.cpp -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.s
+
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLMesh.cpp
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLMesh.cpp
+
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLMesh.cpp > CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.i
+
+CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLMesh.cpp -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.s
+
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/PhongShader.cpp
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/PhongShader.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.i: cmake_force
@@ -285,7 +327,7 @@ CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/ShadowShader.cpp
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/ShadowShader.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.i: cmake_force
@@ -299,7 +341,7 @@ CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/TransparentShader.cpp
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/TransparentShader.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.i: cmake_force
@@ -313,7 +355,7 @@ CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.s: cmake_fo
 CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/resource/AssetManager.cpp
 CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/AssetManager.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.i: cmake_force
@@ -327,7 +369,7 @@ CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.cpp
 CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.i: cmake_force
@@ -341,7 +383,7 @@ CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/resource/ObjLoader.cpp
 CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/ObjLoader.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.i: cmake_force
@@ -355,7 +397,7 @@ CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.cpp
 CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.i: cmake_force
@@ -369,7 +411,7 @@ CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.cpp
 CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.i: cmake_force
@@ -383,7 +425,7 @@ CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.cpp
 CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.i: cmake_force
@@ -397,7 +439,7 @@ CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.cpp
 CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.i: cmake_force
@@ -411,7 +453,7 @@ CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/systems/InputSystem.cpp
 CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/InputSystem.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.i: cmake_force
@@ -425,7 +467,7 @@ CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.cpp
 CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.i: cmake_force
@@ -439,7 +481,7 @@ CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.cpp
 CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.i: cmake_force
@@ -453,7 +495,7 @@ CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/systems/CameraSystem.cpp
 CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/CameraSystem.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.i: cmake_force
@@ -467,7 +509,7 @@ CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o: /Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.cpp
 CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o -MF CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o.d -o CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.cpp
 
 CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.i: cmake_force
@@ -481,7 +523,7 @@ CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.s: cmake_force
 CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o: CMakeFiles/Cpp_Engine.dir/flags.make
 CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o: /Users/deepfine/C++Project/Cpp_Engine/src/platform/MacWindow.mm
 CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o: CMakeFiles/Cpp_Engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building OBJCXX object CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building OBJCXX object CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o"
 	/usr/bin/clang++ $(OBJCXX_DEFINES) $(OBJCXX_INCLUDES) -x objective-c++ $(OBJCXX_FLAGS) -x objective-c++ -MD -MT CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o -MF CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o.d -o CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o -c /Users/deepfine/C++Project/Cpp_Engine/src/platform/MacWindow.mm
 
 CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.i: cmake_force
@@ -508,6 +550,9 @@ Cpp_Engine_OBJECTS = \
 "CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowPass.cpp.o" \
 "CMakeFiles/Cpp_Engine.dir/src/renderer/OITBuffer.cpp.o" \
 "CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.o" \
+"CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o" \
+"CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o" \
+"CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o" \
 "CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o" \
 "CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o" \
 "CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o" \
@@ -542,6 +587,9 @@ bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowMap.cpp.o
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowPass.cpp.o
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/OITBuffer.cpp.o
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.o
+bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o
+bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o
+bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o
@@ -560,8 +608,10 @@ bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/build.make
 bin/Cpp_Engine: CMakeFiles/Cpp_Engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX executable bin/Cpp_Engine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/deepfine/C++Project/Cpp_Engine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Linking CXX executable bin/Cpp_Engine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Cpp_Engine.dir/link.txt --verbose=$(VERBOSE)
+	/opt/homebrew/bin/cmake -E copy_directory /Users/deepfine/C++Project/Cpp_Engine/assets /Users/deepfine/C++Project/Cpp_Engine/build/bin/assets
+	/opt/homebrew/bin/cmake -E copy_if_different /Users/deepfine/C++Project/Cpp_Engine/model.obj /Users/deepfine/C++Project/Cpp_Engine/build/bin/model.obj
 
 # Rule to build all files generated by this target.
 CMakeFiles/Cpp_Engine.dir/build: bin/Cpp_Engine

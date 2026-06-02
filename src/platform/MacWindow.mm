@@ -2,77 +2,102 @@
 #include "input/InputCodes.h"
 #include "input/InputManager.h"
 #import <Cocoa/Cocoa.h>
+#import <OpenGL/gl3.h>
 
-// ─── PixelView ────────────────────────────────────────────────────────────────
-// 프레임버퍼 픽셀 데이터를 CGImage로 변환해 NSView에 직접 그리는 커스텀 뷰
-@interface PixelView : NSView {
-    const uint32_t* _pixels;
-    int _width, _height;
-}
-- (void)updatePixels:(const uint32_t*)pixels width:(int)w height:(int)h;
+// ─── GLView ───────────────────────────────────────────────────────────────────
+// OpenGL 4.1 Core Profile 컨텍스트를 소유하는 NSOpenGLView
+@interface GLView : NSOpenGLView
++ (NSOpenGLPixelFormat*)defaultPixelFormat;
 @end
 
-@implementation PixelView
+@implementation GLView
 
-// 새 프레임 데이터를 받아 다음 드로우 사이클에 화면을 갱신하도록 예약
-- (void)updatePixels:(const uint32_t*)pixels width:(int)w height:(int)h {
-    _pixels = pixels;
-    _width  = w;
-    _height = h;
-    [self setNeedsDisplay:YES];
+// 더블 버퍼, 24비트 깊이 버퍼, MSAA 4x가 적용된 Core Profile 픽셀 포맷 생성
++ (NSOpenGLPixelFormat*)defaultPixelFormat {
+    NSOpenGLPixelFormatAttribute attrs[] = {
+        NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion4_1Core,
+        NSOpenGLPFADoubleBuffer,
+        NSOpenGLPFAColorSize, 24,
+        NSOpenGLPFADepthSize, 24,
+        NSOpenGLPFAMultisample,
+        NSOpenGLPFASampleBuffers, 1,
+        NSOpenGLPFASamples, 4,
+        NSOpenGLPFAAccelerated,
+        0
+    };
+    NSOpenGLPixelFormat* format = [[NSOpenGLPixelFormat alloc] initWithAttributes:attrs];
+    if (format) return format;
+
+    // 일부 실행 환경에서는 MSAA 픽셀 포맷 생성이 실패하므로 기본 더블 버퍼 포맷으로 폴백한다.
+    NSOpenGLPixelFormatAttribute fallbackAttrs[] = {
+        NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion4_1Core,
+        NSOpenGLPFADoubleBuffer,
+        NSOpenGLPFAColorSize, 24,
+        NSOpenGLPFADepthSize, 24,
+        0
+    };
+    format = [[NSOpenGLPixelFormat alloc] initWithAttributes:fallbackAttrs];
+    if (format) return format;
+
+    NSOpenGLPixelFormatAttribute minimalAttrs[] = {
+        NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion3_2Core,
+        NSOpenGLPFADoubleBuffer,
+        NSOpenGLPFAColorSize, 24,
+        NSOpenGLPFADepthSize, 24,
+        0
+    };
+    return [[NSOpenGLPixelFormat alloc] initWithAttributes:minimalAttrs];
 }
 
-// CGImage를 생성해 NSView 컨텍스트에 픽셀 버퍼를 그림
-// 버퍼 포맷(0xAARRGGBB)과 CGImage 포맷을 맞추기 위해 리틀엔디언 + ARGB 플래그 사용
-- (void)drawRect:(NSRect)dirtyRect {
-    if (!_pixels) return;
-
-    CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
-    CGDataProviderRef dp = CGDataProviderCreateWithData(
-        nullptr, _pixels, _width * _height * 4, nullptr);
-
-    CGImageRef img = CGImageCreate(
-        _width, _height, 8, 32, _width * 4, cs,
-        kCGBitmapByteOrder32Little | kCGImageAlphaNoneSkipFirst,
-        dp, nullptr, false, kCGRenderingIntentDefault);
-
-    CGContextRef ctx = [[NSGraphicsContext currentContext] CGContext];
-    CGContextDrawImage(ctx, CGRectMake(0, 0, _width, _height), img);
-
-    CGImageRelease(img);
-    CGDataProviderRelease(dp);
-    CGColorSpaceRelease(cs);
+// 수직 동기화 활성화
+- (void)prepareOpenGL {
+    [super prepareOpenGL];
+    GLint swapInterval = 1;
+    [[self openGLContext] setValues:&swapInterval forParameter:NSOpenGLContextParameterSwapInterval];
 }
+
 @end
 
 // ─── WindowDelegate ───────────────────────────────────────────────────────────
 // 창 닫기 이벤트를 C++ 측 m_open 플래그에 전달하기 위한 델리게이트
-@interface WindowDelegate : NSObject<NSWindowDelegate>
-@property(nonatomic, assign) bool* openPtr;
+@interface WindowDelegate : NSObject<NSWindowDelegate> {
+    bool* _openPtr;
+}
+- (instancetype)initWithOpenPtr:(bool*)openPtr;
 @end
 
 @implementation WindowDelegate
 
+- (instancetype)initWithOpenPtr:(bool*)openPtr {
+    self = [super init];
+    if (self) {
+        _openPtr = openPtr;
+    }
+    return self;
+}
+
 // 닫기 버튼 클릭 시 메인 루프 종료 신호 전달
 - (BOOL)windowShouldClose:(NSWindow*)sender {
-    *_openPtr = false;
+    if (_openPtr) *_openPtr = false;
     return YES;
 }
 
 // 창이 실제로 닫힐 때 한 번 더 플래그 보장
 - (void)windowWillClose:(NSNotification*)n {
-    *_openPtr = false;
+    if (_openPtr) *_openPtr = false;
 }
+
 @end
 
 // ─── MacWindow ────────────────────────────────────────────────────────────────
 struct MacWindow::Impl {
     NSWindow*       window   = nil;
-    PixelView*      view     = nil;
+    GLView*         glView   = nil;
+    NSOpenGLContext* context = nil;
     WindowDelegate* delegate = nil;
 };
 
-// NSApplication 초기화, NSWindow + PixelView 생성, 델타타임 타이머 시작
+// NSApplication 초기화, NSWindow + GLView 생성, OpenGL 상태 초기화
 MacWindow::MacWindow(int width, int height, const char* title)
     : m_impl(std::make_unique<Impl>())
     , m_width(width)
@@ -93,11 +118,15 @@ MacWindow::MacWindow(int width, int height, const char* title)
         backing:NSBackingStoreBuffered
         defer:NO];
 
-    m_impl->view     = [[PixelView alloc] initWithFrame:frame];
-    m_impl->delegate = [[WindowDelegate alloc] init];
-    m_impl->delegate.openPtr = &m_open;
+    NSOpenGLPixelFormat* pixelFormat = [GLView defaultPixelFormat];
+    m_impl->glView = [[GLView alloc] initWithFrame:frame pixelFormat:pixelFormat];
+    m_impl->context = [[NSOpenGLContext alloc] initWithFormat:pixelFormat shareContext:nil];
+    [m_impl->glView setOpenGLContext:m_impl->context];
 
-    [m_impl->window setContentView:m_impl->view];
+    m_impl->delegate = [[WindowDelegate alloc] initWithOpenPtr:&m_open];
+
+    [m_impl->window setContentView:m_impl->glView];
+    [m_impl->context setView:m_impl->glView];
     [m_impl->window setDelegate:m_impl->delegate];
     [m_impl->window setTitle:@(title)];
     [m_impl->window setAcceptsMouseMovedEvents:YES];
@@ -105,6 +134,20 @@ MacWindow::MacWindow(int width, int height, const char* title)
     [m_impl->window center];
     [m_impl->window makeKeyAndOrderFront:nil];
     [NSApp activateIgnoringOtherApps:YES];
+
+    [m_impl->context makeCurrentContext];
+    [m_impl->context update];
+    [m_impl->glView prepareOpenGL];
+
+    // Retina 디스플레이의 실제 픽셀 크기 계산 (논리 크기 × 배율)
+    NSRect backingBounds = [m_impl->glView convertRectToBacking:
+                            [m_impl->glView bounds]];
+    m_pixelWidth  = (int)backingBounds.size.width;
+    m_pixelHeight = (int)backingBounds.size.height;
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_MULTISAMPLE);
+    glViewport(0, 0, m_pixelWidth, m_pixelHeight);
 
     m_lastTime = std::chrono::steady_clock::now();
 }
@@ -172,10 +215,13 @@ void MacWindow::PollEvents() {
     auto now    = std::chrono::steady_clock::now();
     m_deltaTime = std::chrono::duration<float>(now - m_lastTime).count();
     m_lastTime  = now;
+
+    // 이벤트 처리 중 Cocoa가 현재 컨텍스트를 바꿀 수 있으므로 렌더 직전에 다시 고정한다.
+    [m_impl->context makeCurrentContext];
 }
 
-// 프레임버퍼 픽셀 데이터를 NSView에 넘겨 즉시 화면에 출력
-void MacWindow::Present(const Framebuffer& fb) {
-    [m_impl->view updatePixels:fb.ColorData() width:fb.Width() height:fb.Height()];
-    [m_impl->view display];
+// OpenGL 백버퍼를 프론트버퍼로 교체해 화면에 표시
+void MacWindow::SwapBuffers() {
+    [m_impl->context makeCurrentContext];
+    [m_impl->context flushBuffer];
 }

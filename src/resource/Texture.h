@@ -10,6 +10,9 @@ public:
     static Texture Load(const std::string& path);
 
     bool IsValid() const { return !m_pixels.empty(); }
+    int Width() const { return m_width; }
+    int Height() const { return m_height; }
+    const Color* Pixels() const { return m_pixels.data(); }
 
     // UV [0,1] 범위로 색상 샘플링 (Bilinear filtering)
     Color Sample(float u, float v) const;

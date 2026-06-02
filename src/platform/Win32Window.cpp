@@ -71,26 +71,8 @@ void Win32Window::PollEvents() {
     m_lastTime  = now;
 }
 
-void Win32Window::Present(const Framebuffer& fb) {
-    // Copy framebuffer ARGB data into the DIB
-    // Framebuffer stores ARGB; Win32 DIB expects BGRA (0xAARRGGBB in memory = BGRA byte order)
-    // We store as ToARGB() = 0xAARRGGBB. Win32 BI_RGB with 32bpp = BGRA byte order.
-    // So we need to swap R and B channels.
-    const uint32_t* src = fb.ColorData();
-    uint32_t*       dst = reinterpret_cast<uint32_t*>(m_dibBits);
-    int count = fb.Width() * fb.Height();
-    for (int i = 0; i < count; ++i) {
-        uint32_t c = src[i];
-        uint8_t a = (c >> 24) & 0xFF;
-        uint8_t r = (c >> 16) & 0xFF;
-        uint8_t g = (c >>  8) & 0xFF;
-        uint8_t b = (c      ) & 0xFF;
-        dst[i] = ((uint32_t)a << 24) | ((uint32_t)b << 16) | ((uint32_t)g << 8) | r;
-    }
-
-    HDC screenDC = GetDC(m_hwnd);
-    BitBlt(screenDC, 0, 0, m_width, m_height, m_hdc, 0, 0, SRCCOPY);
-    ReleaseDC(m_hwnd, screenDC);
+void Win32Window::SwapBuffers() {
+    // TODO: Win32 OpenGL context swap 구현
 }
 
 LRESULT CALLBACK Win32Window::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {

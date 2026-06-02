@@ -18,6 +18,9 @@ set(ENGINE_SOURCES
   src/renderer/ShadowPass.cpp
   src/renderer/OITBuffer.cpp
   src/renderer/Renderer.cpp
+  src/renderer/gl/GLRenderer.cpp
+  src/renderer/gl/GLShader.cpp
+  src/renderer/gl/GLMesh.cpp
   src/renderer/shaders/PhongShader.cpp
   src/renderer/shaders/ShadowShader.cpp
   src/renderer/shaders/TransparentShader.cpp
@@ -40,6 +43,7 @@ if(APPLE)
   list(APPEND ENGINE_SOURCES src/platform/MacWindow.mm)
   find_library(COCOA_LIB Cocoa REQUIRED)
   find_library(APPKIT_LIB AppKit)
+  find_library(OPENGL_LIB OpenGL REQUIRED)
 else()
   list(APPEND ENGINE_SOURCES src/platform/Win32Window.cpp)
 endif()
@@ -48,8 +52,17 @@ add_executable(Cpp_Engine ${ENGINE_SOURCES})
 target_include_directories(Cpp_Engine PRIVATE src)
 
 if(APPLE)
-  target_link_libraries(Cpp_Engine PRIVATE ${COCOA_LIB} ${APPKIT_LIB})
+  target_link_libraries(Cpp_Engine PRIVATE ${COCOA_LIB} ${APPKIT_LIB} ${OPENGL_LIB})
   set_source_files_properties(src/platform/MacWindow.mm PROPERTIES COMPILE_FLAGS "-x objective-c++")
 endif()
 
 set_target_properties(Cpp_Engine PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build/bin")
+
+add_custom_command(TARGET Cpp_Engine POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+          "${CMAKE_SOURCE_DIR}/assets"
+          "$<TARGET_FILE_DIR:Cpp_Engine>/assets"
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          "${CMAKE_SOURCE_DIR}/model.obj"
+          "$<TARGET_FILE_DIR:Cpp_Engine>/model.obj"
+)

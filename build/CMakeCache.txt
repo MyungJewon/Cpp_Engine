@@ -253,6 +253,9 @@ Cpp_Engine_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Cpp_Engine_SOURCE_DIR:STATIC=/Users/deepfine/C++Project/Cpp_Engine
 
+//Path to a library.
+OPENGL_LIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework
+
 
 ########################
 # INTERNAL cache entries
