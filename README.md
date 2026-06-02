@@ -1,3 +1,6 @@
+
+
+
 # Cpp_Engine
 
 외부 라이브러리 없이 C++17만으로 제작한 미니 3D 게임 엔진.
@@ -168,6 +171,8 @@ Mesh grid = MeshGenerator::CreateGrid(20, 1.0f);  // 20×20 격자, 1유닛 간�
 - 부모가 Y축 회전 → 자식이 함께 따라감 (계층 Transform 검증)
 - 바닥 그리드 (MeshGenerator로 프로시저럴 생성)
 - Orbit / FPS 카메라 전환
+  
+https://github.com/user-attachments/assets/d8b7417d-76ee-4253-bdec-aeb97bdb6c8a
 
 ---
 
