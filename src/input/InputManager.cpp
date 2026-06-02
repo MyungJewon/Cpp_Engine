@@ -55,12 +55,17 @@ void InputManager::OnMouseMove(int x, int y) {
     m_mouseY = y;
 }
 
+void InputManager::OnMouseScroll(float delta) {
+    m_scrollDelta += delta;
+}
+
 void InputManager::EndFrame() {
     // 프레임 단위 상태는 루프 끝에서 초기화하고, 누르고 있는 상태는 유지한다.
     std::fill(m_keyPressed.begin(), m_keyPressed.end(), false);
     std::fill(m_keyReleased.begin(), m_keyReleased.end(), false);
     m_mouseDX = 0;
     m_mouseDY = 0;
+    m_scrollDelta = 0.0f;
 }
 
 bool InputManager::IsKeyDown(KeyCode key) const {

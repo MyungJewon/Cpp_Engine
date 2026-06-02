@@ -17,6 +17,7 @@ struct PhongShader : IShader {
     Mat4             mvp;
     Mat4             modelMat;
     Vec3             cameraPos;
+    Vec3             tint = { 1.0f, 1.0f, 1.0f };
     Light            light;
 
     VertexOut Vertex(int idx) override;

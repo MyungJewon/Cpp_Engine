@@ -8,7 +8,7 @@
 #endif
 
 Application::Application(int width, int height, const char* title)
-    : m_framebuffer(width, height, 4) {
+{
 #ifdef _WIN32
     // Windows에서는 Win32 메시지 펌프 기반 창을 생성한다.
     m_window = std::make_unique<Win32Window>(width, height, title);
@@ -25,7 +25,4 @@ void Application::Run() {
 }
 
 void Application::OnRender() {
-    // 기본 앱은 창이 정상 표시되는지 확인할 수 있도록 단색 프레임을 출력한다.
-    m_framebuffer.Clear(Color(20, 20, 20));
-    m_window->Present(m_framebuffer);
 }

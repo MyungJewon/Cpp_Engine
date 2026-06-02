@@ -12,6 +12,7 @@ public:
     void OnMouseDown(MouseButton button);
     void OnMouseUp(MouseButton button);
     void OnMouseMove(int x, int y);
+    void OnMouseScroll(float delta);
     void EndFrame();
 
     bool IsKeyDown(KeyCode key) const;
@@ -23,6 +24,7 @@ public:
     int MouseY() const { return m_mouseY; }
     int MouseDX() const { return m_mouseDX; }
     int MouseDY() const { return m_mouseDY; }
+    float ScrollDelta() const { return m_scrollDelta; }
 
 private:
     static constexpr std::size_t KeyCount = static_cast<std::size_t>(KeyCode::Count);
@@ -40,5 +42,6 @@ private:
     int m_mouseY = 0;
     int m_mouseDX = 0;
     int m_mouseDY = 0;
+    float m_scrollDelta = 0.0f;
     bool m_hasMousePosition = false;
 };

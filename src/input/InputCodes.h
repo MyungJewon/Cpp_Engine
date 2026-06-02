@@ -10,6 +10,7 @@ enum class KeyCode {
     Space,
     LeftShift,
     Escape,
+    Tab,
     Up,
     Down,
     Left,

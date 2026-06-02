@@ -1,6 +1,5 @@
 #pragma once
 #include "platform/IWindow.h"
-#include "renderer/Framebuffer.h"
 #include <memory>
 
 class GameLoop;
@@ -14,8 +13,6 @@ public:
 
     IWindow& GetWindow() { return *m_window; }
     const IWindow& GetWindow() const { return *m_window; }
-    Framebuffer& GetFramebuffer() { return m_framebuffer; }
-    const Framebuffer& GetFramebuffer() const { return m_framebuffer; }
 
 protected:
     virtual void OnInit() {}
@@ -27,5 +24,4 @@ private:
     friend class GameLoop;
 
     std::unique_ptr<IWindow> m_window;
-    Framebuffer m_framebuffer;
 };

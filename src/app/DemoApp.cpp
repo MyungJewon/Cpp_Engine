@@ -1,9 +1,12 @@
 #include "app/DemoApp.h"
 #include "core/Path.h"
-#include "math/MathUtils.h"
-#include "renderer/ShadowPass.h"
+#include "renderer/MeshRenderer.h"
+#include "resource/AssetManager.h"
+#include "scene/Transform.h"
+#include "systems/InputSystem.h"
 #include <array>
 #include <cstdio>
+#include <memory>
 #include <string>
 
 namespace {
@@ -88,8 +91,8 @@ const Texture* LoadFirstTexture(const std::string& exeDir, const std::array<cons
 
 DemoApp::DemoApp(int width, int height, const char* title)
     : Application(width, height, title)
-    , m_shadowMap(1024, 1024)
-    , m_oitBuffer(width, height) {
+    , m_renderer(width, height)
+    , m_world(m_scene.GetRegistry()) {
 }
 
 void DemoApp::OnInit() {
@@ -107,67 +110,82 @@ void DemoApp::OnInit() {
     m_albedo = LoadFirstTexture(exeDir, { "albedo.tga", "diffuse.tga", "basecolor.tga", "texture.tga" });
     m_normalMap = LoadFirstTexture(exeDir, { "normal.tga", "normal_map.tga", "normalmap.tga", "model_normal.tga" });
 
-    const Framebuffer& fb = GetFramebuffer();
-    m_camera.eye = { 0.0f, 1.0f, 4.0f };
-    m_camera.target = { 0.0f, 0.0f, 0.0f };
-    m_camera.aspect = fb.Width() / static_cast<float>(fb.Height());
+    m_cameraEntity = m_scene.CreateEntity();
+    Camera camera;
+    camera.eye = { 0.0f, 1.0f, 4.0f };
+    camera.target = { 0.0f, 0.0f, 0.0f };
+    camera.aspect = GetWindow().Width() / static_cast<float>(GetWindow().Height());
+    m_scene.GetRegistry().add<Camera>(m_cameraEntity, camera);
+    m_scene.SetActiveCamera(m_cameraEntity);
 
     // 모델 위쪽 오른편에서 비추는 흰색 광원을 둔다.
-    m_light.position = { 3.0f, 4.0f, 3.0f };
-    m_light.color = { 1.0f, 1.0f, 1.0f };
-    m_light.ambient = 0.18f;
-    m_light.diffuse = 0.78f;
-    m_light.specular = 0.45f;
-    m_light.shininess = 32.0f;
+    Entity lightEntity = m_scene.CreateEntity();
+    Light light;
+    light.position = { 3.0f, 4.0f, 3.0f };
+    light.color = { 1.0f, 1.0f, 1.0f };
+    light.ambient = 0.18f;
+    light.diffuse = 0.78f;
+    light.specular = 0.45f;
+    light.shininess = 32.0f;
+    m_scene.GetRegistry().add<Light>(lightEntity, light);
+    m_scene.SetActiveLight(lightEntity);
 
-    // Pipeline은 Framebuffer 참조를 보관하므로 Application 생성 이후 초기화한다.
-    m_pipeline = std::make_unique<Pipeline>(GetFramebuffer());
+    // 로드한 모델과 텍스처를 ECS 컴포넌트로 등록한다.
+    m_modelEntity = m_scene.CreateEntity();
+    MeshRenderer meshRenderer;
+    meshRenderer.mesh = m_mesh;
+    meshRenderer.material.albedo = m_albedo;
+    meshRenderer.material.normalMap = m_normalMap;
+    meshRenderer.material.shininess = light.shininess;
+    meshRenderer.material.tint = { 1.0f, 0.72f, 0.58f };
+
+    Transform parentTransform;
+    parentTransform.localPos = { -2.5f, 0.0f, 0.0f };
+    m_scene.GetRegistry().add<Transform>(m_modelEntity, parentTransform);
+    m_scene.GetRegistry().add<MeshRenderer>(m_modelEntity, meshRenderer);
+    m_scene.GetRegistry().add<ScriptComponent>(m_modelEntity, ScriptComponent{ std::make_shared<RotatorScript>(40.0f) });
+
+    m_childEntity = m_scene.CreateEntity();
+    MeshRenderer childRenderer = meshRenderer;
+    childRenderer.material.tint = { 0.58f, 0.86f, 1.0f };
+    Transform childTransform;
+    childTransform.localPos = { 0.0f, 1.5f, 0.0f };
+    childTransform.localScale = { 0.5f, 0.5f, 0.5f };
+    m_scene.GetRegistry().add<Transform>(m_childEntity, childTransform);
+    m_scene.GetRegistry().add<MeshRenderer>(m_childEntity, childRenderer);
+    m_scene.GetRegistry().get<Transform>(m_childEntity).SetParent(m_childEntity, m_modelEntity, m_scene.GetRegistry());
+
+    m_entity2 = m_scene.CreateEntity();
+    MeshRenderer meshRenderer2 = meshRenderer;
+    meshRenderer2.material.tint = { 0.78f, 1.0f, 0.62f };
+    Transform transform2;
+    transform2.localPos = { 2.5f, 0.0f, 0.0f };
+    m_scene.GetRegistry().add<Transform>(m_entity2, transform2);
+    m_scene.GetRegistry().add<MeshRenderer>(m_entity2, meshRenderer2);
+
+    // 모델 아래에 회색 바닥 격자를 추가한다.
+    m_gridMesh = MeshGenerator::CreateGrid(20, 1.0f);
+    m_gridEntity = m_scene.CreateEntity();
+    MeshRenderer gridRenderer;
+    gridRenderer.mesh = &m_gridMesh;
+    gridRenderer.material.tint = { 0.3f, 0.3f, 0.3f };
+    gridRenderer.material.albedo = nullptr;
+    gridRenderer.material.normalMap = nullptr;
+    Transform gridTransform;
+    gridTransform.localPos = { 0.0f, -1.0f, 0.0f };
+    m_scene.GetRegistry().add<Transform>(m_gridEntity, gridTransform);
+    m_scene.GetRegistry().add<MeshRenderer>(m_gridEntity, gridRenderer);
+
+    m_world.add_system<InputSystem>();
+    m_world.add_system<ScriptSystem>();
+    m_world.add_system<TransformSystem>();
+    m_world.add_system<CameraSystem>(m_cameraController, m_cameraEntity);
+    m_world.add_system<RenderSystem>(m_renderer, m_scene, GetWindow());
 }
 
 void DemoApp::OnUpdate(float dt) {
-    // 초당 40도 속도로 모델을 회전한다.
-    m_angle += DegToRad(40.0f) * dt;
+    m_world.update(dt);
 }
 
 void DemoApp::OnRender() {
-    Framebuffer& fb = GetFramebuffer();
-    fb.Clear(Color(20, 20, 20));
-    m_oitBuffer.Clear();
-
-    const Mat4 modelMatrix = Mat4::Rotate(m_angle, Vec3(0.0f, 1.0f, 0.0f));
-    const Mat4 viewProjection = m_camera.GetProjection() * m_camera.GetView();
-
-    // 광원 시점의 깊이 맵을 먼저 채워 그림자 판정에 사용한다.
-    const Mat4 lightView = Mat4::LookAt(m_light.position, Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 1.0f, 0.0f));
-    const Mat4 lightProjection = Mat4::Perspective(DegToRad(70.0f), 1.0f, 0.1f, 20.0f);
-    const Mat4 lightVP = lightProjection * lightView;
-
-    m_shadowMap.Clear();
-    m_shadowMap.SetLightVP(lightVP);
-    m_shadowShader.mesh = m_mesh;
-    m_shadowShader.lightMVP = lightVP * modelMatrix;
-
-    ShadowPassRenderer shadowPass(m_shadowMap);
-    shadowPass.Render(m_shadowShader, m_mesh->indices);
-
-    // Phong 셰이더에 현재 프레임의 카메라, 광원, 재질, 그림자 상태를 전달한다.
-    m_phongShader.mesh = m_mesh;
-    m_phongShader.albedo = m_albedo;
-    m_phongShader.normalMap = m_normalMap;
-    m_phongShader.shadowMap = &m_shadowMap;
-    m_phongShader.mvp = viewProjection * modelMatrix;
-    m_phongShader.modelMat = modelMatrix;
-    m_phongShader.cameraPos = m_camera.eye;
-    m_phongShader.light = m_light;
-
-    if (m_pipeline) {
-        m_pipeline->DrawIndexed(m_phongShader, m_mesh->indices);
-    }
-
-    // MSAA 버퍼를 최종 색상 버퍼로 해석한 뒤 투명 프래그먼트를 합성한다.
-    if (fb.SampleCount() > 1) {
-        fb.Resolve();
-    }
-    m_oitBuffer.Compose(fb);
-    GetWindow().Present(fb);
 }

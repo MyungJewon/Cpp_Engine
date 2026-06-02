@@ -22,7 +22,7 @@ public:
     // virtual — 자식 클래스가 이 함수를 override할 수 있게 허용
     // = 0    — 반드시 자식이 구현해야 함, 구현 안 하면 컴파일 에러
     // C#의 abstract void Update(Registry reg)와 동일
-    virtual void update(Registry& reg) = 0;
+    virtual void update(Registry& reg, float dt) = 0;
 
     // virtual 소멸자 — 부모 포인터로 자식을 delete할 때 자식 소멸자가 제대로 호출되도록 필수
     // 없으면 메모리 누수 발생 가능

@@ -48,7 +48,7 @@ Color PhongShader::Fragment(const Varying& v) { // Phong 라이팅 계산 (Norma
 
     Color base = (albedo && albedo->IsValid())
                ? albedo->Sample(v.uv.x, v.uv.y)
-               : Color(200, 200, 200);
+               : Color::FromFloat(tint.x, tint.y, tint.z);
 
     Vec3 litColor = light.color * intensity;
 

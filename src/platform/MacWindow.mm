@@ -1,4 +1,6 @@
 #include "platform/MacWindow.h"
+#include "input/InputCodes.h"
+#include "input/InputManager.h"
 #import <Cocoa/Cocoa.h>
 
 // ─── PixelView ────────────────────────────────────────────────────────────────
@@ -98,6 +100,7 @@ MacWindow::MacWindow(int width, int height, const char* title)
     [m_impl->window setContentView:m_impl->view];
     [m_impl->window setDelegate:m_impl->delegate];
     [m_impl->window setTitle:@(title)];
+    [m_impl->window setAcceptsMouseMovedEvents:YES];
     [m_impl->window setReleasedWhenClosed:NO];
     [m_impl->window center];
     [m_impl->window makeKeyAndOrderFront:nil];
@@ -119,8 +122,50 @@ void MacWindow::PollEvents() {
                         untilDate:[NSDate distantPast]
                         inMode:NSDefaultRunLoopMode
                         dequeue:YES])) {
-        if ([e type] == NSEventTypeKeyDown && [e keyCode] == 53)
-            m_open = false;
+        // 키 코드 → KeyCode 매핑 람다 (macOS 물리 키코드 기준)
+        auto toKeyCode = [](unsigned short kc) -> KeyCode {
+            switch (kc) {
+                case 13: return KeyCode::W;
+                case  0: return KeyCode::A;
+                case  1: return KeyCode::S;
+                case  2: return KeyCode::D;
+                case 12: return KeyCode::Q;
+                case 14: return KeyCode::E;
+                case 49: return KeyCode::Space;
+                case 56: return KeyCode::LeftShift;
+                case 53: return KeyCode::Escape;
+                case 48: return KeyCode::Tab;
+                case 126: return KeyCode::Up;
+                case 125: return KeyCode::Down;
+                case 123: return KeyCode::Left;
+                case 124: return KeyCode::Right;
+                default:  return KeyCode::Count;  // 미지원 키
+            }
+        };
+
+        if ([e type] == NSEventTypeKeyDown) {
+            KeyCode kc = toKeyCode([e keyCode]);
+            if (kc == KeyCode::Escape) { m_open = false; }
+            else if (kc != KeyCode::Count) { InputManager::Get().OnKeyDown(kc); }
+        } else if ([e type] == NSEventTypeKeyUp) {
+            KeyCode kc = toKeyCode([e keyCode]);
+            if (kc != KeyCode::Count) { InputManager::Get().OnKeyUp(kc); }
+        } else if ([e type] == NSEventTypeLeftMouseDown) {
+            InputManager::Get().OnMouseDown(MouseButton::Left);
+        } else if ([e type] == NSEventTypeLeftMouseUp) {
+            InputManager::Get().OnMouseUp(MouseButton::Left);
+        } else if ([e type] == NSEventTypeRightMouseDown) {
+            InputManager::Get().OnMouseDown(MouseButton::Right);
+        } else if ([e type] == NSEventTypeRightMouseUp) {
+            InputManager::Get().OnMouseUp(MouseButton::Right);
+        } else if ([e type] == NSEventTypeMouseMoved
+                || [e type] == NSEventTypeLeftMouseDragged
+                || [e type] == NSEventTypeRightMouseDragged) {
+            const NSPoint p = [e locationInWindow];
+            InputManager::Get().OnMouseMove(static_cast<int>(p.x), static_cast<int>(p.y));
+        } else if ([e type] == NSEventTypeScrollWheel) {
+            InputManager::Get().OnMouseScroll(static_cast<float>([e scrollingDeltaY]));
+        }
         [NSApp sendEvent:e];
     }
 

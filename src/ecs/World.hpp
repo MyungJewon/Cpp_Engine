@@ -16,6 +16,7 @@
 #include "ecs/System.hpp"
 #include <vector>  // std::vector — C#의 List와 동일
 #include <memory>  // unique_ptr — 자동 메모리 해제를 위한 스마트 포인터
+#include <utility> // std::forward — 전달받은 인자를 그대로 시스템 생성자에 넘김
 
 class World {
 public:
@@ -25,20 +26,20 @@ public:
     World(Registry& reg) : reg(reg) {}
 
     // 시스템 등록 — world.add_system<MovementSystem>() 처럼 사용
-    // template<typename T> — T 자리에 MovementSystem, HealthSystem 등이 들어옴
-    template<typename T>
-    void add_system() {
+    // template<typename T, typename... Args> — 시스템 타입과 생성자 인자를 함께 받음
+    template<typename T, typename... Args>
+    void add_system(Args&&... args) {
         // make_unique<T>() — T 타입 시스템을 생성하고 unique_ptr로 감쌈
         // ISystem* 으로 저장되어 다른 타입의 시스템도 같은 리스트에 담을 수 있음
-        systems.push_back(std::make_unique<T>());
+        systems.push_back(std::make_unique<T>(std::forward<Args>(args)...));
     }
 
     // 등록된 모든 시스템을 추가된 순서대로 실행
     // 게임 루프에서 매 프레임 호출
-    void update() {
+    void update(float dt) {
         // auto& system — systems 리스트의 각 요소를 복사 없이 순회
         for (auto& system : systems)
-            system->update(reg); // 각 시스템의 update() 실행, Registry를 넘겨줌
+            system->update(reg, dt); // 각 시스템의 update() 실행, Registry와 dt를 넘겨줌
     }
 
 private:

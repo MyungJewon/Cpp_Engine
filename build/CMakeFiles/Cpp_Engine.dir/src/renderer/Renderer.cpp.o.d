@@ -1,8 +1,6 @@
-CMakeFiles/Cpp_Engine.dir/src/main.cpp.o: \
-  /Users/deepfine/C++Project/Cpp_Engine/src/main.cpp \
-  /Users/deepfine/C++Project/Cpp_Engine/src/app/DemoApp.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/app/Application.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/platform/IWindow.h \
+CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.o: \
+  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Renderer.cpp \
+  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Renderer.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__config \
@@ -776,26 +774,6 @@ CMakeFiles/Cpp_Engine.dir/src/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/wbuffer_convert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/wstring_convert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdarg \
-  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/Entity.hpp \
-  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/World.hpp \
-  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/System.hpp \
-  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/Registry.hpp \
-  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/ComponentPool.hpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_assert.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/View.hpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_map \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/is_transparent.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/can_extract_key.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/remove_const_ref.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/erase_if_container.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/typeindex \
-  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Renderer.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Pipeline.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Rasterizer.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Shader.h \
@@ -813,38 +791,26 @@ CMakeFiles/Cpp_Engine.dir/src/main.cpp.o: \
   /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Light.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Camera.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/platform/IWindow.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/Registry.hpp \
+  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/Entity.hpp \
+  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/ComponentPool.hpp \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_assert.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_static_assert.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/ecs/View.hpp \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/is_transparent.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/can_extract_key.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/remove_const_ref.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/erase_if_container.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/ranges_iterator_traits.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__node_handle \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/typeindex \
+  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/MeshRenderer.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Material.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/RotatorScript.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/math/Quat.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/IScript.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/ScriptComponent.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/systems/CameraSystem.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/event/EventBus.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/binary_negate.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/bind.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/binder1st.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/binder2nd.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/mem_fn.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/mem_fun_ref.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/unary_negate.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/function.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/strip_signature.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/boyer_moore_searcher.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/default_searcher.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/not_fn.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/perfect_forward.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/any \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/chrono \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/file_clock.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
-  /Users/deepfine/C++Project/Cpp_Engine/src/event/Events.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/input/InputCodes.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.h
+  /Users/deepfine/C++Project/Cpp_Engine/src/math/Quat.h
