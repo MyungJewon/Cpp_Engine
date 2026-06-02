@@ -26,19 +26,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 38,
+				"line" : 47,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 42,
+				"line" : 51,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 39,
+				"line" : 48,
 				"parent" : 0
 			}
 		]
@@ -54,7 +54,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-std=gnu++17 -arch arm64"
+					"fragment" : "-std=gnu++17"
 				}
 			],
 			"frameworks" : 
@@ -103,14 +103,23 @@
 				16,
 				17,
 				18,
-				19
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28
 			]
 		},
 		{
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-std=gnu++17 -arch arm64"
+					"fragment" : "-std=gnu++17"
 				},
 				{
 					"fragment" : "-x objective-c++"
@@ -143,7 +152,7 @@
 			},
 			"sourceIndexes" : 
 			[
-				20
+				29
 			]
 		}
 	],
@@ -211,7 +220,16 @@
 				17,
 				18,
 				19,
-				20
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29
 			]
 		}
 	],
@@ -298,6 +316,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/renderer/Renderer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/renderer/shaders/PhongShader.cpp",
 			"sourceGroupIndex" : 0
 		},
@@ -322,6 +346,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/resource/MeshGenerator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/resource/ObjLoader.cpp",
 			"sourceGroupIndex" : 0
 		},
@@ -334,7 +364,49 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/scene/CameraController.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/scene/Scene.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/scene/Transform.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/systems/InputSystem.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/systems/ScriptSystem.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/systems/TransformSystem.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/systems/CameraSystem.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/systems/RenderSystem.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

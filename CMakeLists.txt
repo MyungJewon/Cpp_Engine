@@ -17,13 +17,22 @@ set(ENGINE_SOURCES
   src/renderer/ShadowMap.cpp
   src/renderer/ShadowPass.cpp
   src/renderer/OITBuffer.cpp
+  src/renderer/Renderer.cpp
   src/renderer/shaders/PhongShader.cpp
   src/renderer/shaders/ShadowShader.cpp
   src/renderer/shaders/TransparentShader.cpp
   src/resource/AssetManager.cpp
+  src/resource/MeshGenerator.cpp
   src/resource/ObjLoader.cpp
   src/resource/Texture.cpp
+  src/scene/CameraController.cpp
+  src/scene/Scene.cpp
   src/scene/Transform.cpp
+  src/systems/InputSystem.cpp
+  src/systems/ScriptSystem.cpp
+  src/systems/TransformSystem.cpp
+  src/systems/CameraSystem.cpp
+  src/systems/RenderSystem.cpp
 )
 
 if(APPLE)

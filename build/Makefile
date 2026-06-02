@@ -401,6 +401,30 @@ src/renderer/Rasterizer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/renderer/Rasterizer.cpp.s
 .PHONY : src/renderer/Rasterizer.cpp.s
 
+src/renderer/Renderer.o: src/renderer/Renderer.cpp.o
+.PHONY : src/renderer/Renderer.o
+
+# target to build an object file
+src/renderer/Renderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.o
+.PHONY : src/renderer/Renderer.cpp.o
+
+src/renderer/Renderer.i: src/renderer/Renderer.cpp.i
+.PHONY : src/renderer/Renderer.i
+
+# target to preprocess a source file
+src/renderer/Renderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.i
+.PHONY : src/renderer/Renderer.cpp.i
+
+src/renderer/Renderer.s: src/renderer/Renderer.cpp.s
+.PHONY : src/renderer/Renderer.s
+
+# target to generate assembly for a file
+src/renderer/Renderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.s
+.PHONY : src/renderer/Renderer.cpp.s
+
 src/renderer/ShadowMap.o: src/renderer/ShadowMap.cpp.o
 .PHONY : src/renderer/ShadowMap.o
 
@@ -545,6 +569,30 @@ src/resource/AssetManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.s
 .PHONY : src/resource/AssetManager.cpp.s
 
+src/resource/MeshGenerator.o: src/resource/MeshGenerator.cpp.o
+.PHONY : src/resource/MeshGenerator.o
+
+# target to build an object file
+src/resource/MeshGenerator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o
+.PHONY : src/resource/MeshGenerator.cpp.o
+
+src/resource/MeshGenerator.i: src/resource/MeshGenerator.cpp.i
+.PHONY : src/resource/MeshGenerator.i
+
+# target to preprocess a source file
+src/resource/MeshGenerator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.i
+.PHONY : src/resource/MeshGenerator.cpp.i
+
+src/resource/MeshGenerator.s: src/resource/MeshGenerator.cpp.s
+.PHONY : src/resource/MeshGenerator.s
+
+# target to generate assembly for a file
+src/resource/MeshGenerator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.s
+.PHONY : src/resource/MeshGenerator.cpp.s
+
 src/resource/ObjLoader.o: src/resource/ObjLoader.cpp.o
 .PHONY : src/resource/ObjLoader.o
 
@@ -593,6 +641,54 @@ src/resource/Texture.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.s
 .PHONY : src/resource/Texture.cpp.s
 
+src/scene/CameraController.o: src/scene/CameraController.cpp.o
+.PHONY : src/scene/CameraController.o
+
+# target to build an object file
+src/scene/CameraController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o
+.PHONY : src/scene/CameraController.cpp.o
+
+src/scene/CameraController.i: src/scene/CameraController.cpp.i
+.PHONY : src/scene/CameraController.i
+
+# target to preprocess a source file
+src/scene/CameraController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.i
+.PHONY : src/scene/CameraController.cpp.i
+
+src/scene/CameraController.s: src/scene/CameraController.cpp.s
+.PHONY : src/scene/CameraController.s
+
+# target to generate assembly for a file
+src/scene/CameraController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.s
+.PHONY : src/scene/CameraController.cpp.s
+
+src/scene/Scene.o: src/scene/Scene.cpp.o
+.PHONY : src/scene/Scene.o
+
+# target to build an object file
+src/scene/Scene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o
+.PHONY : src/scene/Scene.cpp.o
+
+src/scene/Scene.i: src/scene/Scene.cpp.i
+.PHONY : src/scene/Scene.i
+
+# target to preprocess a source file
+src/scene/Scene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.i
+.PHONY : src/scene/Scene.cpp.i
+
+src/scene/Scene.s: src/scene/Scene.cpp.s
+.PHONY : src/scene/Scene.s
+
+# target to generate assembly for a file
+src/scene/Scene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.s
+.PHONY : src/scene/Scene.cpp.s
+
 src/scene/Transform.o: src/scene/Transform.cpp.o
 .PHONY : src/scene/Transform.o
 
@@ -616,6 +712,126 @@ src/scene/Transform.s: src/scene/Transform.cpp.s
 src/scene/Transform.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.s
 .PHONY : src/scene/Transform.cpp.s
+
+src/systems/CameraSystem.o: src/systems/CameraSystem.cpp.o
+.PHONY : src/systems/CameraSystem.o
+
+# target to build an object file
+src/systems/CameraSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o
+.PHONY : src/systems/CameraSystem.cpp.o
+
+src/systems/CameraSystem.i: src/systems/CameraSystem.cpp.i
+.PHONY : src/systems/CameraSystem.i
+
+# target to preprocess a source file
+src/systems/CameraSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.i
+.PHONY : src/systems/CameraSystem.cpp.i
+
+src/systems/CameraSystem.s: src/systems/CameraSystem.cpp.s
+.PHONY : src/systems/CameraSystem.s
+
+# target to generate assembly for a file
+src/systems/CameraSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.s
+.PHONY : src/systems/CameraSystem.cpp.s
+
+src/systems/InputSystem.o: src/systems/InputSystem.cpp.o
+.PHONY : src/systems/InputSystem.o
+
+# target to build an object file
+src/systems/InputSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o
+.PHONY : src/systems/InputSystem.cpp.o
+
+src/systems/InputSystem.i: src/systems/InputSystem.cpp.i
+.PHONY : src/systems/InputSystem.i
+
+# target to preprocess a source file
+src/systems/InputSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.i
+.PHONY : src/systems/InputSystem.cpp.i
+
+src/systems/InputSystem.s: src/systems/InputSystem.cpp.s
+.PHONY : src/systems/InputSystem.s
+
+# target to generate assembly for a file
+src/systems/InputSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.s
+.PHONY : src/systems/InputSystem.cpp.s
+
+src/systems/RenderSystem.o: src/systems/RenderSystem.cpp.o
+.PHONY : src/systems/RenderSystem.o
+
+# target to build an object file
+src/systems/RenderSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o
+.PHONY : src/systems/RenderSystem.cpp.o
+
+src/systems/RenderSystem.i: src/systems/RenderSystem.cpp.i
+.PHONY : src/systems/RenderSystem.i
+
+# target to preprocess a source file
+src/systems/RenderSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.i
+.PHONY : src/systems/RenderSystem.cpp.i
+
+src/systems/RenderSystem.s: src/systems/RenderSystem.cpp.s
+.PHONY : src/systems/RenderSystem.s
+
+# target to generate assembly for a file
+src/systems/RenderSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.s
+.PHONY : src/systems/RenderSystem.cpp.s
+
+src/systems/ScriptSystem.o: src/systems/ScriptSystem.cpp.o
+.PHONY : src/systems/ScriptSystem.o
+
+# target to build an object file
+src/systems/ScriptSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o
+.PHONY : src/systems/ScriptSystem.cpp.o
+
+src/systems/ScriptSystem.i: src/systems/ScriptSystem.cpp.i
+.PHONY : src/systems/ScriptSystem.i
+
+# target to preprocess a source file
+src/systems/ScriptSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.i
+.PHONY : src/systems/ScriptSystem.cpp.i
+
+src/systems/ScriptSystem.s: src/systems/ScriptSystem.cpp.s
+.PHONY : src/systems/ScriptSystem.s
+
+# target to generate assembly for a file
+src/systems/ScriptSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.s
+.PHONY : src/systems/ScriptSystem.cpp.s
+
+src/systems/TransformSystem.o: src/systems/TransformSystem.cpp.o
+.PHONY : src/systems/TransformSystem.o
+
+# target to build an object file
+src/systems/TransformSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o
+.PHONY : src/systems/TransformSystem.cpp.o
+
+src/systems/TransformSystem.i: src/systems/TransformSystem.cpp.i
+.PHONY : src/systems/TransformSystem.i
+
+# target to preprocess a source file
+src/systems/TransformSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.i
+.PHONY : src/systems/TransformSystem.cpp.i
+
+src/systems/TransformSystem.s: src/systems/TransformSystem.cpp.s
+.PHONY : src/systems/TransformSystem.s
+
+# target to generate assembly for a file
+src/systems/TransformSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.s
+.PHONY : src/systems/TransformSystem.cpp.s
 
 # Help Target
 help:
@@ -660,6 +876,9 @@ help:
 	@echo "... src/renderer/Rasterizer.o"
 	@echo "... src/renderer/Rasterizer.i"
 	@echo "... src/renderer/Rasterizer.s"
+	@echo "... src/renderer/Renderer.o"
+	@echo "... src/renderer/Renderer.i"
+	@echo "... src/renderer/Renderer.s"
 	@echo "... src/renderer/ShadowMap.o"
 	@echo "... src/renderer/ShadowMap.i"
 	@echo "... src/renderer/ShadowMap.s"
@@ -678,15 +897,39 @@ help:
 	@echo "... src/resource/AssetManager.o"
 	@echo "... src/resource/AssetManager.i"
 	@echo "... src/resource/AssetManager.s"
+	@echo "... src/resource/MeshGenerator.o"
+	@echo "... src/resource/MeshGenerator.i"
+	@echo "... src/resource/MeshGenerator.s"
 	@echo "... src/resource/ObjLoader.o"
 	@echo "... src/resource/ObjLoader.i"
 	@echo "... src/resource/ObjLoader.s"
 	@echo "... src/resource/Texture.o"
 	@echo "... src/resource/Texture.i"
 	@echo "... src/resource/Texture.s"
+	@echo "... src/scene/CameraController.o"
+	@echo "... src/scene/CameraController.i"
+	@echo "... src/scene/CameraController.s"
+	@echo "... src/scene/Scene.o"
+	@echo "... src/scene/Scene.i"
+	@echo "... src/scene/Scene.s"
 	@echo "... src/scene/Transform.o"
 	@echo "... src/scene/Transform.i"
 	@echo "... src/scene/Transform.s"
+	@echo "... src/systems/CameraSystem.o"
+	@echo "... src/systems/CameraSystem.i"
+	@echo "... src/systems/CameraSystem.s"
+	@echo "... src/systems/InputSystem.o"
+	@echo "... src/systems/InputSystem.i"
+	@echo "... src/systems/InputSystem.s"
+	@echo "... src/systems/RenderSystem.o"
+	@echo "... src/systems/RenderSystem.i"
+	@echo "... src/systems/RenderSystem.s"
+	@echo "... src/systems/ScriptSystem.o"
+	@echo "... src/systems/ScriptSystem.i"
+	@echo "... src/systems/ScriptSystem.s"
+	@echo "... src/systems/TransformSystem.o"
+	@echo "... src/systems/TransformSystem.i"
+	@echo "... src/systems/TransformSystem.s"
 .PHONY : help
 
 
