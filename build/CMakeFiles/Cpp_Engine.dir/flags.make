@@ -7,13 +7,17 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
 
-CXX_FLAGS = -std=gnu++17
+CXX_FLAGSarm64 = -g -std=gnu++17 -arch arm64
+
+CXX_FLAGS = -g -std=gnu++17 -arch arm64
 
 OBJCXX_DEFINES = 
 
 OBJCXX_INCLUDES = -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
 
-OBJCXX_FLAGS = -std=gnu++17
+OBJCXX_FLAGSarm64 = -g -std=gnu++17 -arch arm64
+
+OBJCXX_FLAGS = -g -std=gnu++17 -arch arm64
 
 # Custom flags: CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o_FLAGS = -x objective-c++
 

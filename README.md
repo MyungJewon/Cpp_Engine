@@ -64,7 +64,8 @@ src/
 ├── platform/       IWindow, MacWindow, Win32Window (플랫폼 추상화)
 ├── renderer/
 │   ├── gl/         GLRenderer, GLShader, GLMesh (OpenGL 렌더러)
-│   └── shaders/    PhongShader, ShadowShader (소프트웨어 래스터라이저용 셰이더)
+│   ├── Material.h, MeshRenderer.h
+│   └── (구) shaders/ — 소프트웨어 래스터라이저용 (현재 미사용)
 ├── resource/       AssetManager, ObjLoader, Texture, MeshGenerator
 ├── scene/          Scene, Transform, Camera, Light, CameraController
 ├── script/         IScript, ScriptComponent, RotatorScript
@@ -81,50 +82,61 @@ assets/
 
 ### ECS (Entity Component System)
 
-Sparse Set 기반으로 구현. O(1) 삽입/삭제, 캐시 친화적 순회.
+Sparse Set 기반으로 구현. O(1) 삽입/삭제, 캐시 친화적 순회.  
+컴포넌트 타입별로 `ComponentPool<T>` (`.hpp`)를 사용하며, 템플릿 특성상 헤더에 구현이 포함된다.
 
 ```cpp
 // Entity 생성 + 컴포넌트 부착
-Entity e = scene.CreateEntity();
-scene.GetRegistry().add<Transform>(e, Transform{});
-scene.GetRegistry().add<MeshRenderer>(e, MeshRenderer{mesh, material});
-scene.GetRegistry().add<ScriptComponent>(e, {std::make_shared<RotatorScript>(40.f)});
+auto& reg = m_scene.GetRegistry();
+Entity e = m_scene.CreateEntity();
+reg.add<Transform>(e, Transform{});
+reg.add<MeshRenderer>(e, MeshRenderer{mesh, material});
+reg.add<ScriptComponent>(e, {std::make_shared<RotatorScript>(40.f)});
 
-// System 등록
-world.add_system<ScriptSystem>();
-world.add_system<TransformSystem>();
-world.add_system<RenderSystem>(renderer, scene, window);
+// System 등록 (등록 순서 = 실행 순서)
+m_world.add_system<InputSystem>();
+m_world.add_system<ScriptSystem>();
+m_world.add_system<TransformSystem>();
+m_world.add_system<CameraSystem>(m_cameraController, m_scene);
+m_world.add_system<RenderSystem>(m_renderer, m_scene, GetWindow());
 
-// 루프
-world.update(dt);
+// 매 프레임
+m_world.update(dt);
 ```
 
 ### Transform (계층 구조)
 
+쿼터니언 기반 회전. 부모가 변경되면 `MarkDirty()`가 자식 트리 전체에 재귀 전파되고,  
+`GetWorldMatrix()`가 호출될 때만 실제 계산이 일어나는 지연 계산(lazy evaluation) 방식.
+
 ```cpp
 // 부모-자식 설정 → 부모 이동 시 자식 자동 추종
-tf.SetParent(child, parent, registry);
+childTf.SetParent(childEntity, parentEntity, registry);
 
-// 회전 (쿼터니언)
-tf.SetLocalRot(Quat::FromAxisAngle({0,1,0}, angle), registry);
+// 회전 (쿼터니언 누적)
+tf.SetLocalRot(tf.localRot * Quat::FromAxisAngle({0,1,0}, angle), registry);
 
-// 월드 행렬 (dirty 캐싱)
-Mat4 world = tf.GetWorldMatrix(registry);
+// 월드 행렬 (dirty면 재계산, 아니면 캐시 반환)
+Mat4 worldMat = tf.GetWorldMatrix(registry);
 ```
 
 ### 이벤트 버스
 
+`std::type_index`를 키로 사용하는 타입 기반 pub/sub. 시스템 간 직접 참조 없이 통신.
+
 ```cpp
-// 구독
+// 구독 (CameraSystem 생성자에서)
 EventBus::Subscribe<CameraModeToggleEvent>([this](const CameraModeToggleEvent&) {
-    // 처리
+    m_controller.ToggleMode();
 });
 
-// 발행
+// 발행 (InputSystem에서 Tab 감지 시)
 EventBus::Emit(CameraModeToggleEvent{});
 ```
 
 ### 스크립트 컴포넌트
+
+Unity의 MonoBehaviour와 동일한 개념. `IScript`를 상속해 오브젝트별 동작을 정의한다.
 
 ```cpp
 class MyScript : public IScript {
@@ -135,30 +147,37 @@ public:
 };
 
 // Entity에 부착
-registry.add<ScriptComponent>(e, {std::make_shared<MyScript>()});
+reg.add<ScriptComponent>(e, {std::make_shared<MyScript>()});
 ```
 
 ### OpenGL 렌더러
 
-- **Shadow Map** — 1024×1024 depth FBO, slope-scale bias
-- **Phong 셰이딩** — GLSL, diffuse / specular / ambient, Normal Map 지원
-- **MSAA 4x** — `NSOpenGLPFAMultisample`
-- **Retina 대응** — backing store 픽셀 크기로 `glViewport` 설정
-- **메시/텍스처 캐싱** — CPU Mesh → GPU VAO/VBO 지연 업로드
+렌더링은 두 패스로 진행된다: Shadow Pass → Opaque Pass.
+
+- **Shadow Map** — 1024×1024 `GL_DEPTH_COMPONENT24` FBO, 광원 시점 깊이 기록
+- **Phong 셰이딩** — GLSL, ambient / diffuse / specular, Normal Map (TBN) 지원
+- **MSAA 4x** — `NSOpenGLPFAMultisample`, 폴백 포맷 자동 시도
+- **Retina 대응** — `convertRectToBacking`으로 실제 픽셀 크기 획득 → `glViewport` 적용
+- **지연 업로드** — CPU `Mesh` → GPU `VAO/VBO/EBO` 최초 렌더 시 한 번만 업로드
+- **더미 텍스처** — albedo/normalMap 없을 때 1×1 흰색·평면법선 텍스처로 GPU 경고 방지
 
 ### AssetManager
 
+경로를 키로 `unordered_map`에 캐싱. 같은 파일은 한 번만 로드한다.
+
 ```cpp
-// 경로 기반 캐싱 — 같은 경로는 한 번만 로드
 const Mesh*    mesh = AssetManager::Get().LoadMesh("model.obj");
-const Texture* tex  = AssetManager::Get().LoadTexture("texture.tga");
+const Texture* tex  = AssetManager::Get().LoadTexture("texture.png");
+// 같은 경로로 두 번 호출해도 파일을 다시 읽지 않음
 ```
 
 ### MeshGenerator
 
+OBJ 파일 없이 코드로 메시를 생성한다.
+
 ```cpp
-// 코드로 메시 생성 (OBJ 파일 불필요)
 Mesh grid = MeshGenerator::CreateGrid(20, 1.0f);  // 20×20 격자, 1유닛 간격
+// 법선 (0,1,0), UV 좌표, (size+1)² 개 정점
 ```
 
 ---
