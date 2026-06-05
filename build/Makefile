@@ -809,6 +809,30 @@ src/systems/CameraSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.s
 .PHONY : src/systems/CameraSystem.cpp.s
 
+src/systems/CollisionSystem.o: src/systems/CollisionSystem.cpp.o
+.PHONY : src/systems/CollisionSystem.o
+
+# target to build an object file
+src/systems/CollisionSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/CollisionSystem.cpp.o
+.PHONY : src/systems/CollisionSystem.cpp.o
+
+src/systems/CollisionSystem.i: src/systems/CollisionSystem.cpp.i
+.PHONY : src/systems/CollisionSystem.i
+
+# target to preprocess a source file
+src/systems/CollisionSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/CollisionSystem.cpp.i
+.PHONY : src/systems/CollisionSystem.cpp.i
+
+src/systems/CollisionSystem.s: src/systems/CollisionSystem.cpp.s
+.PHONY : src/systems/CollisionSystem.s
+
+# target to generate assembly for a file
+src/systems/CollisionSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/CollisionSystem.cpp.s
+.PHONY : src/systems/CollisionSystem.cpp.s
+
 src/systems/InputSystem.o: src/systems/InputSystem.cpp.o
 .PHONY : src/systems/InputSystem.o
 
@@ -832,6 +856,30 @@ src/systems/InputSystem.s: src/systems/InputSystem.cpp.s
 src/systems/InputSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.s
 .PHONY : src/systems/InputSystem.cpp.s
+
+src/systems/PhysicsSystem.o: src/systems/PhysicsSystem.cpp.o
+.PHONY : src/systems/PhysicsSystem.o
+
+# target to build an object file
+src/systems/PhysicsSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/PhysicsSystem.cpp.o
+.PHONY : src/systems/PhysicsSystem.cpp.o
+
+src/systems/PhysicsSystem.i: src/systems/PhysicsSystem.cpp.i
+.PHONY : src/systems/PhysicsSystem.i
+
+# target to preprocess a source file
+src/systems/PhysicsSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/PhysicsSystem.cpp.i
+.PHONY : src/systems/PhysicsSystem.cpp.i
+
+src/systems/PhysicsSystem.s: src/systems/PhysicsSystem.cpp.s
+.PHONY : src/systems/PhysicsSystem.s
+
+# target to generate assembly for a file
+src/systems/PhysicsSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/PhysicsSystem.cpp.s
+.PHONY : src/systems/PhysicsSystem.cpp.s
 
 src/systems/RenderSystem.o: src/systems/RenderSystem.cpp.o
 .PHONY : src/systems/RenderSystem.o
@@ -999,9 +1047,15 @@ help:
 	@echo "... src/systems/CameraSystem.o"
 	@echo "... src/systems/CameraSystem.i"
 	@echo "... src/systems/CameraSystem.s"
+	@echo "... src/systems/CollisionSystem.o"
+	@echo "... src/systems/CollisionSystem.i"
+	@echo "... src/systems/CollisionSystem.s"
 	@echo "... src/systems/InputSystem.o"
 	@echo "... src/systems/InputSystem.i"
 	@echo "... src/systems/InputSystem.s"
+	@echo "... src/systems/PhysicsSystem.o"
+	@echo "... src/systems/PhysicsSystem.i"
+	@echo "... src/systems/PhysicsSystem.s"
 	@echo "... src/systems/RenderSystem.o"
 	@echo "... src/systems/RenderSystem.i"
 	@echo "... src/systems/RenderSystem.s"

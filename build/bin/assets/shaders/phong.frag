@@ -35,7 +35,8 @@ float ShadowFactor(vec3 normal, vec3 lightDir)
 
     float closestDepth = texture(ShadowMap, projCoords.xy).r;
     float currentDepth = projCoords.z;
-    float bias = max(0.005 * (1.0 - dot(normal, lightDir)), 0.001);
+    float cosTheta = clamp(dot(normalize(normal), normalize(lightDir)), 0.0, 1.0);
+    float bias = max(0.0005, 0.002 * (1.0 - cosTheta));
     return currentDepth > closestDepth + bias ? 1.0 : 0.0;
 }
 

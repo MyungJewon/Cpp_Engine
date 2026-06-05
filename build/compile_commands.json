@@ -1,199 +1,211 @@
 [
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/main.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/main.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/main.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/main.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/main.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/main.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/app/Application.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/app/Application.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/app/Application.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/app/Application.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/app/Application.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/app/Application.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/app/DemoApp.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/app/DemoApp.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/app/DemoApp.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/app/DemoApp.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/app/DemoApp.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/app/DemoApp.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/app/GameLoop.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/app/GameLoop.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/app/GameLoop.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/app/GameLoop.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/app/GameLoop.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/app/GameLoop.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/core/Time.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/core/Time.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/core/Time.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/core/Time.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/core/Time.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/core/Time.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/core/Path.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/core/Path.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/core/Path.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/core/Path.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/core/Path.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/core/Path.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/input/InputManager.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/input/InputManager.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/input/InputManager.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/input/InputManager.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/input/InputManager.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/input/InputManager.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/Framebuffer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/Framebuffer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/Framebuffer.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/Rasterizer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Rasterizer.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/Rasterizer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Rasterizer.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/Rasterizer.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/Rasterizer.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/Pipeline.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Pipeline.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/Pipeline.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Pipeline.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/Pipeline.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/Pipeline.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowMap.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/ShadowMap.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowMap.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/ShadowMap.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/ShadowMap.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowMap.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowPass.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/ShadowPass.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowPass.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/ShadowPass.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/ShadowPass.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/ShadowPass.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/OITBuffer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/OITBuffer.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/OITBuffer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/OITBuffer.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/OITBuffer.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/OITBuffer.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Renderer.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Renderer.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/Renderer.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/Renderer.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLRenderer.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLRenderer.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLRenderer.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLRenderer.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLShader.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLMesh.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLMesh.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLMesh.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/gl/GLMesh.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/PhongShader.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/PhongShader.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/PhongShader.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/PhongShader.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/ShadowShader.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/ShadowShader.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/ShadowShader.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/ShadowShader.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/TransparentShader.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/TransparentShader.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/renderer/shaders/TransparentShader.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/renderer/shaders/TransparentShader.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/AssetManager.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/AssetManager.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/resource/AssetManager.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/resource/AssetManager.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/resource/MeshGenerator.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/ObjLoader.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/ObjLoader.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/resource/ObjLoader.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/resource/ObjLoader.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/resource/Texture.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/scene/CameraController.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/scene/Scene.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/scene/Transform.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/InputSystem.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/InputSystem.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/systems/InputSystem.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/systems/InputSystem.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/CameraSystem.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/systems/PhysicsSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/PhysicsSystem.cpp",
+  "file": "/Users/deepfine/C++Project/Cpp_Engine/src/systems/PhysicsSystem.cpp",
+  "output": "CMakeFiles/Cpp_Engine.dir/src/systems/PhysicsSystem.cpp.o"
+},
+{
+  "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/systems/CollisionSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/CollisionSystem.cpp",
+  "file": "/Users/deepfine/C++Project/Cpp_Engine/src/systems/CollisionSystem.cpp",
+  "output": "CMakeFiles/Cpp_Engine.dir/src/systems/CollisionSystem.cpp.o"
+},
+{
+  "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/CameraSystem.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/systems/CameraSystem.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/systems/CameraSystem.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -arch arm64 -o CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.cpp",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -g -std=gnu++17 -o CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o -c /Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.cpp",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.cpp",
   "output": "CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o"
 },
 {
   "directory": "/Users/deepfine/C++Project/Cpp_Engine/build",
-  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -x objective-c++ -g -std=gnu++17 -arch arm64 -x objective-c++ -o CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o -c /Users/deepfine/C++Project/Cpp_Engine/src/platform/MacWindow.mm",
+  "command": "/usr/bin/clang++  -I/Users/deepfine/C++Project/Cpp_Engine/src -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -x objective-c++ -g -std=gnu++17 -x objective-c++ -o CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o -c /Users/deepfine/C++Project/Cpp_Engine/src/platform/MacWindow.mm",
   "file": "/Users/deepfine/C++Project/Cpp_Engine/src/platform/MacWindow.mm",
   "output": "CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o"
 }

@@ -5,12 +5,8 @@
 #include "ecs/World.hpp"
 #include "renderer/Renderer.h"
 #include "resource/MeshGenerator.h"
-#include "resource/ObjLoader.h"
-#include "resource/Texture.h"
 #include "scene/CameraController.h"
 #include "scene/Scene.h"
-#include "script/RotatorScript.h"
-#include "script/ScriptComponent.h"
 #include "systems/CameraSystem.h"
 #include "systems/RenderSystem.h"
 #include "systems/ScriptSystem.h"
@@ -24,6 +20,7 @@ public:
 protected:
     void OnInit() override;
     void OnUpdate(float dt) override;
+    void OnFixedUpdate() override;
     void OnRender() override;
 
 private:
@@ -32,13 +29,9 @@ private:
     World m_world;
     CameraController m_cameraController;
     Entity m_cameraEntity = NULL_ENTITY;
-    Entity m_modelEntity = NULL_ENTITY;
-    Entity m_childEntity = NULL_ENTITY;
-    Entity m_entity2 = NULL_ENTITY;
+    Entity m_sphereEntity1 = NULL_ENTITY;
+    Entity m_sphereEntity2 = NULL_ENTITY;
     Entity m_gridEntity = NULL_ENTITY;
-    const Mesh* m_mesh = nullptr;
-    const Texture* m_albedo = nullptr;
-    const Texture* m_normalMap = nullptr;
-    Mesh m_fallbackMesh;
+    Mesh m_sphereMesh;
     Mesh m_gridMesh;
 };

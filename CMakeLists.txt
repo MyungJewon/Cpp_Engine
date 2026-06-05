@@ -34,6 +34,8 @@ set(ENGINE_SOURCES
   src/systems/InputSystem.cpp
   src/systems/ScriptSystem.cpp
   src/systems/TransformSystem.cpp
+  src/systems/PhysicsSystem.cpp
+  src/systems/CollisionSystem.cpp
   src/systems/CameraSystem.cpp
   src/systems/RenderSystem.cpp
 )

@@ -808,18 +808,11 @@ CMakeFiles/Cpp_Engine.dir/src/app/DemoApp.cpp.o: \
   /Users/deepfine/C++Project/Cpp_Engine/src/math/Vec2.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Camera.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/math/MathUtils.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Light.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/RotatorScript.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/math/Quat.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/IScript.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/ScriptComponent.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/CameraSystem.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/event/EventBus.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional \
@@ -847,8 +840,21 @@ CMakeFiles/Cpp_Engine.dir/src/app/DemoApp.cpp.o: \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/core/Path.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/physics/Collider.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cfloat \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/float.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/float.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/float.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/__float_header_macro.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/__float_float.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include/__float_infinity_nan.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/physics/RigidBody.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/MeshRenderer.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Material.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/resource/AssetManager.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/systems/InputSystem.h
+  /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/math/Quat.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/systems/CollisionSystem.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/systems/InputSystem.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/systems/PhysicsSystem.h

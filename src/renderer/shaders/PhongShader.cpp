@@ -39,7 +39,7 @@ Color PhongShader::Fragment(const Varying& v) { // Phong 라이팅 계산 (Norma
         Vec3 lNDC = shadowMap->WorldToLightNDC(v.worldPos);
         int  sx   = (int)((lNDC.x + 1.0f) * 0.5f * (shadowMap->Width()  - 1));
         int  sy   = (int)((1.0f - lNDC.y)  * 0.5f * (shadowMap->Height() - 1));
-        float bias = std::max(0.005f * (1.0f - N.dot(L)), 0.001f);
+        float bias = std::max(0.005f * (1.0f - N.dot(L)), 0.002f);
         if (lNDC.z > shadowMap->Sample(sx, sy) + bias) shadow = 1.0f;
     }
 

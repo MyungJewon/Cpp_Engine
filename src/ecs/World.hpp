@@ -34,12 +34,22 @@ public:
         systems.push_back(std::make_unique<T>(std::forward<Args>(args)...));
     }
 
+    template<typename T, typename... Args>
+    void add_fixed_system(Args&&... args) {
+        fixedSystems.push_back(std::make_unique<T>(std::forward<Args>(args)...));
+    }
+
     // 등록된 모든 시스템을 추가된 순서대로 실행
     // 게임 루프에서 매 프레임 호출
     void update(float dt) {
         // auto& system — systems 리스트의 각 요소를 복사 없이 순회
         for (auto& system : systems)
             system->update(reg, dt); // 각 시스템의 update() 실행, Registry와 dt를 넘겨줌
+    }
+
+    void fixed_update(float dt) {
+        for (auto& system : fixedSystems)
+            system->update(reg, dt);
     }
 
 private:
@@ -49,4 +59,5 @@ private:
     // ISystem*로 저장해서 MovementSystem, HealthSystem 등 다른 타입을 하나의 리스트에 보관
     // unique_ptr 사용 이유: World가 소멸될 때 모든 시스템도 자동으로 메모리 해제
     std::vector<std::unique_ptr<ISystem>> systems;
+    std::vector<std::unique_ptr<ISystem>> fixedSystems;
 };

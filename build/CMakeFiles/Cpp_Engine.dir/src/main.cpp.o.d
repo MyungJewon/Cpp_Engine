@@ -808,18 +808,11 @@ CMakeFiles/Cpp_Engine.dir/src/main.cpp.o: \
   /Users/deepfine/C++Project/Cpp_Engine/src/math/Vec2.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Camera.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/math/MathUtils.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Light.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/RotatorScript.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/math/Quat.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/scene/Transform.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/IScript.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/script/ScriptComponent.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/CameraSystem.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/event/EventBus.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional \

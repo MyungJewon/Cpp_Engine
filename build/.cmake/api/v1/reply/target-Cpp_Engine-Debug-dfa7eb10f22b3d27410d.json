@@ -26,19 +26,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 51,
+				"line" : 53,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 55,
+				"line" : 57,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 52,
+				"line" : 54,
 				"parent" : 0
 			}
 		]
@@ -54,7 +54,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17 -arch arm64"
+					"fragment" : "-g -std=gnu++17"
 				}
 			],
 			"frameworks" : 
@@ -118,14 +118,16 @@
 				28,
 				29,
 				30,
-				31
+				31,
+				32,
+				33
 			]
 		},
 		{
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17 -arch arm64"
+					"fragment" : "-g -std=gnu++17"
 				},
 				{
 					"fragment" : "-x objective-c++"
@@ -161,7 +163,7 @@
 			},
 			"sourceIndexes" : 
 			[
-				32
+				34
 			]
 		}
 	],
@@ -253,7 +255,9 @@
 				29,
 				30,
 				31,
-				32
+				32,
+				33,
+				34
 			]
 		}
 	],
@@ -437,6 +441,18 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/systems/TransformSystem.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/systems/PhysicsSystem.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/systems/CollisionSystem.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
