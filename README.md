@@ -1,3 +1,4 @@
+
 # Cpp_Engine
 
 외부 라이브러리 없이 C++17만으로 제작한 미니 3D 게임 엔진.
@@ -222,6 +223,9 @@ Mesh sphere = MeshGenerator::CreateSphere(16, 16, 1.0f);  // UV 구체
 - 구체 2개가 중력으로 낙하 → 바닥과 충돌 후 정지
 - 구체 간 충돌 감지 및 반발·마찰 적용
 - Orbit / FPS 카메라 전환
+
+
+https://github.com/user-attachments/assets/4cb8b495-0670-441d-80b1-6110b2eb0a60
 
 https://github.com/user-attachments/assets/d8b7417d-76ee-4253-bdec-aeb97bdb6c8a
 
