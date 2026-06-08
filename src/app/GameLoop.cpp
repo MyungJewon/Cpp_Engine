@@ -1,3 +1,4 @@
+// 고정 업데이트와 프레임 업데이트를 구동하는 메인 게임 루프를 구현합니다.
 #include "app/GameLoop.h"
 #include "app/Application.h"
 #include "core/Time.h"

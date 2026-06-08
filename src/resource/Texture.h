@@ -1,3 +1,4 @@
+// 이미지 픽셀 데이터를 보관하고 샘플링하는 텍스처 클래스를 선언합니다.
 #pragma once
 #include "renderer/Framebuffer.h"
 #include "math/Vec2.h"
@@ -6,7 +7,7 @@
 
 class Texture {
 public:
-    // TGA 파일 로드 (uncompressed RGB/RGBA, type 2만 지원)
+
     static Texture Load(const std::string& path);
     static Texture FromPixels(int w, int h, const std::vector<Color>& pixels);
 
@@ -15,7 +16,6 @@ public:
     int Height() const { return m_height; }
     const Color* Pixels() const { return m_pixels.data(); }
 
-    // UV [0,1] 범위로 색상 샘플링 (Bilinear filtering)
     Color Sample(float u, float v) const;
 
 private:

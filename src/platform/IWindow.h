@@ -1,3 +1,4 @@
+// 플랫폼 창 구현이 제공해야 하는 공통 인터페이스를 선언합니다.
 #pragma once
 
 class IWindow {
@@ -10,7 +11,7 @@ public:
     virtual float DeltaTime() const = 0;
     virtual int Width() const = 0;
     virtual int Height() const = 0;
-    // Retina 등 고밀도 디스플레이의 실제 픽셀 크기 (논리 크기와 다를 수 있음)
+
     virtual int PixelWidth()  const { return Width(); }
     virtual int PixelHeight() const { return Height(); }
 };

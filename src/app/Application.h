@@ -1,3 +1,4 @@
+// 플랫폼 창을 소유하고 게임 루프 콜백을 제공하는 기본 애플리케이션을 선언합니다.
 #pragma once
 #include "platform/IWindow.h"
 #include <memory>

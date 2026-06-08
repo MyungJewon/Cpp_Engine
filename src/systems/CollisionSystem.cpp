@@ -1,3 +1,4 @@
+// 콜라이더 충돌 감지와 위치 및 속도 보정을 구현합니다.
 #include "systems/CollisionSystem.h"
 #include "ecs/Entity.hpp"
 #include "event/EventBus.h"
@@ -142,12 +143,10 @@ void ResolveVelocity(Registry& reg, Entity entity, const Collider& collider, con
     RigidBody& rb = reg.get<RigidBody>(entity);
     const Vec3& n = normal;
 
-    // 접촉점 반경 벡터 r (표면 방향)
     float r_size = collider.radius > 0.01f ? collider.radius
                  : (collider.halfExtents.x + collider.halfExtents.y + collider.halfExtents.z) / 3.0f;
     Vec3 r = {-n.x * r_size, -n.y * r_size, -n.z * r_size};
 
-    // 접촉점 속도 = 선속도 + cross(ω, r)
     const Vec3& w = rb.angularVelocity;
     Vec3 angularContrib = {
         w.y * r.z - w.z * r.y,
@@ -160,19 +159,16 @@ void ResolveVelocity(Registry& reg, Entity entity, const Collider& collider, con
         rb.velocity.z + angularContrib.z
     };
 
-    // 법선 방향 충격 (선속도 기준)
     float vDotN = rb.velocity.x * n.x + rb.velocity.y * n.y + rb.velocity.z * n.z;
     float normalImpulse = -(1.0f + restitution) * vDotN;
     if (normalImpulse <= 0.0f) return;
 
-    // 관성 모멘트 (구체: 2/5 m r²)
     float I = (2.0f / 5.0f) * rb.mass * r_size * r_size;
     if (I < 0.001f) I = 0.001f;
 
     Vec3 normalDelta = {n.x * normalImpulse, n.y * normalImpulse, n.z * normalImpulse};
     rb.velocity = rb.velocity + normalDelta;
 
-    // 접촉점 접선 속도 (ω 기여 포함)
     float cvDotN = contactVel.x * n.x + contactVel.y * n.y + contactVel.z * n.z;
     Vec3 tangential = {
         contactVel.x - n.x * cvDotN,
@@ -189,11 +185,8 @@ void ResolveVelocity(Registry& reg, Entity entity, const Collider& collider, con
                         tangential.y / tangentialSpeed,
                         tangential.z / tangentialSpeed};
 
-        // 마찰 충격량 크기 (Coulomb 한계)
         float frictionMag = friction * std::abs(normalImpulse);
 
-        // 선속도+각속도 동시 고려한 유효 질량
-        // cross(r, tangDir)
         Vec3 rCrossT = {
             r.y * tangDir.z - r.z * tangDir.y,
             r.z * tangDir.x - r.x * tangDir.z,
@@ -208,12 +201,10 @@ void ResolveVelocity(Registry& reg, Entity entity, const Collider& collider, con
                                 tangDir.y * (-frictionMag),
                                 tangDir.z * (-frictionMag)};
 
-        // 선속도에 마찰 충격 적용
         rb.velocity.x += frictionImpulse.x / rb.mass;
         rb.velocity.y += frictionImpulse.y / rb.mass;
         rb.velocity.z += frictionImpulse.z / rb.mass;
 
-        // 각속도에 마찰 충격 적용: Δω = cross(r, J) / I
         Vec3 angDelta = {
             (r.y * frictionImpulse.z - r.z * frictionImpulse.y) / I,
             (r.z * frictionImpulse.x - r.x * frictionImpulse.z) / I,

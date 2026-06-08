@@ -1,3 +1,4 @@
+// OpenGL 기반 그림자 패스와 불투명 렌더 패스를 구현합니다.
 #include "renderer/gl/GLRenderer.h"
 #include "core/Path.h"
 #include "math/MathUtils.h"
@@ -87,7 +88,7 @@ GLuint GLRenderer::GetOrUploadTexture(const Texture* texture) {
 }
 
 void GLRenderer::ShadowPass(Registry& reg, const Light& light) {
-    // 광원 기준 VP 행렬을 만들고 깊이 전용 FBO에 메시 깊이를 기록한다.
+
     m_lightVP = Mat4::Perspective(DegToRad(90.0f), 1.0f, 0.1f, 20.0f)
               * Mat4::LookAt(light.position, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f });
 
@@ -108,7 +109,7 @@ void GLRenderer::ShadowPass(Registry& reg, const Light& light) {
 }
 
 void GLRenderer::OpaquePass(Registry& reg, const Camera& camera, const Light& light) {
-    // 기본 프레임버퍼에 Phong 셰이딩 결과를 출력한다.
+
     glViewport(0, 0, m_width, m_height);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glClearColor(0.08f, 0.08f, 0.08f, 1.0f);
@@ -141,13 +142,11 @@ void GLRenderer::OpaquePass(Registry& reg, const Camera& camera, const Light& li
         m_phongShader.SetVec3("uTint", material.tint);
         m_phongShader.SetFloat("uShininess", material.shininess);
 
-        // albedo 없으면 더미 흰색 텍스처 바인딩 (sampler 경고 방지)
         GLuint albedoTex = GetOrUploadTexture(material.albedo);
         m_phongShader.SetInt("uHasAlbedo", albedoTex != 0 ? 1 : 0);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, albedoTex != 0 ? albedoTex : m_whiteTex);
 
-        // normalMap 없으면 평면 법선 더미 텍스처 바인딩
         GLuint normalTex = GetOrUploadTexture(material.normalMap);
         m_phongShader.SetInt("uHasNormalMap", normalTex != 0 ? 1 : 0);
         glActiveTexture(GL_TEXTURE1);
@@ -164,18 +163,17 @@ void GLRenderer::Render(Scene& scene, IWindow& window) {
 }
 
 void GLRenderer::Render(Registry& reg, const Camera& camera, const Light& light, IWindow& window) {
-    // Retina 실제 픽셀 크기 사용
+
     m_width  = window.PixelWidth();
     m_height = window.PixelHeight();
 
     if (!m_initialized) {
-        // Cocoa가 이벤트 루프를 한 번 돈 뒤 현재 컨텍스트가 안정화된 시점에 GL 리소스를 만든다.
+
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_CULL_FACE);
         InitShadowMap();
         InitShaders();
 
-        // 더미 흰색 텍스처 — albedo 없을 때 slot 0에 바인딩
         uint8_t white[4] = {255, 255, 255, 255};
         glGenTextures(1, &m_whiteTex);
         glBindTexture(GL_TEXTURE_2D, m_whiteTex);
@@ -183,7 +181,6 @@ void GLRenderer::Render(Registry& reg, const Camera& camera, const Light& light,
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-        // 평면 법선 더미 텍스처 — normalMap 없을 때 slot 1에 바인딩 (0.5, 0.5, 1.0 = 위 방향)
         uint8_t flatN[4] = {128, 128, 255, 255};
         glGenTextures(1, &m_flatNormalTex);
         glBindTexture(GL_TEXTURE_2D, m_flatNormalTex);

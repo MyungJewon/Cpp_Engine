@@ -1,3 +1,4 @@
+// Orbit과 FPS 모드를 지원하는 카메라 컨트롤러를 선언합니다.
 #pragma once
 
 #include "math/Vec3.h"
@@ -9,7 +10,6 @@ enum class CameraMode {
     FPS
 };
 
-// 마우스 입력으로 카메라를 타깃 주위에서 공전시키는 컨트롤러
 class CameraController {
 public:
     void Update(Camera& camera, float dt);

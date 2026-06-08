@@ -1,3 +1,4 @@
+// 3D 회전 표현과 보간에 사용하는 쿼터니언 연산을 정의합니다.
 #pragma once
 #include "math/Mat4.h"
 #include "math/Vec3.h"
@@ -9,12 +10,10 @@ struct Quat {
     float z = 0.0f;
     float w = 1.0f;
 
-    // 회전이 없는 단위 쿼터니언을 반환한다.
     static Quat Identity() {
         return {};
     }
 
-    // 축과 라디안 각도에서 회전 쿼터니언을 만든다.
     static Quat FromAxisAngle(Vec3 axis, float angle) {
         axis = axis.normalized();
         if (axis.length() <= 0.0f) {
@@ -26,7 +25,6 @@ struct Quat {
         return { axis.x * s, axis.y * s, axis.z * s, std::cos(halfAngle) };
     }
 
-    // 오일러 각도를 YXZ 순서(요 -> 피치 -> 롤)로 적용한다. 입력 단위는 도(degree)다.
     static Quat FromEuler(float pitchDeg, float yawDeg, float rollDeg) {
         constexpr float degToRad = 3.14159265358979323846f / 180.0f;
         const Quat yaw = FromAxisAngle({ 0.0f, 1.0f, 0.0f }, yawDeg * degToRad);
@@ -35,7 +33,6 @@ struct Quat {
         return (roll * pitch * yaw).normalized();
     }
 
-    // 두 회전을 합성하는 해밀턴 곱이다.
     Quat operator*(const Quat& o) const {
         return {
             w * o.x + x * o.w + y * o.z - z * o.y,
@@ -45,12 +42,10 @@ struct Quat {
         };
     }
 
-    // 역회전에 사용하는 켤레 쿼터니언을 반환한다.
     Quat conjugate() const {
         return { -x, -y, -z, w };
     }
 
-    // 길이를 1로 맞춘다. 길이가 0이면 안전하게 단위 쿼터니언을 반환한다.
     Quat normalized() const {
         const float lenSq = x * x + y * y + z * z + w * w;
         if (lenSq <= 0.0f) {
@@ -61,7 +56,6 @@ struct Quat {
         return { x * invLen, y * invLen, z * invLen, w * invLen };
     }
 
-    // row-major Mat4의 4x4 단위 행렬 위에 회전 성분을 채운다.
     Mat4 ToMat4() const {
         const Quat q = normalized();
         const float xx = q.x * q.x;
@@ -87,7 +81,6 @@ struct Quat {
         return r;
     }
 
-    // 벡터를 이 쿼터니언 회전으로 돌린다.
     Vec3 Rotate(const Vec3& v) const {
         const Quat q = normalized();
         const Quat p = { v.x, v.y, v.z, 0.0f };
@@ -95,7 +88,6 @@ struct Quat {
         return { rotated.x, rotated.y, rotated.z };
     }
 
-    // 두 회전 사이를 구면 선형 보간한다. 반대 방향이면 부호를 뒤집어 짧은 경로를 택한다.
     static Quat Slerp(const Quat& a, const Quat& b, float t) {
         Quat from = a.normalized();
         Quat to = b.normalized();

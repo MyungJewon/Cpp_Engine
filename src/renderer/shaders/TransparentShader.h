@@ -1,10 +1,10 @@
+// OIT 합성에 사용할 반투명 단색 셰이더를 선언합니다.
 #pragma once
 #include "renderer/Shader.h"
 #include "math/Mat4.h"
 
 struct Mesh;
 
-// OIT용 반투명 셰이더 (단색 + alpha)
 struct TransparentShader : IShader {
     const Mesh* mesh  = nullptr;
     Mat4        mvp;

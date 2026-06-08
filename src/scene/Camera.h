@@ -1,3 +1,4 @@
+// 뷰와 투영 행렬을 생성하는 카메라 파라미터를 정의합니다.
 #pragma once
 #include "math/Vec3.h"
 #include "math/Mat4.h"

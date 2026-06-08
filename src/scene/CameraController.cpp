@@ -1,3 +1,4 @@
+// 마우스와 키 입력 기반 Orbit 및 FPS 카메라 조작을 구현합니다.
 #include "scene/CameraController.h"
 #include "input/InputManager.h"
 #include "math/MathUtils.h"
@@ -15,14 +16,12 @@ void CameraController::Update(Camera& camera, float dt) {
 void CameraController::UpdateOrbit(Camera& camera, float) {
     InputManager& input = InputManager::Get();
 
-    // 좌클릭 드래그는 타깃을 중심으로 카메라의 방위각/고도각을 조절한다.
     if (input.IsMouseDown(MouseButton::Left)) {
         m_yaw -= input.MouseDX() * sensitivity;
         m_pitch += input.MouseDY() * sensitivity;
         m_pitch = Clamp(m_pitch, DegToRad(-85.0f), DegToRad(85.0f));
     }
 
-    // 휠 입력은 타깃과 카메라 사이의 거리를 조절한다.
     m_distance -= input.ScrollDelta() * zoomSpeed;
     m_distance = Clamp(m_distance, minDistance, maxDistance);
 
@@ -43,7 +42,6 @@ void CameraController::UpdateOrbit(Camera& camera, float) {
 void CameraController::UpdateFPS(Camera& camera, float dt) {
     InputManager& input = InputManager::Get();
 
-    // 우클릭 드래그는 FPS 시점의 방위각/고도각을 조절한다.
     if (input.IsMouseDown(MouseButton::Right)) {
         m_fpsYaw -= input.MouseDX() * sensitivity;
         m_fpsPitch += input.MouseDY() * sensitivity;

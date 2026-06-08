@@ -1,3 +1,4 @@
+// OpenGL 렌더러의 셰이더와 메시 및 텍스처 캐시 상태를 선언합니다.
 #pragma once
 
 #include <OpenGL/gl3.h>
@@ -40,6 +41,6 @@ private:
     int m_shadowSize = 1024;
     Mat4 m_lightVP;
     bool   m_initialized  = false;
-    GLuint m_whiteTex     = 0;   // albedo/normalMap 없을 때 바인딩할 더미 흰색 텍스처
-    GLuint m_flatNormalTex= 0;   // normalMap 없을 때 바인딩할 평면 법선 텍스처 (0.5,0.5,1)
+    GLuint m_whiteTex     = 0;
+    GLuint m_flatNormalTex= 0;
 };

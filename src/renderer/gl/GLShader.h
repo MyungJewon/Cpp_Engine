@@ -1,3 +1,4 @@
+// OpenGL 셰이더 프로그램 관리 기능을 선언합니다.
 #pragma once
 #import <OpenGL/gl3.h>
 #include "math/Mat4.h"

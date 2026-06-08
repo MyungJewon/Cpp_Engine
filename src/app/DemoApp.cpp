@@ -1,3 +1,4 @@
+// 데모 씬 구성과 프레임별 시스템 실행을 구현합니다.
 #include "app/DemoApp.h"
 #include "physics/Collider.h"
 #include "physics/RigidBody.h"
@@ -22,7 +23,6 @@ void DemoApp::OnInit() {
     m_scene.GetRegistry().add<Camera>(m_cameraEntity, camera);
     m_scene.SetActiveCamera(m_cameraEntity);
 
-    // 구체 위쪽 오른편에서 비추는 흰색 광원을 둔다.
     Entity lightEntity = m_scene.CreateEntity();
     Light light;
     light.position = { 3.0f, 4.0f, 3.0f };
@@ -88,7 +88,6 @@ void DemoApp::OnInit() {
     sphereCollider2.friction = 0.5f;
     m_scene.GetRegistry().add<Collider>(m_sphereEntity2, sphereCollider2);
 
-    // 구체 아래에 회색 바닥 격자를 추가한다.
     m_gridMesh = MeshGenerator::CreateGrid(20, 1.0f);
     m_gridEntity = m_scene.CreateEntity();
     MeshRenderer gridRenderer;

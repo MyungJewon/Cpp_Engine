@@ -1,3 +1,4 @@
+// Mesh와 Texture 캐시를 제공하는 싱글톤 자산 관리자를 선언합니다.
 #pragma once
 
 #include "resource/ObjLoader.h"
@@ -5,7 +6,6 @@
 #include <string>
 #include <unordered_map>
 
-// 경로 기반 Mesh/Texture 캐시를 관리하는 싱글톤
 class AssetManager {
 public:
     static AssetManager& Get();

@@ -1,10 +1,10 @@
+// Mesh와 Material을 Entity에 연결하는 렌더 컴포넌트를 정의합니다.
 #pragma once
 
 #include "renderer/Material.h"
 
 struct Mesh;
 
-// Mesh와 Material을 함께 보관하는 렌더 컴포넌트
 struct MeshRenderer {
     const Mesh* mesh = nullptr;
     Material material;

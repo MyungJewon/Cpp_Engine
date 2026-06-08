@@ -1,3 +1,4 @@
+// 키와 마우스의 현재 프레임 입력 상태 갱신을 구현합니다.
 #include "input/InputManager.h"
 #include <algorithm>
 
@@ -20,7 +21,6 @@ void InputManager::OnKeyDown(KeyCode key) {
     if (!IsValid(key)) return;
     const auto index = static_cast<std::size_t>(key);
 
-    // 처음 눌린 프레임만 JustPressed가 true가 되도록 이전 상태를 확인한다.
     if (!m_keyDown[index]) m_keyPressed[index] = true;
     m_keyDown[index] = true;
 }
@@ -60,7 +60,7 @@ void InputManager::OnMouseScroll(float delta) {
 }
 
 void InputManager::EndFrame() {
-    // 프레임 단위 상태는 루프 끝에서 초기화하고, 누르고 있는 상태는 유지한다.
+
     std::fill(m_keyPressed.begin(), m_keyPressed.end(), false);
     std::fill(m_keyReleased.begin(), m_keyReleased.end(), false);
     m_mouseDX = 0;

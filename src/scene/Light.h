@@ -1,3 +1,4 @@
+// 씬 조명 계산에 사용하는 광원 속성을 정의합니다.
 #pragma once
 #include "math/Vec3.h"
 

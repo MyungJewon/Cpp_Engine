@@ -1,3 +1,4 @@
+// Win32 창 생성과 메시지 처리 및 입력 전달을 구현합니다.
 #include "platform/Win32Window.h"
 #include <cstring>
 #include <stdexcept>
@@ -29,11 +30,10 @@ Win32Window::Win32Window(int width, int height, const char* title)
     );
     if (!m_hwnd) throw std::runtime_error("Failed to create window");
 
-    // Create DIB section for direct pixel access
     BITMAPINFO bmi = {};
     bmi.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
     bmi.bmiHeader.biWidth       = width;
-    bmi.bmiHeader.biHeight      = -height;  // top-down
+    bmi.bmiHeader.biHeight      = -height;
     bmi.bmiHeader.biPlanes      = 1;
     bmi.bmiHeader.biBitCount    = 32;
     bmi.bmiHeader.biCompression = BI_RGB;
@@ -72,7 +72,7 @@ void Win32Window::PollEvents() {
 }
 
 void Win32Window::SwapBuffers() {
-    // TODO: Win32 OpenGL context swap 구현
+
 }
 
 LRESULT CALLBACK Win32Window::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {

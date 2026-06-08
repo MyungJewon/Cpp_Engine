@@ -1,3 +1,4 @@
+// Entity 생성과 활성 카메라 및 광원 조회를 구현합니다.
 #include "scene/Scene.h"
 
 Scene::Scene()
@@ -32,7 +33,7 @@ const Registry& Scene::GetRegistry() const {
 }
 
 Camera& Scene::GetActiveCamera() {
-    // 활성 Camera Entity가 없거나 컴포넌트가 없으면 기본 카메라를 반환한다.
+
     if (m_activeCameraEntity != NULL_ENTITY && m_registry.has<Camera>(m_activeCameraEntity)) {
         return m_registry.get<Camera>(m_activeCameraEntity);
     }
@@ -40,7 +41,7 @@ Camera& Scene::GetActiveCamera() {
 }
 
 Light& Scene::GetActiveLight() {
-    // 활성 Light Entity가 없거나 컴포넌트가 없으면 기본 라이트를 반환한다.
+
     if (m_activeLightEntity != NULL_ENTITY && m_registry.has<Light>(m_activeLightEntity)) {
         return m_registry.get<Light>(m_activeLightEntity);
     }

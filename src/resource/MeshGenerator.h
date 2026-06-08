@@ -1,3 +1,4 @@
+// 절차적으로 기본 Mesh를 생성하는 유틸리티를 선언합니다.
 #pragma once
 
 #include "resource/ObjLoader.h"

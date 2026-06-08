@@ -1,3 +1,4 @@
+// 카메라 컨트롤러를 ECS 시스템으로 실행하는 CameraSystem을 선언합니다.
 #pragma once
 
 #include "ecs/Entity.hpp"
@@ -6,7 +7,6 @@
 #include "event/Events.h"
 #include "scene/CameraController.h"
 
-// 입력을 읽어 카메라 모드 전환과 카메라 이동을 처리하는 시스템
 class CameraSystem : public ISystem {
 public:
     CameraSystem(CameraController& controller, Entity cameraEntity);

@@ -1,9 +1,10 @@
+// 소프트웨어 Phong 조명과 텍스처 및 그림자 샘플링을 구현합니다.
 #include "renderer/shaders/PhongShader.h"
 #include "resource/ObjLoader.h"
 #include <algorithm>
 #include <cmath>
 
-VertexOut PhongShader::Vertex(int idx) { // MVP 변환 + 월드 공간 속성 전달
+VertexOut PhongShader::Vertex(int idx) {
     const MeshVertex& v = mesh->vertices[idx];
     Mat4 normalMat = modelMat.NormalMatrix();
     VertexOut out;
@@ -15,8 +16,8 @@ VertexOut PhongShader::Vertex(int idx) { // MVP 변환 + 월드 공간 속성 �
     return out;
 }
 
-Color PhongShader::Fragment(const Varying& v) { // Phong 라이팅 계산 (Normal Map, Shadow, Texture 적용)
-    // Normal Map: TBN 행렬로 탄젠트 공간 법선을 월드 공간으로 변환
+Color PhongShader::Fragment(const Varying& v) {
+
     Vec3 N = v.normal.normalized();
     if (normalMap && normalMap->IsValid()) {
         Color ns   = normalMap->Sample(v.uv.x, v.uv.y);
@@ -33,7 +34,6 @@ Color PhongShader::Fragment(const Varying& v) { // Phong 라이팅 계산 (Norma
     float diff = std::max(0.0f, N.dot(L));
     float spec = std::pow(std::max(0.0f, R.dot(V)), light.shininess);
 
-    // Shadow Map: 광원 NDC 깊이 비교로 그림자 판별
     float shadow = 0.0f;
     if (shadowMap) {
         Vec3 lNDC = shadowMap->WorldToLightNDC(v.worldPos);

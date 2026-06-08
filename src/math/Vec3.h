@@ -1,3 +1,4 @@
+// 3차원 벡터 산술과 내적 및 외적 연산을 정의합니다.
 #pragma once
 #include <cmath>
 
@@ -18,12 +19,12 @@ struct Vec3 {
     Vec3  operator+(float s)        const { return { x + s, y + s, z + s }; }
     bool  operator==(const Vec3& o) const { return x==o.x && y==o.y && z==o.z; }
 
-    float dot(const Vec3& o)   const { return x * o.x + y * o.y + z * o.z; } // 내적
-    Vec3  cross(const Vec3& o) const { // 외적
+    float dot(const Vec3& o)   const { return x * o.x + y * o.y + z * o.z; }
+    Vec3  cross(const Vec3& o) const {
         return { y * o.z - z * o.y,
                  z * o.x - x * o.z,
                  x * o.y - y * o.x };
     }
-    float length()     const { return std::sqrt(x * x + y * y + z * z); } // 벡터 크기
-    Vec3  normalized() const { float l = length(); return l > 0 ? *this / l : Vec3{}; } // 단위벡터
+    float length()     const { return std::sqrt(x * x + y * y + z * z); }
+    Vec3  normalized() const { float l = length(); return l > 0 ? *this / l : Vec3{}; }
 };

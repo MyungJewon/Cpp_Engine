@@ -1,3 +1,4 @@
+// 각도 변환과 값 제한에 쓰는 수학 유틸리티를 정의합니다.
 #pragma once
 #include <algorithm>
 #include <cmath>

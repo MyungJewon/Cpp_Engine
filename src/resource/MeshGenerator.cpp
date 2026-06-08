@@ -1,3 +1,4 @@
+// 격자와 구체 기본 Mesh 생성 함수를 구현합니다.
 #include "resource/MeshGenerator.h"
 #include <cmath>
 
@@ -15,7 +16,6 @@ Mesh MeshGenerator::CreateGrid(int size, float cellSize) {
     mesh.vertices.reserve(vertexCountPerSide * vertexCountPerSide);
     mesh.indices.reserve(size * size * 6);
 
-    // 격자 정점을 중앙 원점 기준으로 XZ 평면에 배치한다.
     for (int z = 0; z <= size; ++z) {
         for (int x = 0; x <= size; ++x) {
             MeshVertex vertex;
@@ -34,7 +34,6 @@ Mesh MeshGenerator::CreateGrid(int size, float cellSize) {
         }
     }
 
-    // 각 셀을 두 개의 삼각형으로 나눠 인덱스를 만든다.
     for (int z = 0; z < size; ++z) {
         for (int x = 0; x < size; ++x) {
             const int i0 = z * vertexCountPerSide + x;

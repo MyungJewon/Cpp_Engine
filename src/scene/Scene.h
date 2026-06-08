@@ -1,10 +1,10 @@
+// Registry와 활성 카메라 및 광원을 묶어 관리하는 Scene을 선언합니다.
 #pragma once
 #include "ecs/Registry.hpp"
 #include "ecs/Entity.hpp"
 #include "scene/Camera.h"
 #include "scene/Light.h"
 
-// 씬 — Registry + 활성 카메라/라이트 Entity를 하나로 묶어 관리
 class Scene {
 public:
     Scene();

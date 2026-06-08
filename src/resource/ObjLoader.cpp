@@ -1,3 +1,4 @@
+// OBJ 파일 파싱과 Mesh 정규화 및 탄젠트 계산을 구현합니다.
 #include "resource/ObjLoader.h"
 #include <fstream>
 #include <sstream>
@@ -6,9 +7,6 @@
 #include <algorithm>
 #include <cfloat>
 
-// .obj 파일을 파싱해 단일 Mesh로 반환
-// OBJ 포맷은 위치/UV/법선 인덱스가 각각 독립적이므로 조합을 키로 정점을 통합
-// 파일에 법선이 없으면 면 법선으로 자동 계산, 탄젠트는 항상 UV 그라디언트로 계산
 Mesh ObjLoader::Load(const std::string& path) {
     std::ifstream file(path);
     if (!file.is_open()) return {};
@@ -20,7 +18,6 @@ Mesh ObjLoader::Load(const std::string& path) {
     Mesh mesh;
     std::map<std::tuple<int,int,int>, int> indexCache;
 
-    // (pos, uv, normal) 인덱스 조합이 처음 나오면 정점을 추가하고, 이미 있으면 기존 인덱스 반환
     auto getOrAdd = [&](int pi, int ui, int ni) -> int {
         auto key = std::make_tuple(pi, ui, ni);
         auto it  = indexCache.find(key);
@@ -58,7 +55,7 @@ Mesh ObjLoader::Load(const std::string& path) {
             normals.push_back(n);
 
         } else if (token == "f") {
-            // "v", "v/vt", "v//vn", "v/vt/vn" 형식 모두 지원
+
             std::vector<int> faceIndices;
             std::string part;
             while (ss >> part) {
@@ -71,7 +68,6 @@ Mesh ObjLoader::Load(const std::string& path) {
                 faceIndices.push_back(getOrAdd(pi, ui, ni));
             }
 
-            // 쿼드 이상의 폴리곤은 fan triangulation으로 삼각형으로 분할
             for (int i = 1; i + 1 < (int)faceIndices.size(); ++i) {
                 mesh.indices.push_back(faceIndices[0]);
                 mesh.indices.push_back(faceIndices[i]);
@@ -80,7 +76,6 @@ Mesh ObjLoader::Load(const std::string& path) {
         }
     }
 
-    // OBJ에 법선 데이터가 없을 때 인접 면 법선의 평균으로 스무딩 법선을 계산
     if (normals.empty()) {
         std::vector<Vec3> accum(mesh.vertices.size(), Vec3{});
         for (int i = 0; i + 2 < (int)mesh.indices.size(); i += 3) {
@@ -96,7 +91,6 @@ Mesh ObjLoader::Load(const std::string& path) {
             mesh.vertices[i].normal = accum[i].normalized();
     }
 
-    // UV 그라디언트를 이용해 탄젠트 벡터를 계산 (Normal Map의 TBN 행렬 구성에 필요)
     {
         std::vector<Vec3> accum(mesh.vertices.size(), Vec3{});
         for (int i = 0; i + 2 < (int)mesh.indices.size(); i += 3) {
@@ -121,8 +115,6 @@ Mesh ObjLoader::Load(const std::string& path) {
     return mesh;
 }
 
-// 모델의 AABB를 구해 원점 중심, [-1, 1] 범위로 스케일 조정
-// 어떤 크기의 OBJ든 카메라 뷰에 맞게 자동으로 들어오게 하기 위해 사용
 void ObjLoader::Normalize(Mesh& mesh) {
     if (mesh.vertices.empty()) return;
 

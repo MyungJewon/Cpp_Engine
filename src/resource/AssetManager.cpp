@@ -1,3 +1,4 @@
+// Mesh와 Texture를 경로별로 캐시해 로드하는 자산 관리자를 구현합니다.
 #include "resource/AssetManager.h"
 
 #include <utility>

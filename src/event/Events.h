@@ -1,3 +1,4 @@
+// 입력과 충돌 시스템에서 주고받는 이벤트 타입을 정의합니다.
 #pragma once
 
 #include "ecs/Entity.hpp"

@@ -1,3 +1,4 @@
+// OpenGL 셰이더 파일 로드와 컴파일 및 uniform 설정을 구현합니다.
 #include "renderer/gl/GLShader.h"
 #include <fstream>
 #include <iostream>
@@ -86,7 +87,7 @@ void GLShader::Use() const {
 }
 
 void GLShader::SetMat4(const std::string& name, const Mat4& value) const {
-    // Mat4는 row-major이므로 OpenGL column-major 입력에 맞게 transpose를 켠다.
+
     glUniformMatrix4fv(GetUniformLocation(name), 1, GL_TRUE, &value.m[0][0]);
 }
 

@@ -1,9 +1,9 @@
+// 렌더링 셰이더에 전달되는 재질 속성을 정의합니다.
 #pragma once
 
 #include "math/Vec3.h"
 #include "resource/Texture.h"
 
-// 셰이더에 전달할 기본 재질 정보
 struct Material {
     const Texture* albedo = nullptr;
     const Texture* normalMap = nullptr;

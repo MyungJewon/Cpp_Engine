@@ -1,3 +1,4 @@
+// 3D 변환과 투영에 사용하는 4x4 행렬 연산을 정의합니다.
 #pragma once
 #include "math/Vec3.h"
 #include "math/Vec4.h"
@@ -5,30 +6,30 @@
 #include <cstring>
 
 struct Mat4 {
-    // m[row][col], row-major
+
     float m[4][4];
 
     Mat4() { memset(m, 0, sizeof(m)); }
 
-    static Mat4 Identity() { // 단위 행렬
+    static Mat4 Identity() {
         Mat4 r;
         r.m[0][0] = r.m[1][1] = r.m[2][2] = r.m[3][3] = 1.0f;
         return r;
     }
 
-    static Mat4 Translate(float tx, float ty, float tz) { // 이동 행렬
+    static Mat4 Translate(float tx, float ty, float tz) {
         Mat4 r = Identity();
         r.m[0][3] = tx; r.m[1][3] = ty; r.m[2][3] = tz;
         return r;
     }
 
-    static Mat4 Scale(float sx, float sy, float sz) { // 스케일 행렬
+    static Mat4 Scale(float sx, float sy, float sz) {
         Mat4 r = Identity();
         r.m[0][0] = sx; r.m[1][1] = sy; r.m[2][2] = sz;
         return r;
     }
 
-    static Mat4 Rotate(float angle, Vec3 axis) { // 임의 축 회전 (라디안)
+    static Mat4 Rotate(float angle, Vec3 axis) {
         axis = axis.normalized();
         float c = std::cos(angle), s = std::sin(angle), t = 1.0f - c;
         float x = axis.x, y = axis.y, z = axis.z;
@@ -39,7 +40,7 @@ struct Mat4 {
         return r;
     }
 
-    static Mat4 LookAt(Vec3 eye, Vec3 target, Vec3 up) { // 뷰 행렬 (오른손 좌표계)
+    static Mat4 LookAt(Vec3 eye, Vec3 target, Vec3 up) {
         Vec3 f = (target - eye).normalized();
         Vec3 r = f.cross(up).normalized();
         Vec3 u = r.cross(f);
@@ -50,7 +51,7 @@ struct Mat4 {
         return res;
     }
 
-    static Mat4 Perspective(float fovY, float aspect, float zNear, float zFar) { // 원근 투영 행렬 (fovY 라디안)
+    static Mat4 Perspective(float fovY, float aspect, float zNear, float zFar) {
         float tanHalfFov = std::tan(fovY * 0.5f);
         Mat4 r;
         r.m[0][0] = 1.0f / (aspect * tanHalfFov);
@@ -61,7 +62,7 @@ struct Mat4 {
         return r;
     }
 
-    Mat4 operator*(const Mat4& o) const { // 행렬 곱
+    Mat4 operator*(const Mat4& o) const {
         Mat4 res;
         for (int i = 0; i < 4; ++i)
             for (int j = 0; j < 4; ++j)
@@ -70,7 +71,7 @@ struct Mat4 {
         return res;
     }
 
-    Vec4 operator*(const Vec4& v) const { // 행렬-벡터 곱
+    Vec4 operator*(const Vec4& v) const {
         return {
             m[0][0]*v.x + m[0][1]*v.y + m[0][2]*v.z + m[0][3]*v.w,
             m[1][0]*v.x + m[1][1]*v.y + m[1][2]*v.z + m[1][3]*v.w,
@@ -79,8 +80,8 @@ struct Mat4 {
         };
     }
 
-    Mat4 NormalMatrix() const { // 법선 변환용 행렬 (uniform scale 전용 간이 버전)
-        // For uniform scale: just upper-left 3x3
+    Mat4 NormalMatrix() const {
+
         Mat4 r = Identity();
         for (int i = 0; i < 3; ++i)
             for (int j = 0; j < 3; ++j)

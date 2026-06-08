@@ -1,3 +1,4 @@
+// 실행 파일 기준 경로 계산과 상대 경로 해석을 구현합니다.
 #include "core/Path.h"
 
 #ifdef _WIN32
@@ -37,7 +38,6 @@ std::string Path::GetExecutableDir() {
         return std::string(dirname(dynamicBuffer.data()));
     }
 
-    // dirname은 입력 버퍼를 수정하므로 지역 버퍼를 그대로 넘긴다.
     return std::string(dirname(buffer));
 #endif
 }

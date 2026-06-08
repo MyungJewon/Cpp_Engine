@@ -1,3 +1,4 @@
+// Entity를 Y축 기준으로 지속 회전시키는 스크립트를 정의합니다.
 #pragma once
 
 #include "ecs/Registry.hpp"
@@ -7,7 +8,6 @@
 #include "scene/Transform.h"
 #include "script/IScript.h"
 
-// Y축을 기준으로 Entity의 Transform을 일정한 속도로 회전시키는 스크립트
 class RotatorScript : public IScript {
 public:
     explicit RotatorScript(float degreesPerSecond)

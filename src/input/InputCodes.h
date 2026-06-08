@@ -1,3 +1,4 @@
+// 키보드 키와 마우스 버튼 코드 열거형을 정의합니다.
 #pragma once
 
 enum class KeyCode {

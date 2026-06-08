@@ -1,3 +1,4 @@
+// Mesh 데이터를 OpenGL VAO와 버퍼로 업로드하고 그리기를 구현합니다.
 #include "renderer/gl/GLMesh.h"
 #include <cstddef>
 
@@ -22,7 +23,6 @@ void GLMesh::Upload(const Mesh& mesh) {
                  mesh.indices.data(),
                  GL_STATIC_DRAW);
 
-    // MeshVertex 실제 필드 순서: pos(Vec3), uv(Vec2), normal(Vec3), tangent(Vec3)
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(MeshVertex),
                           reinterpret_cast<void*>(offsetof(MeshVertex, pos)));

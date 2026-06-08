@@ -1,3 +1,4 @@
+// Scene 렌더링 호출을 ECS 시스템 업데이트로 연결합니다.
 #include "systems/RenderSystem.h"
 
 RenderSystem::RenderSystem(Renderer& renderer, Scene& scene, IWindow& window)
@@ -7,6 +8,6 @@ RenderSystem::RenderSystem(Renderer& renderer, Scene& scene, IWindow& window)
 }
 
 void RenderSystem::update(Registry&, float) {
-    // Scene 기반 렌더 경로를 그대로 사용한다.
+
     m_renderer.Render(m_scene, m_window);
 }

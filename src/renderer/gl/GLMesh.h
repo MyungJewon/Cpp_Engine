@@ -1,3 +1,4 @@
+// OpenGL 메시 버퍼와 드로우 래퍼를 선언합니다.
 #pragma once
 #import <OpenGL/gl3.h>
 #include "resource/ObjLoader.h"

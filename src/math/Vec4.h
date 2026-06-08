@@ -1,3 +1,4 @@
+// 4차원 벡터와 원근 나눗셈 보조 연산을 정의합니다.
 #pragma once
 #include "math/Vec3.h"
 
@@ -13,6 +14,6 @@ struct Vec4 {
     Vec4 operator*(float s)        const { return { x * s,   y * s,   z * s,   w * s   }; }
     Vec4 operator/(float s)        const { return { x / s,   y / s,   z / s,   w / s   }; }
 
-    Vec3 xyz() const { return { x, y, z }; }                              // xyz 성분 추출
-    Vec3 PerspectiveDivide() const { return { x / w, y / w, z / w }; }  // 클립 → NDC 변환
+    Vec3 xyz() const { return { x, y, z }; }
+    Vec3 PerspectiveDivide() const { return { x / w, y / w, z / w }; }
 };

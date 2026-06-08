@@ -1,3 +1,4 @@
+// 프레임 델타와 누적 시간을 제공하는 시간 유틸리티를 선언합니다.
 #pragma once
 #include <chrono>
 #include <cstdint>

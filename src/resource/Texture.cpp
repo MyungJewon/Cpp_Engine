@@ -1,3 +1,4 @@
+// TGA 텍스처 로드와 픽셀 샘플링을 구현합니다.
 #include "resource/Texture.h"
 #include <fstream>
 #include <cstring>
@@ -18,9 +19,6 @@ struct TGAHeader {
 };
 #pragma pack(pop)
 
-// TGA 파일을 직접 파싱해 픽셀 배열로 적재
-// 외부 라이브러리 없이 구현; uncompressed RGB/RGBA(type 2, 24/32bit)만 지원
-// TGA는 BGR 바이트 순서 및 기본 bottom-up 저장이므로 읽을 때 보정
 Texture Texture::Load(const std::string& path) {
     Texture tex;
     std::ifstream f(path, std::ios::binary);
@@ -69,8 +67,6 @@ Texture Texture::FromPixels(int w, int h, const std::vector<Color>& pixels) {
     return tex;
 }
 
-// UV [0,1] 좌표로 픽셀 색상을 샘플링
-// UV가 범위를 벗어나면 repeat 처리, 2x2 블록 보간으로 계단 현상 완화 (Bilinear filtering)
 Color Texture::Sample(float u, float v) const {
     if (m_pixels.empty()) return Color(255, 0, 255);
 
@@ -84,12 +80,10 @@ Color Texture::Sample(float u, float v) const {
     int   y1 = std::min(y0 + 1, m_height - 1);
     float tx = fx - x0, ty = fy - y0;
 
-    // 픽셀 좌표로 직접 접근하는 헬퍼
     auto get = [&](int x, int y) -> Color {
         return m_pixels[y * m_width + x];
     };
 
-    // 가로 방향 선형 보간 후 세로 방향 선형 보간
     auto lerp = [](float a, float b, float t) { return a + (b - a) * t; };
     auto lerpC = [&](Color a, Color b, float t) -> Color {
         return Color(

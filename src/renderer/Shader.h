@@ -1,3 +1,4 @@
+// 소프트웨어 렌더러의 정점 출력과 셰이더 인터페이스를 정의합니다.
 #pragma once
 #include "math/Vec2.h"
 #include "math/Vec3.h"
@@ -5,16 +6,14 @@
 #include "math/Mat4.h"
 #include "renderer/Framebuffer.h"
 
-// Data carried from vertex shader to fragment shader
 struct Varying {
     Vec3  worldPos;
     Vec3  normal;
-    Vec3  tangent;  // Normal Map TBN 구성용
+    Vec3  tangent;
     Vec2  uv;
     Color color;
 };
 
-// Interpolated vertex output in clip space
 struct VertexOut {
     Vec4    clipPos;
     Varying varying;

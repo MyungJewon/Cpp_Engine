@@ -1,3 +1,4 @@
+// 렌더러와 ECS 씬을 묶어 실행하는 데모 애플리케이션을 선언합니다.
 #pragma once
 
 #include "app/Application.h"
@@ -13,7 +14,6 @@
 #include "systems/ScriptSystem.h"
 #include "systems/TransformSystem.h"
 
-// OBJ 모델을 PhongShader로 렌더링하는 데모 애플리케이션
 class DemoApp : public Application {
 public:
     DemoApp(int width, int height, const char* title);

@@ -1,3 +1,4 @@
+// RigidBody 속도와 중력을 Transform 위치에 적분합니다.
 #include "systems/PhysicsSystem.h"
 #include "physics/RigidBody.h"
 #include "scene/Transform.h"

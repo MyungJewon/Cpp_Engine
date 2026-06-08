@@ -1,3 +1,4 @@
+// 엔진 전반에서 사용하는 기본 정수와 실수 타입 별칭을 정의합니다.
 #pragma once
 #include <cstdint>
 

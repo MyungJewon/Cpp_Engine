@@ -1,3 +1,4 @@
+// 타입 기반 이벤트 구독과 발행을 처리하는 전역 이벤트 버스를 정의합니다.
 #pragma once
 
 #include <functional>
@@ -7,7 +8,6 @@
 #include <memory>
 #include <any>
 
-// 타입 기반 이벤트 발행/구독을 제공하는 전역 EventBus.
 class EventBus {
 public:
     static EventBus& Get();

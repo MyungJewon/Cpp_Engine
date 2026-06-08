@@ -1,3 +1,4 @@
+// Phong 조명과 노말맵 및 그림자를 처리하는 셰이더를 선언합니다.
 #pragma once
 #include "renderer/Shader.h"
 #include "renderer/ShadowMap.h"
@@ -8,11 +9,10 @@
 
 struct Mesh;
 
-// Phong + Shadow Map + Normal Map + 텍스처 통합 셰이더
 struct PhongShader : IShader {
     const Mesh*      mesh      = nullptr;
-    const Texture*   albedo    = nullptr;  // diffuse 텍스처
-    const Texture*   normalMap = nullptr;  // tangent-space 노말맵
+    const Texture*   albedo    = nullptr;
+    const Texture*   normalMap = nullptr;
     const ShadowMap* shadowMap = nullptr;
     Mat4             mvp;
     Mat4             modelMat;

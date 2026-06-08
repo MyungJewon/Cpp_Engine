@@ -1,3 +1,4 @@
+// 플랫폼 창에서 생성되는 키와 마우스 이벤트 구조체를 정의합니다.
 #pragma once
 #include "input/InputCodes.h"
 

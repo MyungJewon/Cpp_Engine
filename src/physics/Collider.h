@@ -1,3 +1,4 @@
+// 충돌 판정에 사용하는 콜라이더 형태와 물리 재질 값을 정의합니다.
 #pragma once
 #include "math/Vec3.h"
 #include "resource/ObjLoader.h"
@@ -11,8 +12,8 @@ struct Collider {
     Vec3          center      = {0, 0, 0};
     Vec3          halfExtents = {0.5f, 0.5f, 0.5f};
     float         radius      = 0.5f;
-    float         restitution = 0.0f;  // 0 = no bounce, 1 = perfectly elastic
-    float         friction    = 0.4f;  // 0 = no friction, 1 = stop tangential velocity
+    float         restitution = 0.0f;
+    float         friction    = 0.4f;
     bool          isTrigger   = false;
 
     static Collider FromMesh(const Mesh& mesh, const Vec3& scale = {1.0f, 1.0f, 1.0f}) {

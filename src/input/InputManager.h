@@ -1,3 +1,4 @@
+// 키보드와 마우스 입력 상태를 조회하는 싱글톤 입력 관리자를 선언합니다.
 #pragma once
 #include "input/InputCodes.h"
 #include <array>

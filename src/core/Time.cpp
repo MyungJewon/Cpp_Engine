@@ -1,3 +1,4 @@
+// 프레임 시간과 누적 시간을 계산하는 전역 시간 상태를 구현합니다.
 #include "core/Time.h"
 #include <algorithm>
 
@@ -26,7 +27,6 @@ void Time::Update() {
     const float rawDelta = std::chrono::duration<float>(now - s_lastTime).count();
     s_lastTime = now;
 
-    // 디버깅 중 긴 정지나 창 이동으로 물리 루프가 폭주하지 않도록 델타타임을 제한한다.
     s_deltaTime = std::min(rawDelta, 0.1f);
     s_totalTime += s_deltaTime;
     ++s_frameCount;

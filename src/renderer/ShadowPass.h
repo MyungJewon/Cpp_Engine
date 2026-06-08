@@ -1,9 +1,9 @@
+// 색상 없이 깊이만 기록하는 그림자 패스 렌더러를 선언합니다.
 #pragma once
 #include "renderer/ShadowMap.h"
 #include "renderer/shaders/ShadowShader.h"
 #include "resource/ObjLoader.h"
 
-// 깊이 버퍼만 채우는 패스
 class ShadowPassRenderer {
 public:
     explicit ShadowPassRenderer(ShadowMap& sm) : m_sm(sm) {}
