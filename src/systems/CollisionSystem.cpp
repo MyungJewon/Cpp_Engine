@@ -113,34 +113,115 @@ void MoveEntity(Registry& reg, Entity entity, const Vec3& offset) {
     transform.SetLocalPos(transform.localPos + offset, reg);
 }
 
-void ResolveVelocity(Registry& reg, Entity entity, const Vec3& normal, float restitution, float friction) {
+void ApplyAngularFriction(RigidBody& rb, const Collider& collider, const Vec3& normal, const Vec3& frictionVec) {
+    Vec3 r = {
+        normal.x * (collider.shape == ColliderShape::Sphere ? collider.radius : collider.halfExtents.x),
+        normal.y * (collider.shape == ColliderShape::Sphere ? collider.radius : collider.halfExtents.y),
+        normal.z * (collider.shape == ColliderShape::Sphere ? collider.radius : collider.halfExtents.z)
+    };
+
+    Vec3 torque = {
+        r.y * frictionVec.z - r.z * frictionVec.y,
+        r.z * frictionVec.x - r.x * frictionVec.z,
+        r.x * frictionVec.y - r.y * frictionVec.x
+    };
+
+    float r_size = collider.radius > 0.01f ? collider.radius
+                 : (collider.halfExtents.x + collider.halfExtents.y + collider.halfExtents.z) / 3.0f;
+    float I = (2.0f / 5.0f) * rb.mass * r_size * r_size;
+    if (I < 0.001f) I = 0.001f;
+
+    rb.angularVelocity.x += torque.x / I;
+    rb.angularVelocity.y += torque.y / I;
+    rb.angularVelocity.z += torque.z / I;
+}
+
+void ResolveVelocity(Registry& reg, Entity entity, const Collider& collider, const Vec3& normal, float restitution, float friction) {
     if (!reg.has<RigidBody>(entity)) return;
 
     RigidBody& rb = reg.get<RigidBody>(entity);
-    const Vec3& vel = rb.velocity;
     const Vec3& n = normal;
-    float vDotN = vel.x * n.x + vel.y * n.y + vel.z * n.z;
+
+    // 접촉점 반경 벡터 r (표면 방향)
+    float r_size = collider.radius > 0.01f ? collider.radius
+                 : (collider.halfExtents.x + collider.halfExtents.y + collider.halfExtents.z) / 3.0f;
+    Vec3 r = {-n.x * r_size, -n.y * r_size, -n.z * r_size};
+
+    // 접촉점 속도 = 선속도 + cross(ω, r)
+    const Vec3& w = rb.angularVelocity;
+    Vec3 angularContrib = {
+        w.y * r.z - w.z * r.y,
+        w.z * r.x - w.x * r.z,
+        w.x * r.y - w.y * r.x
+    };
+    Vec3 contactVel = {
+        rb.velocity.x + angularContrib.x,
+        rb.velocity.y + angularContrib.y,
+        rb.velocity.z + angularContrib.z
+    };
+
+    // 법선 방향 충격 (선속도 기준)
+    float vDotN = rb.velocity.x * n.x + rb.velocity.y * n.y + rb.velocity.z * n.z;
     float normalImpulse = -(1.0f + restitution) * vDotN;
     if (normalImpulse <= 0.0f) return;
 
+    // 관성 모멘트 (구체: 2/5 m r²)
+    float I = (2.0f / 5.0f) * rb.mass * r_size * r_size;
+    if (I < 0.001f) I = 0.001f;
+
     Vec3 normalDelta = {n.x * normalImpulse, n.y * normalImpulse, n.z * normalImpulse};
-    Vec3 tangential = {vel.x - n.x * vDotN, vel.y - n.y * vDotN, vel.z - n.z * vDotN};
+    rb.velocity = rb.velocity + normalDelta;
+
+    // 접촉점 접선 속도 (ω 기여 포함)
+    float cvDotN = contactVel.x * n.x + contactVel.y * n.y + contactVel.z * n.z;
+    Vec3 tangential = {
+        contactVel.x - n.x * cvDotN,
+        contactVel.y - n.y * cvDotN,
+        contactVel.z - n.z * cvDotN
+    };
     float tangentialSpeed = sqrtf(tangential.x * tangential.x +
                                   tangential.y * tangential.y +
                                   tangential.z * tangential.z);
+
     friction = std::clamp(friction, 0.0f, 1.0f);
     if (tangentialSpeed > 0.001f) {
-        float frictionMag = friction * std::abs(normalImpulse);
-        frictionMag = std::min(frictionMag, tangentialSpeed);
         Vec3 tangDir = {tangential.x / tangentialSpeed,
                         tangential.y / tangentialSpeed,
                         tangential.z / tangentialSpeed};
-        Vec3 frictionDelta = {tangDir.x * (-frictionMag),
-                              tangDir.y * (-frictionMag),
-                              tangDir.z * (-frictionMag)};
-        rb.velocity = rb.velocity + normalDelta + frictionDelta;
-    } else {
-        rb.velocity = rb.velocity + normalDelta;
+
+        // 마찰 충격량 크기 (Coulomb 한계)
+        float frictionMag = friction * std::abs(normalImpulse);
+
+        // 선속도+각속도 동시 고려한 유효 질량
+        // cross(r, tangDir)
+        Vec3 rCrossT = {
+            r.y * tangDir.z - r.z * tangDir.y,
+            r.z * tangDir.x - r.x * tangDir.z,
+            r.x * tangDir.y - r.y * tangDir.x
+        };
+        float angularMassInv = (rCrossT.x * rCrossT.x + rCrossT.y * rCrossT.y + rCrossT.z * rCrossT.z) / I;
+        float effectiveMass = 1.0f / (1.0f / rb.mass + angularMassInv);
+        float maxFriction = effectiveMass * tangentialSpeed;
+        frictionMag = std::min(frictionMag, maxFriction);
+
+        Vec3 frictionImpulse = {tangDir.x * (-frictionMag),
+                                tangDir.y * (-frictionMag),
+                                tangDir.z * (-frictionMag)};
+
+        // 선속도에 마찰 충격 적용
+        rb.velocity.x += frictionImpulse.x / rb.mass;
+        rb.velocity.y += frictionImpulse.y / rb.mass;
+        rb.velocity.z += frictionImpulse.z / rb.mass;
+
+        // 각속도에 마찰 충격 적용: Δω = cross(r, J) / I
+        Vec3 angDelta = {
+            (r.y * frictionImpulse.z - r.z * frictionImpulse.y) / I,
+            (r.z * frictionImpulse.x - r.x * frictionImpulse.z) / I,
+            (r.x * frictionImpulse.y - r.y * frictionImpulse.x) / I
+        };
+        rb.angularVelocity.x += angDelta.x;
+        rb.angularVelocity.y += angDelta.y;
+        rb.angularVelocity.z += angDelta.z;
     }
 }
 
@@ -158,14 +239,14 @@ void ResolveCollision(Registry& reg, Entity a, Entity b, const Collider& collide
     if (moveA && moveB) {
         MoveEntity(reg, a, normal * (-penetration * 0.5f));
         MoveEntity(reg, b, normal * ( penetration * 0.5f));
-        ResolveVelocity(reg, a, -normal, restitution, friction);
-        ResolveVelocity(reg, b, normal, restitution, friction);
+        ResolveVelocity(reg, a, colliderA, -normal, restitution, friction);
+        ResolveVelocity(reg, b, colliderB, normal, restitution, friction);
     } else if (moveA) {
         MoveEntity(reg, a, normal * -penetration);
-        ResolveVelocity(reg, a, -normal, restitution, friction);
+        ResolveVelocity(reg, a, colliderA, -normal, restitution, friction);
     } else if (moveB) {
         MoveEntity(reg, b, normal * penetration);
-        ResolveVelocity(reg, b, normal, restitution, friction);
+        ResolveVelocity(reg, b, colliderB, normal, restitution, friction);
     }
 }
 }

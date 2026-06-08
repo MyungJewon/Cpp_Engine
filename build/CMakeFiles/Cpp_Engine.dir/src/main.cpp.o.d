@@ -808,6 +808,8 @@ CMakeFiles/Cpp_Engine.dir/src/main.cpp.o: \
   /Users/deepfine/C++Project/Cpp_Engine/src/math/Vec2.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Scene.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/scene/Camera.h \

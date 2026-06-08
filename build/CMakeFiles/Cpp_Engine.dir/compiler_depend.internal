@@ -5572,12 +5572,14 @@ CMakeFiles/Cpp_Engine.dir/src/main.cpp.o
  /Users/deepfine/C++Project/Cpp_Engine/src/math/Vec3.h
  /Users/deepfine/C++Project/Cpp_Engine/src/math/Vec4.h
  /Users/deepfine/C++Project/Cpp_Engine/src/platform/IWindow.h
+ /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Framebuffer.h
  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/Renderer.h
  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLMesh.h
  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLRenderer.h
  /Users/deepfine/C++Project/Cpp_Engine/src/renderer/gl/GLShader.h
  /Users/deepfine/C++Project/Cpp_Engine/src/resource/MeshGenerator.h
  /Users/deepfine/C++Project/Cpp_Engine/src/resource/ObjLoader.h
+ /Users/deepfine/C++Project/Cpp_Engine/src/resource/Texture.h
  /Users/deepfine/C++Project/Cpp_Engine/src/scene/Camera.h
  /Users/deepfine/C++Project/Cpp_Engine/src/scene/CameraController.h
  /Users/deepfine/C++Project/Cpp_Engine/src/scene/Light.h

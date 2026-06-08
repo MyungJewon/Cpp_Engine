@@ -36,9 +36,19 @@ void DemoApp::OnInit() {
 
     m_sphereMesh = MeshGenerator::CreateSphere(16, 16, 1.0f);
 
+    {
+        std::vector<Color> pixels(8 * 8);
+        for (int y = 0; y < 8; y++)
+            for (int x = 0; x < 8; x++)
+                pixels[y * 8 + x] = ((x + y) % 2 == 0)
+                    ? Color(255, 255, 255, 255)
+                    : Color(220, 50, 50, 255);
+        m_checkerTex = Texture::FromPixels(8, 8, pixels);
+    }
+
     MeshRenderer sphereRenderer;
     sphereRenderer.mesh = &m_sphereMesh;
-    sphereRenderer.material.albedo = nullptr;
+    sphereRenderer.material.albedo = &m_checkerTex;
     sphereRenderer.material.normalMap = nullptr;
     sphereRenderer.material.shininess = light.shininess;
 

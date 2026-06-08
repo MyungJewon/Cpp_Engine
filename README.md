@@ -1,7 +1,7 @@
 # Cpp_Engine
 
 외부 라이브러리 없이 C++17만으로 제작한 미니 3D 게임 엔진.
-OpenGL 4.1 기반 렌더러, Sparse Set ECS, 계층 Transform, 물리 시스템 등을 포함한다.
+OpenGL 4.1 기반 렌더러, Sparse Set ECS, 계층 Transform, 강체 물리 시스템 등을 포함한다.
 
 ---
 
@@ -11,10 +11,12 @@ OpenGL 4.1 기반 렌더러, Sparse Set ECS, 계층 Transform, 물리 시스템 
 - **ECS 아키텍처** — Sparse Set 기반 Entity / Component / System, O(1) 삽입·삭제
 - **OpenGL 4.1 렌더러** — GPU 기반 Phong 셰이딩, PCF 소프트 Shadow Map, MSAA 4x
 - **계층 Transform** — 부모-자식 관계, dirty 플래그 기반 월드 행렬 지연 계산
-- **물리 시스템** — 중력·속도 적분, AABB/Sphere 충돌, 마찰력, 반발력
+- **강체 물리** — 선속도·각속도 적분, AABB/Sphere 충돌, 충격량 기반 마찰·반발
+- **구르기 물리** — 접촉점 속도 `v + cross(ω, r)` 기준 마찰 충격 → 선·각속도 동시 갱신
 - **이벤트 버스** — 타입 기반 pub/sub, 시스템 간 직접 결합 없이 통신
 - **스크립트 컴포넌트** — `IScript` 상속으로 오브젝트별 동작 정의
 - **Orbit / FPS 카메라** — Tab으로 전환, 마우스 드래그·휠 조작
+- **절차적 텍스처** — `Texture::FromPixels()`로 런타임 픽셀 데이터에서 텍스처 생성
 
 ---
 
@@ -128,13 +130,15 @@ Mat4 worldMat = tf.GetWorldMatrix(registry);
 `PhysicsSystem`과 `CollisionSystem`이 `FixedUpdate(1/60초)`에서 실행된다.
 
 ```cpp
-// RigidBody — 중력, 속도, 마찰
+// RigidBody — 중력, 선속도, 각속도
 struct RigidBody {
-    Vec3  velocity   = {0, 0, 0};
-    float mass       = 1.0f;
-    float drag       = 0.01f;
-    bool  useGravity = true;
-    bool  isKinematic = false;
+    Vec3  velocity        = {0, 0, 0};
+    Vec3  angularVelocity = {0, 0, 0};  // rad/s
+    float mass            = 1.0f;
+    float drag            = 0.01f;
+    float angularDrag     = 1.5f;       // 회전 감쇠
+    bool  useGravity      = true;
+    bool  isKinematic     = false;
 };
 
 // Collider — 충돌 형태 및 물성
@@ -152,6 +156,7 @@ struct Collider {
 ```
 
 충돌 응답은 충격량(impulse) 기반으로 계산된다.
+- **구르기 물리**: 접촉점 속도 `v + cross(ω, r)` 기준으로 마찰 충격량을 계산하고, 선속도와 각속도에 동시 적용. 유효 질량(effective mass)으로 Coulomb 마찰 한계 산출.
 - RigidBody 없는 Entity는 static(고정) 오브젝트로 처리
 - Trigger이면 `TriggerEnterEvent` 발행, 일반 충돌이면 위치 보정 + 속도 반사
 
@@ -213,14 +218,34 @@ Mesh grid   = MeshGenerator::CreateGrid(20, 1.0f);        // 20×20 격자
 Mesh sphere = MeshGenerator::CreateSphere(16, 16, 1.0f);  // UV 구체
 ```
 
+### Texture
+
+TGA 파일 로드 또는 런타임 픽셀 데이터로 텍스처를 생성한다.
+
+```cpp
+// 파일에서 로드
+const Texture* tex = AssetManager::Get().LoadTexture("texture.tga");
+
+// 코드에서 생성 (절차적 텍스처)
+std::vector<Color> pixels(8 * 8);
+for (int y = 0; y < 8; y++)
+    for (int x = 0; x < 8; x++)
+        pixels[y * 8 + x] = ((x + y) % 2 == 0)
+            ? Color(255, 255, 255, 255)
+            : Color(220, 50, 50, 255);
+Texture checker = Texture::FromPixels(8, 8, pixels);
+material.albedo = &checker;  // 멤버 변수로 수명 관리 필요
+```
+
 ---
 
 ## 데모 씬 구성
 
 `DemoApp`이 엔진 사용 예시를 보여준다.
 
-- 구체 2개가 중력으로 낙하 → 바닥과 충돌 후 정지
-- 구체 간 충돌 감지 및 반발·마찰 적용
+- 구체 2개가 중력으로 낙하 → 바닥과 충돌 후 구르기
+- 구체 간 충돌 감지 및 반발·마찰·회전 적용
+- 체커보드 텍스처로 회전 시각화
 - Orbit / FPS 카메라 전환
 
 https://github.com/user-attachments/assets/d8b7417d-76ee-4253-bdec-aeb97bdb6c8a

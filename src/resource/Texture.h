@@ -8,6 +8,7 @@ class Texture {
 public:
     // TGA 파일 로드 (uncompressed RGB/RGBA, type 2만 지원)
     static Texture Load(const std::string& path);
+    static Texture FromPixels(int w, int h, const std::vector<Color>& pixels);
 
     bool IsValid() const { return !m_pixels.empty(); }
     int Width() const { return m_width; }

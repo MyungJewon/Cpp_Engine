@@ -33,11 +33,21 @@ float ShadowFactor(vec3 normal, vec3 lightDir)
         return 0.0;
     }
 
-    float closestDepth = texture(ShadowMap, projCoords.xy).r;
     float currentDepth = projCoords.z;
     float cosTheta = clamp(dot(normalize(normal), normalize(lightDir)), 0.0, 1.0);
     float bias = max(0.0005, 0.002 * (1.0 - cosTheta));
-    return currentDepth > closestDepth + bias ? 1.0 : 0.0;
+
+    float shadow = 0.0;
+    vec2 texelSize = 1.0 / vec2(textureSize(ShadowMap, 0));
+    for(int x = -1; x <= 1; ++x) {
+        for(int y = -1; y <= 1; ++y) {
+            float pcfDepth = texture(ShadowMap, projCoords.xy + vec2(x, y) * texelSize).r;
+            shadow += (currentDepth - bias) > pcfDepth ? 0.0 : 1.0;
+        }
+    }
+    shadow /= 9.0;
+
+    return 1.0 - shadow;
 }
 
 void main()

@@ -5,6 +5,7 @@
 #include "ecs/World.hpp"
 #include "renderer/Renderer.h"
 #include "resource/MeshGenerator.h"
+#include "resource/Texture.h"
 #include "scene/CameraController.h"
 #include "scene/Scene.h"
 #include "systems/CameraSystem.h"
@@ -34,4 +35,5 @@ private:
     Entity m_gridEntity = NULL_ENTITY;
     Mesh m_sphereMesh;
     Mesh m_gridMesh;
+    Texture m_checkerTex;
 };

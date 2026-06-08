@@ -61,6 +61,14 @@ Texture Texture::Load(const std::string& path) {
     return tex;
 }
 
+Texture Texture::FromPixels(int w, int h, const std::vector<Color>& pixels) {
+    Texture tex;
+    tex.m_width  = w;
+    tex.m_height = h;
+    tex.m_pixels = pixels;
+    return tex;
+}
+
 // UV [0,1] 좌표로 픽셀 색상을 샘플링
 // UV가 범위를 벗어나면 repeat 처리, 2x2 블록 보간으로 계단 현상 완화 (Bilinear filtering)
 Color Texture::Sample(float u, float v) const {
