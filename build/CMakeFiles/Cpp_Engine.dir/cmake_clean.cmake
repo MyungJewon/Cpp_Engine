@@ -69,6 +69,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o.d"
   "CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o"
   "CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o.d"
+  "CMakeFiles/Cpp_Engine.dir/src/systems/UISystem.cpp.o"
+  "CMakeFiles/Cpp_Engine.dir/src/systems/UISystem.cpp.o.d"
+  "CMakeFiles/Cpp_Engine.dir/src/ui/UIRenderer.cpp.o"
+  "CMakeFiles/Cpp_Engine.dir/src/ui/UIRenderer.cpp.o.d"
   "bin/Cpp_Engine"
   "bin/Cpp_Engine.pdb"
 )

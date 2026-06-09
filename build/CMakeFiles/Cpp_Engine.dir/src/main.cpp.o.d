@@ -841,4 +841,5 @@ CMakeFiles/Cpp_Engine.dir/src/main.cpp.o: \
   /Users/deepfine/C++Project/Cpp_Engine/src/input/InputCodes.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.h
+  /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/ui/UIRenderer.h

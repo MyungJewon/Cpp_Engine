@@ -24,6 +24,7 @@ set(ENGINE_SOURCES
   src/renderer/shaders/PhongShader.cpp
   src/renderer/shaders/ShadowShader.cpp
   src/renderer/shaders/TransparentShader.cpp
+  src/ui/UIRenderer.cpp
   src/resource/AssetManager.cpp
   src/resource/MeshGenerator.cpp
   src/resource/ObjLoader.cpp
@@ -38,6 +39,7 @@ set(ENGINE_SOURCES
   src/systems/CollisionSystem.cpp
   src/systems/CameraSystem.cpp
   src/systems/RenderSystem.cpp
+  src/systems/UISystem.cpp
 )
 
 if(APPLE)

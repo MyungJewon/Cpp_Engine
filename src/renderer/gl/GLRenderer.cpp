@@ -193,5 +193,4 @@ void GLRenderer::Render(Registry& reg, const Camera& camera, const Light& light,
 
     ShadowPass(reg, light);
     OpaquePass(reg, camera, light);
-    window.SwapBuffers();
 }

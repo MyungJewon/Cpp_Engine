@@ -953,6 +953,54 @@ src/systems/TransformSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.s
 .PHONY : src/systems/TransformSystem.cpp.s
 
+src/systems/UISystem.o: src/systems/UISystem.cpp.o
+.PHONY : src/systems/UISystem.o
+
+# target to build an object file
+src/systems/UISystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/UISystem.cpp.o
+.PHONY : src/systems/UISystem.cpp.o
+
+src/systems/UISystem.i: src/systems/UISystem.cpp.i
+.PHONY : src/systems/UISystem.i
+
+# target to preprocess a source file
+src/systems/UISystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/UISystem.cpp.i
+.PHONY : src/systems/UISystem.cpp.i
+
+src/systems/UISystem.s: src/systems/UISystem.cpp.s
+.PHONY : src/systems/UISystem.s
+
+# target to generate assembly for a file
+src/systems/UISystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/systems/UISystem.cpp.s
+.PHONY : src/systems/UISystem.cpp.s
+
+src/ui/UIRenderer.o: src/ui/UIRenderer.cpp.o
+.PHONY : src/ui/UIRenderer.o
+
+# target to build an object file
+src/ui/UIRenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/ui/UIRenderer.cpp.o
+.PHONY : src/ui/UIRenderer.cpp.o
+
+src/ui/UIRenderer.i: src/ui/UIRenderer.cpp.i
+.PHONY : src/ui/UIRenderer.i
+
+# target to preprocess a source file
+src/ui/UIRenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/ui/UIRenderer.cpp.i
+.PHONY : src/ui/UIRenderer.cpp.i
+
+src/ui/UIRenderer.s: src/ui/UIRenderer.cpp.s
+.PHONY : src/ui/UIRenderer.s
+
+# target to generate assembly for a file
+src/ui/UIRenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cpp_Engine.dir/build.make CMakeFiles/Cpp_Engine.dir/src/ui/UIRenderer.cpp.s
+.PHONY : src/ui/UIRenderer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1065,6 +1113,12 @@ help:
 	@echo "... src/systems/TransformSystem.o"
 	@echo "... src/systems/TransformSystem.i"
 	@echo "... src/systems/TransformSystem.s"
+	@echo "... src/systems/UISystem.o"
+	@echo "... src/systems/UISystem.i"
+	@echo "... src/systems/UISystem.s"
+	@echo "... src/ui/UIRenderer.o"
+	@echo "... src/ui/UIRenderer.i"
+	@echo "... src/ui/UIRenderer.s"
 .PHONY : help
 
 

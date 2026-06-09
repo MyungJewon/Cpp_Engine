@@ -842,6 +842,7 @@ CMakeFiles/Cpp_Engine.dir/src/app/DemoApp.cpp.o: \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/ui/UIRenderer.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/physics/Collider.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cfloat \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/float.h \
@@ -857,4 +858,6 @@ CMakeFiles/Cpp_Engine.dir/src/app/DemoApp.cpp.o: \
   /Users/deepfine/C++Project/Cpp_Engine/src/math/Quat.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/CollisionSystem.h \
   /Users/deepfine/C++Project/Cpp_Engine/src/systems/InputSystem.h \
-  /Users/deepfine/C++Project/Cpp_Engine/src/systems/PhysicsSystem.h
+  /Users/deepfine/C++Project/Cpp_Engine/src/systems/PhysicsSystem.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/systems/UISystem.h \
+  /Users/deepfine/C++Project/Cpp_Engine/src/ui/UIComponent.h

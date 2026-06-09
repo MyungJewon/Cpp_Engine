@@ -13,6 +13,7 @@
 #include "systems/RenderSystem.h"
 #include "systems/ScriptSystem.h"
 #include "systems/TransformSystem.h"
+#include "ui/UIRenderer.h"
 
 class DemoApp : public Application {
 public:
@@ -26,6 +27,7 @@ protected:
 
 private:
     Renderer m_renderer;
+    UIRenderer m_uiRenderer;
     Scene m_scene;
     World m_world;
     CameraController m_cameraController;

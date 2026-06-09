@@ -42,6 +42,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/deepfine/C++Project/Cpp_Engine/src/systems/RenderSystem.cpp" "CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o" "gcc" "CMakeFiles/Cpp_Engine.dir/src/systems/RenderSystem.cpp.o.d"
   "/Users/deepfine/C++Project/Cpp_Engine/src/systems/ScriptSystem.cpp" "CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o" "gcc" "CMakeFiles/Cpp_Engine.dir/src/systems/ScriptSystem.cpp.o.d"
   "/Users/deepfine/C++Project/Cpp_Engine/src/systems/TransformSystem.cpp" "CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o" "gcc" "CMakeFiles/Cpp_Engine.dir/src/systems/TransformSystem.cpp.o.d"
+  "/Users/deepfine/C++Project/Cpp_Engine/src/systems/UISystem.cpp" "CMakeFiles/Cpp_Engine.dir/src/systems/UISystem.cpp.o" "gcc" "CMakeFiles/Cpp_Engine.dir/src/systems/UISystem.cpp.o.d"
+  "/Users/deepfine/C++Project/Cpp_Engine/src/ui/UIRenderer.cpp" "CMakeFiles/Cpp_Engine.dir/src/ui/UIRenderer.cpp.o" "gcc" "CMakeFiles/Cpp_Engine.dir/src/ui/UIRenderer.cpp.o.d"
   "/Users/deepfine/C++Project/Cpp_Engine/src/platform/MacWindow.mm" "CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o" "gcc" "CMakeFiles/Cpp_Engine.dir/src/platform/MacWindow.mm.o.d"
   )
 

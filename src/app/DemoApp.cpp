@@ -7,6 +7,8 @@
 #include "systems/CollisionSystem.h"
 #include "systems/InputSystem.h"
 #include "systems/PhysicsSystem.h"
+#include "systems/UISystem.h"
+#include "ui/UIComponent.h"
 
 DemoApp::DemoApp(int width, int height, const char* title)
     : Application(width, height, title)
@@ -15,6 +17,8 @@ DemoApp::DemoApp(int width, int height, const char* title)
 }
 
 void DemoApp::OnInit() {
+    m_uiRenderer.Init(GetWindow().PixelWidth(), GetWindow().PixelHeight());
+
     m_cameraEntity = m_scene.CreateEntity();
     Camera camera;
     camera.eye = { 0.0f, 3.0f, 9.0f };
@@ -110,8 +114,19 @@ void DemoApp::OnInit() {
     m_world.add_system<TransformSystem>();
     m_world.add_system<CameraSystem>(m_cameraController, m_cameraEntity);
     m_world.add_system<RenderSystem>(m_renderer, m_scene, GetWindow());
+    m_world.add_system<UISystem>(m_uiRenderer, GetWindow());
     m_world.add_fixed_system<PhysicsSystem>();
     m_world.add_fixed_system<CollisionSystem>();
+
+    Entity uiEntity = m_scene.CreateEntity();
+    UIComponent ui;
+    ui.type     = UIType::Text;
+    ui.text     = "Cpp_Engine";
+    ui.x        = 10.0f;
+    ui.y        = 10.0f;
+    ui.color    = { 1.0f, 1.0f, 1.0f };
+    ui.fontSize = 2;
+    m_scene.GetRegistry().add<UIComponent>(uiEntity, ui);
 }
 
 void DemoApp::OnUpdate(float dt) {
@@ -123,4 +138,5 @@ void DemoApp::OnFixedUpdate() {
 }
 
 void DemoApp::OnRender() {
+    GetWindow().SwapBuffers();
 }
