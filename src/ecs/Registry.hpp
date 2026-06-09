@@ -54,6 +54,15 @@ public:
     }
 
     template<typename T>
+    T* try_get(Entity entity) {
+        auto it = pools.find(std::type_index(typeid(T)));
+        if (it == pools.end()) return nullptr;
+        auto* pool = static_cast<TypedComponentPool<T>*>(it->second.get());
+        if (!pool->has(entity)) return nullptr;
+        return &pool->pool.get(entity);
+    }
+
+    template<typename T>
     bool has(Entity entity) {
         auto it = pools.find(typeid(T));
         if (it == pools.end()) return false;

@@ -172,6 +172,7 @@ void MacWindow::PollEvents() {
                 case  0: return KeyCode::A;
                 case  1: return KeyCode::S;
                 case  2: return KeyCode::D;
+                case 15: return KeyCode::R;
                 case 12: return KeyCode::Q;
                 case 14: return KeyCode::E;
                 case 49: return KeyCode::Space;

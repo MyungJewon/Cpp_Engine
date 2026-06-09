@@ -137,82 +137,83 @@ void ApplyAngularFriction(RigidBody& rb, const Collider& collider, const Vec3& n
     rb.angularVelocity.z += torque.z / I;
 }
 
-void ResolveVelocity(Registry& reg, Entity entity, const Collider& collider, const Vec3& normal, float restitution, float friction) {
-    if (!reg.has<RigidBody>(entity)) return;
+void ResolveVelocity(Registry& reg, Entity a, Entity b, const Collider& colliderA, const Collider& colliderB,
+                     const Vec3& normal, float restitution, float friction) {
+    RigidBody* rbA = reg.try_get<RigidBody>(a);
+    RigidBody* rbB = reg.try_get<RigidBody>(b);
 
-    RigidBody& rb = reg.get<RigidBody>(entity);
-    const Vec3& n = normal;
+    const bool movableA = rbA && !rbA->isKinematic;
+    const bool movableB = rbB && !rbB->isKinematic;
+    if (!movableA && !movableB) return;
 
-    float r_size = collider.radius > 0.01f ? collider.radius
-                 : (collider.halfExtents.x + collider.halfExtents.y + collider.halfExtents.z) / 3.0f;
-    Vec3 r = {-n.x * r_size, -n.y * r_size, -n.z * r_size};
+    const float invMassA = movableA && rbA->mass > 0.0f ? 1.0f / rbA->mass : 0.0f;
+    const float invMassB = movableB && rbB->mass > 0.0f ? 1.0f / rbB->mass : 0.0f;
+    const float invMassSum = invMassA + invMassB;
+    if (invMassSum <= 0.0f) return;
 
-    const Vec3& w = rb.angularVelocity;
-    Vec3 angularContrib = {
-        w.y * r.z - w.z * r.y,
-        w.z * r.x - w.x * r.z,
-        w.x * r.y - w.y * r.x
-    };
-    Vec3 contactVel = {
-        rb.velocity.x + angularContrib.x,
-        rb.velocity.y + angularContrib.y,
-        rb.velocity.z + angularContrib.z
-    };
+    const float rSizeA = colliderA.radius > 0.01f ? colliderA.radius
+                       : (colliderA.halfExtents.x + colliderA.halfExtents.y + colliderA.halfExtents.z) / 3.0f;
+    const float rSizeB = colliderB.radius > 0.01f ? colliderB.radius
+                       : (colliderB.halfExtents.x + colliderB.halfExtents.y + colliderB.halfExtents.z) / 3.0f;
+    const Vec3 rA = { normal.x * rSizeA, normal.y * rSizeA, normal.z * rSizeA };
+    const Vec3 rB = { -normal.x * rSizeB, -normal.y * rSizeB, -normal.z * rSizeB };
 
-    float vDotN = rb.velocity.x * n.x + rb.velocity.y * n.y + rb.velocity.z * n.z;
-    float normalImpulse = -(1.0f + restitution) * vDotN;
-    if (normalImpulse <= 0.0f) return;
+    const Vec3 velocityA = movableA ? rbA->velocity : Vec3{0.0f, 0.0f, 0.0f};
+    const Vec3 velocityB = movableB ? rbB->velocity : Vec3{0.0f, 0.0f, 0.0f};
+    const float relativeNormalVelocity = (velocityA - velocityB).dot(normal);
+    const float normalImpulseMag = -(1.0f + restitution) * relativeNormalVelocity / invMassSum;
+    if (normalImpulseMag >= 0.0f) return;
 
-    float I = (2.0f / 5.0f) * rb.mass * r_size * r_size;
-    if (I < 0.001f) I = 0.001f;
+    const Vec3 normalImpulse = normal * normalImpulseMag;
+    if (movableA) rbA->velocity = rbA->velocity + normalImpulse * invMassA;
+    if (movableB) rbB->velocity = rbB->velocity - normalImpulse * invMassB;
 
-    Vec3 normalDelta = {n.x * normalImpulse, n.y * normalImpulse, n.z * normalImpulse};
-    rb.velocity = rb.velocity + normalDelta;
+    float invIA = 0.0f;
+    float invIB = 0.0f;
+    if (movableA) {
+        float iA = (2.0f / 5.0f) * rbA->mass * rSizeA * rSizeA;
+        if (iA < 0.001f) iA = 0.001f;
+        invIA = 1.0f / iA;
+    }
+    if (movableB) {
+        float iB = (2.0f / 5.0f) * rbB->mass * rSizeB * rSizeB;
+        if (iB < 0.001f) iB = 0.001f;
+        invIB = 1.0f / iB;
+    }
 
-    float cvDotN = contactVel.x * n.x + contactVel.y * n.y + contactVel.z * n.z;
-    Vec3 tangential = {
-        contactVel.x - n.x * cvDotN,
-        contactVel.y - n.y * cvDotN,
-        contactVel.z - n.z * cvDotN
-    };
-    float tangentialSpeed = sqrtf(tangential.x * tangential.x +
-                                  tangential.y * tangential.y +
-                                  tangential.z * tangential.z);
+    const Vec3 angularA = movableA ? rbA->angularVelocity.cross(rA) : Vec3{0.0f, 0.0f, 0.0f};
+    const Vec3 angularB = movableB ? rbB->angularVelocity.cross(rB) : Vec3{0.0f, 0.0f, 0.0f};
+    const Vec3 contactVelA = velocityA + angularA;
+    const Vec3 contactVelB = velocityB + angularB;
+    const Vec3 relativeContactVel = contactVelA - contactVelB;
+
+    const float cvDotN = relativeContactVel.dot(normal);
+    const Vec3 tangential = relativeContactVel - normal * cvDotN;
+    const float tangentialSpeed = tangential.length();
 
     friction = std::clamp(friction, 0.0f, 1.0f);
     if (tangentialSpeed > 0.001f) {
-        Vec3 tangDir = {tangential.x / tangentialSpeed,
-                        tangential.y / tangentialSpeed,
-                        tangential.z / tangentialSpeed};
+        const Vec3 tangDir = tangential / tangentialSpeed;
+        float frictionMag = friction * std::abs(normalImpulseMag);
 
-        float frictionMag = friction * std::abs(normalImpulse);
-
-        Vec3 rCrossT = {
-            r.y * tangDir.z - r.z * tangDir.y,
-            r.z * tangDir.x - r.x * tangDir.z,
-            r.x * tangDir.y - r.y * tangDir.x
-        };
-        float angularMassInv = (rCrossT.x * rCrossT.x + rCrossT.y * rCrossT.y + rCrossT.z * rCrossT.z) / I;
-        float effectiveMass = 1.0f / (1.0f / rb.mass + angularMassInv);
-        float maxFriction = effectiveMass * tangentialSpeed;
+        const Vec3 rACrossT = rA.cross(tangDir);
+        const Vec3 rBCrossT = rB.cross(tangDir);
+        const float angularMassInvA = rACrossT.dot(rACrossT) * invIA;
+        const float angularMassInvB = rBCrossT.dot(rBCrossT) * invIB;
+        const float effectiveMass = 1.0f / (invMassSum + angularMassInvA + angularMassInvB);
+        const float maxFriction = effectiveMass * tangentialSpeed;
         frictionMag = std::min(frictionMag, maxFriction);
 
-        Vec3 frictionImpulse = {tangDir.x * (-frictionMag),
-                                tangDir.y * (-frictionMag),
-                                tangDir.z * (-frictionMag)};
+        const Vec3 frictionImpulse = tangDir * -frictionMag;
 
-        rb.velocity.x += frictionImpulse.x / rb.mass;
-        rb.velocity.y += frictionImpulse.y / rb.mass;
-        rb.velocity.z += frictionImpulse.z / rb.mass;
-
-        Vec3 angDelta = {
-            (r.y * frictionImpulse.z - r.z * frictionImpulse.y) / I,
-            (r.z * frictionImpulse.x - r.x * frictionImpulse.z) / I,
-            (r.x * frictionImpulse.y - r.y * frictionImpulse.x) / I
-        };
-        rb.angularVelocity.x += angDelta.x;
-        rb.angularVelocity.y += angDelta.y;
-        rb.angularVelocity.z += angDelta.z;
+        if (movableA) {
+            rbA->velocity = rbA->velocity + frictionImpulse * invMassA;
+            rbA->angularVelocity = rbA->angularVelocity + rA.cross(frictionImpulse) * invIA;
+        }
+        if (movableB) {
+            rbB->velocity = rbB->velocity - frictionImpulse * invMassB;
+            rbB->angularVelocity = rbB->angularVelocity - rB.cross(frictionImpulse) * invIB;
+        }
     }
 }
 
@@ -230,14 +231,13 @@ void ResolveCollision(Registry& reg, Entity a, Entity b, const Collider& collide
     if (moveA && moveB) {
         MoveEntity(reg, a, normal * (-penetration * 0.5f));
         MoveEntity(reg, b, normal * ( penetration * 0.5f));
-        ResolveVelocity(reg, a, colliderA, -normal, restitution, friction);
-        ResolveVelocity(reg, b, colliderB, normal, restitution, friction);
+        ResolveVelocity(reg, a, b, colliderA, colliderB, normal, restitution, friction);
     } else if (moveA) {
         MoveEntity(reg, a, normal * -penetration);
-        ResolveVelocity(reg, a, colliderA, -normal, restitution, friction);
+        ResolveVelocity(reg, a, b, colliderA, colliderB, normal, restitution, friction);
     } else if (moveB) {
         MoveEntity(reg, b, normal * penetration);
-        ResolveVelocity(reg, b, colliderB, normal, restitution, friction);
+        ResolveVelocity(reg, a, b, colliderA, colliderB, normal, restitution, friction);
     }
 }
 }

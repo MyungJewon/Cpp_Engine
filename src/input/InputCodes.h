@@ -6,6 +6,7 @@ enum class KeyCode {
     A,
     S,
     D,
+    R,
     Q,
     E,
     Space,

@@ -7,38 +7,44 @@ constexpr float PI = 3.14159265358979323846f;
 }
 
 Mesh MeshGenerator::CreateGrid(int size, float cellSize) {
+    return CreateGrid(size, size, cellSize);
+}
+
+Mesh MeshGenerator::CreateGrid(int width, int height, float cellSize) {
     Mesh mesh;
-    if (size <= 0) return mesh;
+    if (width <= 0 || height <= 0) return mesh;
 
-    const int vertexCountPerSide = size + 1;
-    const float halfW = size * cellSize * 0.5f;
+    const int vertexCountX = width + 1;
+    const int vertexCountZ = height + 1;
+    const float halfW = width * cellSize * 0.5f;
+    const float halfH = height * cellSize * 0.5f;
 
-    mesh.vertices.reserve(vertexCountPerSide * vertexCountPerSide);
-    mesh.indices.reserve(size * size * 6);
+    mesh.vertices.reserve(vertexCountX * vertexCountZ);
+    mesh.indices.reserve(width * height * 6);
 
-    for (int z = 0; z <= size; ++z) {
-        for (int x = 0; x <= size; ++x) {
+    for (int z = 0; z <= height; ++z) {
+        for (int x = 0; x <= width; ++x) {
             MeshVertex vertex;
             vertex.pos = {
                 x * cellSize - halfW,
                 0.0f,
-                z * cellSize - halfW
+                z * cellSize - halfH
             };
             vertex.normal = { 0.0f, 1.0f, 0.0f };
             vertex.uv = {
-                x / static_cast<float>(size),
-                z / static_cast<float>(size)
+                x / static_cast<float>(width),
+                z / static_cast<float>(height)
             };
             vertex.tangent = { 1.0f, 0.0f, 0.0f };
             mesh.vertices.push_back(vertex);
         }
     }
 
-    for (int z = 0; z < size; ++z) {
-        for (int x = 0; x < size; ++x) {
-            const int i0 = z * vertexCountPerSide + x;
+    for (int z = 0; z < height; ++z) {
+        for (int x = 0; x < width; ++x) {
+            const int i0 = z * vertexCountX + x;
             const int i1 = i0 + 1;
-            const int i2 = i0 + vertexCountPerSide;
+            const int i2 = i0 + vertexCountX;
             const int i3 = i2 + 1;
 
             mesh.indices.insert(mesh.indices.end(), {
@@ -88,8 +94,8 @@ Mesh MeshGenerator::CreateSphere(int stacks, int slices, float radius) {
             const int d = c + 1;
 
             mesh.indices.insert(mesh.indices.end(), {
-                a, c, b,
-                b, c, d
+                a, b, c,
+                b, d, c
             });
         }
     }

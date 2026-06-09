@@ -16,7 +16,7 @@ struct Transform {
     Vec3 localScale = { 1.0f, 1.0f, 1.0f };
     Entity parent = INVALID_ENTITY;
     std::vector<Entity> children;
-    mutable Mat4 worldMatrix;
+    mutable Mat4 worldMatrix = Mat4::Identity();
     mutable bool dirty = true;
 
     void SetLocalPos(const Vec3& p, Registry& reg);
