@@ -1,5 +1,8 @@
 // 데모 씬 구성과 프레임별 시스템 실행을 구현합니다.
 #include "app/DemoApp.h"
+#include "audio/AudioManager.h"
+#include "event/EventBus.h"
+#include "event/Events.h"
 #include "physics/Collider.h"
 #include "physics/RigidBody.h"
 #include "renderer/MeshRenderer.h"
@@ -17,6 +20,12 @@ DemoApp::DemoApp(int width, int height, const char* title)
 }
 
 void DemoApp::OnInit() {
+    AudioManager::Get().Init();
+    m_hitClip.path = Path::GetExecutableDir() + "/assets/audio/hit.wav";
+    EventBus::Subscribe<CollisionEvent>([this](const CollisionEvent&) {
+        AudioManager::Get().PlayOneShot(&m_hitClip, 1.0f);
+    });
+
     m_uiRenderer.Init(GetWindow().PixelWidth(), GetWindow().PixelHeight());
 
     m_cameraEntity = m_scene.CreateEntity();
@@ -55,6 +64,7 @@ void DemoApp::OnInit() {
     sphereRenderer.material.albedo = &m_checkerTex;
     sphereRenderer.material.normalMap = nullptr;
     sphereRenderer.material.shininess = light.shininess;
+    sphereRenderer.meshName = "sphere";
 
     m_sphereEntity1 = m_scene.CreateEntity();
     MeshRenderer sphereRenderer1 = sphereRenderer;
@@ -99,6 +109,7 @@ void DemoApp::OnInit() {
     gridRenderer.material.tint = { 0.3f, 0.3f, 0.3f };
     gridRenderer.material.albedo = nullptr;
     gridRenderer.material.normalMap = nullptr;
+    gridRenderer.meshName = "grid";
     Transform gridTransform;
     gridTransform.localPos = { 0.0f, -1.0f, 0.0f };
     m_scene.GetRegistry().add<Transform>(m_gridEntity, gridTransform);

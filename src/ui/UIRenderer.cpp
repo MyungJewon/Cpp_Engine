@@ -214,21 +214,21 @@ void UIRenderer::BeginFrame(int width, int height) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glUseProgram(m_shader);
-    glUniformMatrix4fv(Uniform("uProj"), 1, GL_TRUE, &proj.m[0][0]);
-    glUniform1i(Uniform("uFont"), 0);
+    glUniformMatrix4fv(m_uProj, 1, GL_TRUE, &proj.m[0][0]);
+    glUniform1i(m_uFont, 0);
     glBindVertexArray(m_vao);
 }
 
 void UIRenderer::DrawRect(float x, float y, float width, float height, const Vec3& color, float alpha) {
     if (m_shader == 0 || width <= 0.0f || height <= 0.0f) return;
 
-    glUniform2f(Uniform("uOffset"), x, y);
-    glUniform2f(Uniform("uSize"), width, height);
-    glUniform2f(Uniform("uTexOffset"), 0.0f, 0.0f);
-    glUniform2f(Uniform("uTexSize"), 1.0f, 1.0f);
-    glUniform1i(Uniform("uMode"), 0);
-    glUniform3f(Uniform("uColor"), color.x, color.y, color.z);
-    glUniform1f(Uniform("uAlpha"), alpha);
+    glUniform2f(m_uOffset, x, y);
+    glUniform2f(m_uSize, width, height);
+    glUniform2f(m_uTexOffset, 0.0f, 0.0f);
+    glUniform2f(m_uTexSize, 1.0f, 1.0f);
+    glUniform1i(m_uMode, 0);
+    glUniform3f(m_uColor, color.x, color.y, color.z);
+    glUniform1f(m_uAlpha, alpha);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
@@ -241,9 +241,9 @@ void UIRenderer::DrawText(float x, float y, const std::string& text, int fontSiz
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_fontTexture);
-    glUniform1i(Uniform("uMode"), 1);
-    glUniform3f(Uniform("uColor"), color.x, color.y, color.z);
-    glUniform1f(Uniform("uAlpha"), alpha);
+    glUniform1i(m_uMode, 1);
+    glUniform3f(m_uColor, color.x, color.y, color.z);
+    glUniform1f(m_uAlpha, alpha);
 
     for (unsigned char c : text) {
         if (c < 32 || c > 127) {
@@ -254,10 +254,10 @@ void UIRenderer::DrawText(float x, float y, const std::string& text, int fontSiz
         const int idx = static_cast<int>(c) - 32;
         const int col = idx % 16;
         const int row = idx / 16;
-        glUniform2f(Uniform("uTexOffset"), static_cast<float>(col) / 16.0f, static_cast<float>(row) / 6.0f);
-        glUniform2f(Uniform("uTexSize"), 1.0f / 16.0f, 1.0f / 6.0f);
-        glUniform2f(Uniform("uOffset"), cursor, y);
-        glUniform2f(Uniform("uSize"), glyphSize, glyphSize);
+        glUniform2f(m_uTexOffset, static_cast<float>(col) / 16.0f, static_cast<float>(row) / 6.0f);
+        glUniform2f(m_uTexSize, 1.0f / 16.0f, 1.0f / 6.0f);
+        glUniform2f(m_uOffset, cursor, y);
+        glUniform2f(m_uSize, glyphSize, glyphSize);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
         cursor += glyphSize;
@@ -305,7 +305,20 @@ bool UIRenderer::CompileShaders() {
 
     if (m_shader != 0) glDeleteProgram(m_shader);
     m_shader = program;
+    CacheUniforms();
     return true;
+}
+
+void UIRenderer::CacheUniforms() {
+    m_uProj      = glGetUniformLocation(m_shader, "uProj");
+    m_uOffset    = glGetUniformLocation(m_shader, "uOffset");
+    m_uSize      = glGetUniformLocation(m_shader, "uSize");
+    m_uTexOffset = glGetUniformLocation(m_shader, "uTexOffset");
+    m_uTexSize   = glGetUniformLocation(m_shader, "uTexSize");
+    m_uMode      = glGetUniformLocation(m_shader, "uMode");
+    m_uColor     = glGetUniformLocation(m_shader, "uColor");
+    m_uAlpha     = glGetUniformLocation(m_shader, "uAlpha");
+    m_uFont      = glGetUniformLocation(m_shader, "uFont");
 }
 
 bool UIRenderer::CreateQuad() {
@@ -369,6 +382,3 @@ bool UIRenderer::CreateFontTexture() {
     return true;
 }
 
-GLint UIRenderer::Uniform(const char* name) const {
-    return glGetUniformLocation(m_shader, name);
-}

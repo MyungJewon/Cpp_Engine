@@ -2,6 +2,8 @@
 #pragma once
 
 #include "app/Application.h"
+#include "audio/AudioClip.h"
+#include "core/Path.h"
 #include "ecs/Entity.hpp"
 #include "ecs/World.hpp"
 #include "renderer/Renderer.h"
@@ -38,4 +40,5 @@ private:
     Mesh m_sphereMesh;
     Mesh m_gridMesh;
     Texture m_checkerTex;
+    AudioClip m_hitClip;
 };

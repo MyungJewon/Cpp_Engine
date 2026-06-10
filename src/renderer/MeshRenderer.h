@@ -2,6 +2,7 @@
 #pragma once
 
 #include "renderer/Material.h"
+#include <string>
 
 struct Mesh;
 
@@ -9,4 +10,5 @@ struct MeshRenderer {
     const Mesh* mesh = nullptr;
     Material material;
     bool visible = true;
+    std::string meshName;
 };

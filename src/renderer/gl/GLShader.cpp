@@ -104,5 +104,9 @@ void GLShader::SetInt(const std::string& name, int value) const {
 }
 
 GLint GLShader::GetUniformLocation(const std::string& name) const {
-    return glGetUniformLocation(program, name.c_str());
+    auto it = m_uniformCache.find(name);
+    if (it != m_uniformCache.end()) return it->second;
+    GLint loc = glGetUniformLocation(program, name.c_str());
+    m_uniformCache.emplace(name, loc);
+    return loc;
 }

@@ -114,29 +114,6 @@ void MoveEntity(Registry& reg, Entity entity, const Vec3& offset) {
     transform.SetLocalPos(transform.localPos + offset, reg);
 }
 
-void ApplyAngularFriction(RigidBody& rb, const Collider& collider, const Vec3& normal, const Vec3& frictionVec) {
-    Vec3 r = {
-        normal.x * (collider.shape == ColliderShape::Sphere ? collider.radius : collider.halfExtents.x),
-        normal.y * (collider.shape == ColliderShape::Sphere ? collider.radius : collider.halfExtents.y),
-        normal.z * (collider.shape == ColliderShape::Sphere ? collider.radius : collider.halfExtents.z)
-    };
-
-    Vec3 torque = {
-        r.y * frictionVec.z - r.z * frictionVec.y,
-        r.z * frictionVec.x - r.x * frictionVec.z,
-        r.x * frictionVec.y - r.y * frictionVec.x
-    };
-
-    float r_size = collider.radius > 0.01f ? collider.radius
-                 : (collider.halfExtents.x + collider.halfExtents.y + collider.halfExtents.z) / 3.0f;
-    float I = (2.0f / 5.0f) * rb.mass * r_size * r_size;
-    if (I < 0.001f) I = 0.001f;
-
-    rb.angularVelocity.x += torque.x / I;
-    rb.angularVelocity.y += torque.y / I;
-    rb.angularVelocity.z += torque.z / I;
-}
-
 void ResolveVelocity(Registry& reg, Entity a, Entity b, const Collider& colliderA, const Collider& colliderB,
                      const Vec3& normal, float restitution, float friction) {
     RigidBody* rbA = reg.try_get<RigidBody>(a);

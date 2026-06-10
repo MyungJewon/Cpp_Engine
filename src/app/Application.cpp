@@ -25,5 +25,24 @@ void Application::Run() {
     GameLoop::Run(*this);
 }
 
+void Application::LoadScene(std::unique_ptr<IScene> scene) {
+    m_pendingScene = std::move(scene);
+}
+
+void Application::OnUpdate(float dt) {
+    if (m_pendingScene) {
+        if (m_currentScene) m_currentScene->OnExit();
+        m_currentScene = std::move(m_pendingScene);
+        m_currentScene->SetApplication(this);
+        m_currentScene->OnEnter();
+    }
+    if (m_currentScene) m_currentScene->OnUpdate(dt);
+}
+
+void Application::OnFixedUpdate() {
+    if (m_currentScene) m_currentScene->OnFixedUpdate();
+}
+
 void Application::OnRender() {
+    if (m_currentScene) m_currentScene->OnRender();
 }

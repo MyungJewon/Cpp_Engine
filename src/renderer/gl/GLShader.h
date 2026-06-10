@@ -4,6 +4,7 @@
 #include "math/Mat4.h"
 #include "math/Vec3.h"
 #include <string>
+#include <unordered_map>
 
 class GLShader {
 public:
@@ -27,4 +28,5 @@ private:
     GLint GetUniformLocation(const std::string& name) const;
 
     GLuint program = 0;
+    mutable std::unordered_map<std::string, GLint> m_uniformCache;
 };

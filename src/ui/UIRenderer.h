@@ -19,7 +19,7 @@ private:
     bool CompileShaders();
     bool CreateQuad();
     bool CreateFontTexture();
-    GLint Uniform(const char* name) const;
+    void CacheUniforms();
 
     GLuint m_shader = 0;
     GLuint m_vao = 0;
@@ -27,4 +27,14 @@ private:
     GLuint m_fontTexture = 0;
     int m_width = 0;
     int m_height = 0;
+
+    GLint m_uProj      = -1;
+    GLint m_uOffset    = -1;
+    GLint m_uSize      = -1;
+    GLint m_uTexOffset = -1;
+    GLint m_uTexSize   = -1;
+    GLint m_uMode      = -1;
+    GLint m_uColor     = -1;
+    GLint m_uAlpha     = -1;
+    GLint m_uFont      = -1;
 };

@@ -1,1 +1,22 @@
+# Claude
 /.claude
+
+# 빌드 산출물
+build/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# 에디터
+.vscode/
+.idea/
+*.user
+*.xcuserstate
+xcuserdata/
+
+# 컴파일 중간 파일
+*.o
+*.a
+*.dylib
+*.dSYM

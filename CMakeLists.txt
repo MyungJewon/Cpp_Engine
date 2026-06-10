@@ -8,22 +8,15 @@ set(ENGINE_SOURCES
   src/app/Application.cpp
   src/app/DemoApp.cpp
   src/app/GameLoop.cpp
+  src/audio/AudioManager.cpp
   src/core/Time.cpp
   src/core/Path.cpp
   src/input/InputManager.cpp
-  src/renderer/Framebuffer.cpp
-  src/renderer/Rasterizer.cpp
-  src/renderer/Pipeline.cpp
   src/renderer/ShadowMap.cpp
-  src/renderer/ShadowPass.cpp
-  src/renderer/OITBuffer.cpp
   src/renderer/Renderer.cpp
   src/renderer/gl/GLRenderer.cpp
   src/renderer/gl/GLShader.cpp
   src/renderer/gl/GLMesh.cpp
-  src/renderer/shaders/PhongShader.cpp
-  src/renderer/shaders/ShadowShader.cpp
-  src/renderer/shaders/TransparentShader.cpp
   src/ui/UIRenderer.cpp
   src/resource/AssetManager.cpp
   src/resource/MeshGenerator.cpp
@@ -31,6 +24,7 @@ set(ENGINE_SOURCES
   src/resource/Texture.cpp
   src/scene/CameraController.cpp
   src/scene/Scene.cpp
+  src/scene/SceneSerializer.cpp
   src/scene/Transform.cpp
   src/systems/InputSystem.cpp
   src/systems/ScriptSystem.cpp
@@ -39,6 +33,7 @@ set(ENGINE_SOURCES
   src/systems/CollisionSystem.cpp
   src/systems/CameraSystem.cpp
   src/systems/RenderSystem.cpp
+  src/systems/AudioSystem.cpp
   src/systems/UISystem.cpp
 )
 
@@ -53,7 +48,7 @@ else()
 endif()
 
 add_executable(Cpp_Engine ${ENGINE_SOURCES})
-target_include_directories(Cpp_Engine PRIVATE src)
+target_include_directories(Cpp_Engine PRIVATE . src vendor)
 
 if(APPLE)
   target_link_libraries(Cpp_Engine PRIVATE ${COCOA_LIB} ${APPKIT_LIB} ${OPENGL_LIB})

@@ -1,6 +1,6 @@
 // 이미지 픽셀 데이터를 보관하고 샘플링하는 텍스처 클래스를 선언합니다.
 #pragma once
-#include "renderer/Framebuffer.h"
+#include "core/Color.h"
 #include "math/Vec2.h"
 #include <vector>
 #include <string>
