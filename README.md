@@ -18,6 +18,10 @@ OpenGL 4.1 기반 렌더러, Sparse Set ECS, 계층 Transform, 강체 물리 시
 - **스크립트 컴포넌트** — `IScript` 상속으로 오브젝트별 동작 정의
 - **Orbit / FPS 카메라** — Tab으로 전환, 마우스 드래그·휠 조작
 - **절차적 텍스처** — `Texture::FromPixels()`로 런타임 픽셀 데이터에서 텍스처 생성
+- **오디오 시스템** — `AudioSource` 컴포넌트, `AudioManager` 싱글톤 (miniaudio 기반, WAV/MP3, PlayOneShot 겹침 재생, BGM 루프)
+- **씬 직렬화** — `SceneSerializer`로 씬을 JSON 파일로 저장·불러오기 (nlohmann/json)
+- **씬 전환** — `IScene` 인터페이스와 `Application::LoadScene()`으로 씬 간 전환
+- **UI 렌더링** — `UIComponent` + `UISystem` + `UIRenderer` (2D 오버레이, 8×8 비트맵 폰트, 화면 좌표계)
 
 ---
 
@@ -56,8 +60,9 @@ cmake --build build
 
 ```
 src/
-├── app/            Application, GameLoop (엔진 진입점 및 루프)
-├── core/           Time, Path (프레임 타이밍, 경로 유틸)
+├── app/            Application, GameLoop, IScene (엔진 진입점·씬 전환)
+├── audio/          AudioClip, AudioSource, AudioManager
+├── core/           Time, Path, Color (프레임 타이밍, 경로 유틸, 색상 타입)
 ├── ecs/            Entity, ComponentPool, Registry, View, World, System
 ├── event/          EventBus, Events (타입 기반 pub/sub)
 ├── input/          InputManager, InputCodes (키/마우스 상태)
@@ -68,14 +73,21 @@ src/
 │   ├── gl/         GLRenderer, GLShader, GLMesh (OpenGL 렌더러)
 │   └── Material.h, MeshRenderer.h
 ├── resource/       AssetManager, ObjLoader, Texture, MeshGenerator
-├── scene/          Scene, Transform, Camera, Light, CameraController
+├── scene/          Scene, Transform, Camera, Light, CameraController, SceneSerializer
 ├── script/         IScript, ScriptComponent, RotatorScript
 ├── systems/        InputSystem, TransformSystem, CameraSystem,
-│                   RenderSystem, ScriptSystem, PhysicsSystem, CollisionSystem
+│                   RenderSystem, ScriptSystem, PhysicsSystem, CollisionSystem,
+│                   AudioSystem, UISystem
+├── ui/             UIComponent, UIRenderer
 └── main.cpp
 
 assets/
+├── audio/
+├── scenes/
 └── shaders/        phong.vert/frag, shadow.vert/frag (GLSL)
+
+vendor/
+└── miniaudio.h, nlohmann/json.hpp (서드파티 헤더)
 ```
 
 ---
@@ -236,6 +248,59 @@ for (int y = 0; y < 8; y++)
             : Color(220, 50, 50, 255);
 Texture checker = Texture::FromPixels(8, 8, pixels);
 material.albedo = &checker;  // 멤버 변수로 수명 관리 필요
+```
+
+### 오디오 시스템
+
+```cpp
+// 초기화
+AudioManager::Get().Init();
+
+// 단발 효과음 (겹침 재생 가능)
+AudioClip hitClip;
+hitClip.path = "assets/audio/hit.wav";
+AudioManager::Get().PlayOneShot(&hitClip, 1.0f);
+
+// BGM 루프
+AudioClip bgm;
+bgm.path = "assets/audio/bgm.mp3";
+AudioManager::Get().Play(&bgm, 0.5f, true);
+
+// 충돌 이벤트 연동
+EventBus::Subscribe<CollisionEvent>([&](const CollisionEvent&) {
+    AudioManager::Get().PlayOneShot(&hitClip);
+});
+```
+
+### 씬 직렬화
+
+```cpp
+// 저장
+SceneSerializer::Save(m_scene, "assets/scenes/level1.scene");
+
+// 불러오기
+SceneSerializer::Load("assets/scenes/level1.scene", m_scene);
+// MeshRenderer::mesh 포인터는 로드 후 meshName으로 직접 연결
+for (auto [e, mr] : reg.view<MeshRenderer>()) {
+    if (mr.meshName == "sphere") mr.mesh = &m_sphereMesh;
+}
+```
+
+### 씬 전환
+
+```cpp
+class TitleScene : public IScene {
+    void OnEnter() override { /* UI 초기화 */ }
+    void OnUpdate(float dt) override {
+        if (/* 시작 버튼 */)
+            m_app->LoadScene(std::make_unique<GameScene>());
+    }
+    void OnRender() override { /* 렌더링 */ }
+};
+
+// 앱에서 초기 씬 설정
+app.LoadScene(std::make_unique<TitleScene>());
+app.Run();
 ```
 
 ---
