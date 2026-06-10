@@ -3,6 +3,18 @@
 ## [v0.3.0] - 2026-06-10
 
 ### Added
+- 레이캐스트 시스템: `Raycast::Cast()`, `Raycast::ScreenPointToRay()` — Ray-Sphere / Ray-AABB 교차 검출
+- 스카이박스: Equirectangular 파노라마 PNG 렌더링 (`Skybox`, `skybox.vert/frag`)
+- stb_image 통합 — 텍스처 로더가 PNG/JPG 등 범용 포맷 지원
+- 충돌 이벤트 분리: `CollisionEnterEvent` / `CollisionStayEvent` / `CollisionExitEvent`
+
+### Changed
+- `AudioManager::PlayOneShot` — 콜백 방식 제거, active sound 목록으로 안전한 종료 처리
+- CMake 빌드 시 셰이더·에셋이 항상 `build/bin`에 복사되도록 개선
+
+## [v0.2.0] - 2026-06-10
+
+### Added
 - 오디오 시스템: `AudioClip`, `AudioSource`, `AudioManager` (miniaudio), `AudioSystem`
   - WAV/MP3 재생, PlayOneShot 겹침 재생, BGM 루프, 마스터 볼륨
 - 씬 직렬화: `SceneSerializer` — JSON 기반 씬 저장·불러오기 (nlohmann/json)
@@ -19,7 +31,7 @@
 ### Removed
 - 소프트웨어 렌더러 제거: `Framebuffer`, `Rasterizer`, `Pipeline`, `ShadowPass`, `OITBuffer`, `PhongShader`, `ShadowShader`, `TransparentShader`
 
-## [v0.2.0] - 이전 버전
+## [v0.1.1] - 이전 버전
 
 - 구르기 물리 (접촉점 속도 기반 마찰 충격량)
 - 절차적 텍스처 `Texture::FromPixels()`
