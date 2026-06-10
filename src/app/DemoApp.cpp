@@ -22,11 +22,12 @@ DemoApp::DemoApp(int width, int height, const char* title)
 void DemoApp::OnInit() {
     AudioManager::Get().Init();
     m_hitClip.path = Path::GetExecutableDir() + "/assets/audio/hit.wav";
-    EventBus::Subscribe<CollisionEvent>([this](const CollisionEvent&) {
+    EventBus::Subscribe<CollisionEnterEvent>([this](const CollisionEnterEvent&) {
         AudioManager::Get().PlayOneShot(&m_hitClip, 1.0f);
     });
 
     m_uiRenderer.Init(GetWindow().PixelWidth(), GetWindow().PixelHeight());
+    m_skybox.Load(Path::GetExecutableDir() + "/assets/skybox/Epic_BlueSunset_EquiRect_flat.png");
 
     m_cameraEntity = m_scene.CreateEntity();
     Camera camera;
@@ -124,7 +125,7 @@ void DemoApp::OnInit() {
     m_world.add_system<ScriptSystem>();
     m_world.add_system<TransformSystem>();
     m_world.add_system<CameraSystem>(m_cameraController, m_cameraEntity);
-    m_world.add_system<RenderSystem>(m_renderer, m_scene, GetWindow());
+    m_world.add_system<RenderSystem>(m_renderer, m_scene, GetWindow(), &m_skybox);
     m_world.add_system<UISystem>(m_uiRenderer, GetWindow());
     m_world.add_fixed_system<PhysicsSystem>();
     m_world.add_fixed_system<CollisionSystem>();

@@ -40,6 +40,15 @@ void AudioManager::Shutdown() {
     }
 
     Stop();
+    {
+        std::lock_guard<std::mutex> lock(m_oneShotMutex);
+        for (ma_sound* s : m_oneShots) {
+            ma_sound_stop(s);
+            ma_sound_uninit(s);
+            delete s;
+        }
+        m_oneShots.clear();
+    }
     ma_engine_uninit(&m_impl->engine);
     delete m_impl;
     m_impl = nullptr;
@@ -78,25 +87,14 @@ void AudioManager::Stop() {
 }
 
 void AudioManager::PlayOneShot(AudioClip* clip, float volume) {
-    if (!clip || !clip->IsValid()) {
-        return;
-    }
-
-    if (!m_impl && !Init()) {
-        return;
-    }
-
-    // ma_engine_play_sound은 볼륨 제어가 없으므로 ma_sound로 직접 재생
+    if (!clip || !clip->IsValid()) return;
+    if (!m_impl && !Init()) return;
     ma_sound* s = new ma_sound();
     if (ma_sound_init_from_file(&m_impl->engine, clip->path.c_str(), 0, nullptr, nullptr, s) == MA_SUCCESS) {
         ma_sound_set_volume(s, volume);
         ma_sound_start(s);
-        // 재생 완료 후 자동 해제는 miniaudio가 처리하지 않으므로 엔진에 위임
-        ma_sound_set_end_callback(s, [](void* userData, ma_sound*) {
-            ma_sound* snd = static_cast<ma_sound*>(userData);
-            ma_sound_uninit(snd);
-            delete snd;
-        }, s);
+        std::lock_guard<std::mutex> lock(m_oneShotMutex);
+        m_oneShots.push_back(s);
     } else {
         delete s;
     }

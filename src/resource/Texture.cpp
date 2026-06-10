@@ -1,8 +1,11 @@
 // TGA 텍스처 로드와 픽셀 샘플링을 구현합니다.
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 #include "resource/Texture.h"
 #include <fstream>
 #include <cstring>
 #include <algorithm>
+#include <cctype>
 
 #pragma pack(push, 1)
 struct TGAHeader {
@@ -20,6 +23,38 @@ struct TGAHeader {
 #pragma pack(pop)
 
 Texture Texture::Load(const std::string& path) {
+    std::string ext;
+    size_t dot = path.find_last_of('.');
+    if (dot != std::string::npos) {
+        ext = path.substr(dot);
+        for (auto& c : ext) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
+
+    if (ext != ".tga") {
+        int w = 0;
+        int h = 0;
+        int channels = 0;
+        stbi_set_flip_vertically_on_load(true);
+        unsigned char* data = stbi_load(path.c_str(), &w, &h, &channels, 4);
+        if (!data) return Texture{};
+
+        Texture tex;
+        tex.m_width = w;
+        tex.m_height = h;
+        tex.m_pixels.resize(static_cast<size_t>(w) * static_cast<size_t>(h));
+        for (int i = 0; i < w * h; ++i) {
+            tex.m_pixels[static_cast<size_t>(i)] = Color(
+                data[i * 4 + 0],
+                data[i * 4 + 1],
+                data[i * 4 + 2],
+                data[i * 4 + 3]
+            );
+        }
+
+        stbi_image_free(data);
+        return tex;
+    }
+
     Texture tex;
     std::ifstream f(path, std::ios::binary);
     if (!f.is_open()) return tex;

@@ -4,16 +4,19 @@
 #include "ecs/System.hpp"
 #include "platform/IWindow.h"
 #include "renderer/Renderer.h"
+#include "renderer/Skybox.h"
 #include "scene/Scene.h"
 
 class RenderSystem : public ISystem {
 public:
-    RenderSystem(Renderer& renderer, Scene& scene, IWindow& window);
+    RenderSystem(Renderer& renderer, Scene& scene, IWindow& window, Skybox* skybox = nullptr);
 
+    void SetSkybox(Skybox* skybox) { m_skybox = skybox; }
     void update(Registry& reg, float dt) override;
 
 private:
     Renderer& m_renderer;
     Scene& m_scene;
     IWindow& m_window;
+    Skybox* m_skybox = nullptr;
 };

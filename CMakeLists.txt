@@ -12,8 +12,10 @@ set(ENGINE_SOURCES
   src/core/Time.cpp
   src/core/Path.cpp
   src/input/InputManager.cpp
+  src/physics/Raycast.cpp
   src/renderer/ShadowMap.cpp
   src/renderer/Renderer.cpp
+  src/renderer/Skybox.cpp
   src/renderer/gl/GLRenderer.cpp
   src/renderer/gl/GLShader.cpp
   src/renderer/gl/GLMesh.cpp
@@ -57,11 +59,13 @@ endif()
 
 set_target_properties(Cpp_Engine PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build/bin")
 
-add_custom_command(TARGET Cpp_Engine POST_BUILD
+add_custom_target(copy_assets ALL
   COMMAND ${CMAKE_COMMAND} -E copy_directory
           "${CMAKE_SOURCE_DIR}/assets"
-          "$<TARGET_FILE_DIR:Cpp_Engine>/assets"
+          "${CMAKE_SOURCE_DIR}/build/bin/assets"
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
           "${CMAKE_SOURCE_DIR}/model.obj"
-          "$<TARGET_FILE_DIR:Cpp_Engine>/model.obj"
+          "${CMAKE_SOURCE_DIR}/build/bin/model.obj"
+  COMMENT "Copying assets to build directory"
 )
+add_dependencies(copy_assets Cpp_Engine)

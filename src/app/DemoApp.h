@@ -7,6 +7,7 @@
 #include "ecs/Entity.hpp"
 #include "ecs/World.hpp"
 #include "renderer/Renderer.h"
+#include "renderer/Skybox.h"
 #include "resource/MeshGenerator.h"
 #include "resource/Texture.h"
 #include "scene/CameraController.h"
@@ -30,6 +31,7 @@ protected:
 private:
     Renderer m_renderer;
     UIRenderer m_uiRenderer;
+    Skybox m_skybox;
     Scene m_scene;
     World m_world;
     CameraController m_cameraController;

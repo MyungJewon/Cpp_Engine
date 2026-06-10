@@ -221,6 +221,7 @@ void ResolveCollision(Registry& reg, Entity a, Entity b, const Collider& collide
 
 void CollisionSystem::update(Registry& reg, float) {
     auto& colliders = reg.pool<Collider>();
+    std::set<std::pair<Entity, Entity>> currentContacts;
 
     for (size_t i = 0; i < colliders.size(); ++i) {
         Entity a = colliders.entity_at(i);
@@ -261,6 +262,14 @@ void CollisionSystem::update(Registry& reg, float) {
 
             if (!collided) continue;
 
+            auto key = std::make_pair(std::min(a, b), std::max(a, b));
+            currentContacts.insert(key);
+            if (m_prevContacts.find(key) == m_prevContacts.end()) {
+                EventBus::Emit(CollisionEnterEvent{a, b});
+            } else {
+                EventBus::Emit(CollisionStayEvent{a, b});
+            }
+
             if (colliderA.isTrigger || colliderB.isTrigger) {
                 if (colliderA.isTrigger) {
                     EventBus::Emit(TriggerEnterEvent{a, b});
@@ -274,4 +283,12 @@ void CollisionSystem::update(Registry& reg, float) {
             }
         }
     }
+
+    for (const auto& key : m_prevContacts) {
+        if (currentContacts.find(key) == currentContacts.end()) {
+            EventBus::Emit(CollisionExitEvent{key.first, key.second});
+        }
+    }
+
+    m_prevContacts = currentContacts;
 }
