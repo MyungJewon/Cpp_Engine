@@ -21,7 +21,7 @@ OpenGL 4.1 기반 렌더러, Sparse Set ECS, 계층 Transform, 강체 물리 시
 - **오디오 시스템** — `AudioSource` 컴포넌트, `AudioManager` 싱글톤 (miniaudio 기반, WAV/MP3, PlayOneShot 겹침 재생, BGM 루프)
 - **씬 직렬화** — `SceneSerializer`로 씬을 JSON 파일로 저장·불러오기 (nlohmann/json)
 - **씬 전환** — `IScene` 인터페이스와 `Application::LoadScene()`으로 씬 간 전환
-- **UI 렌더링** — `UIComponent` + `UISystem` + `UIRenderer` (2D 오버레이, 8×8 비트맵 폰트, 화면 좌표계)
+- **UI 렌더링** — `UIComponent` + `UISystem` + `UIRenderer` (2D 오버레이, TrueType 한글·영문 폰트, 클릭 감지, 화면 좌표계)
 
 ---
 
@@ -302,6 +302,37 @@ class TitleScene : public IScene {
 app.LoadScene(std::make_unique<TitleScene>());
 app.Run();
 ```
+
+### UI 시스템
+
+2D 오버레이 UI. `UIComponent`를 ECS Entity에 추가해 사용한다.
+
+```cpp
+// 텍스트
+Entity textEntity = m_scene.CreateEntity();
+UIComponent text;
+text.type     = UIType::Text;
+text.text     = "안녕하세요 Hello";
+text.x        = 10.0f;
+text.y        = 10.0f;
+text.fontSize = 20;          // px 단위
+text.color    = { 1, 1, 1 };
+m_scene.GetRegistry().add<UIComponent>(textEntity, text);
+
+// 클릭 가능한 버튼
+Entity btnEntity = m_scene.CreateEntity();
+UIComponent btn;
+btn.type    = UIType::Rect;
+btn.x       = 10.0f;
+btn.y       = 50.0f;
+btn.width   = 120.0f;
+btn.height  = 40.0f;
+btn.color   = { 0.2f, 0.6f, 1.0f };
+btn.onClick = []() { /* 클릭 시 실행 */ };
+m_scene.GetRegistry().add<UIComponent>(btnEntity, btn);
+```
+
+클릭 판정은 `(x, y, width, height)` AABB 기준. 텍스트에도 `width/height`를 설정하면 클릭 가능.
 
 ---
 

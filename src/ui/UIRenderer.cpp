@@ -1,8 +1,12 @@
 // Inline OpenGL implementation for simple 2D UI primitives and bitmap text.
+#define STB_TRUETYPE_IMPLEMENTATION
+#include "../../vendor/stb_truetype.h"
+#undef STB_TRUETYPE_IMPLEMENTATION  // UIRenderer.h가 다시 include할 때 구현부 중복 방지
 #include "ui/UIRenderer.h"
 #include "math/Mat4.h"
 #include <algorithm>
 #include <cstdint>
+#include <fstream>
 #include <iostream>
 #include <vector>
 
@@ -43,7 +47,7 @@ void main() {
         return;
     }
 
-    float glyphAlpha = texture(uFont, vUV).a;
+    float glyphAlpha = texture(uFont, vUV).r;
     if (glyphAlpha < 0.1) discard;
     FragColor = vec4(uColor, uAlpha * glyphAlpha);
 }
@@ -169,13 +173,41 @@ GLuint Compile(GLenum type, const char* source, const char* label) {
     return shader;
 }
 
+uint32_t DecodeUtf8(const std::string& text, size_t& index) {
+    const uint8_t c0 = static_cast<uint8_t>(text[index++]);
+    if (c0 < 0x80) return c0;
+    if ((c0 & 0xE0) == 0xC0 && index < text.size()) {
+        const uint8_t c1 = static_cast<uint8_t>(text[index++]);
+        return ((c0 & 0x1F) << 6) | (c1 & 0x3F);
+    }
+    if ((c0 & 0xF0) == 0xE0 && index + 1 < text.size()) {
+        const uint8_t c1 = static_cast<uint8_t>(text[index++]);
+        const uint8_t c2 = static_cast<uint8_t>(text[index++]);
+        return ((c0 & 0x0F) << 12) | ((c1 & 0x3F) << 6) | (c2 & 0x3F);
+    }
+    if ((c0 & 0xF8) == 0xF0 && index + 2 < text.size()) {
+        const uint8_t c1 = static_cast<uint8_t>(text[index++]);
+        const uint8_t c2 = static_cast<uint8_t>(text[index++]);
+        const uint8_t c3 = static_cast<uint8_t>(text[index++]);
+        return ((c0 & 0x07) << 18) | ((c1 & 0x3F) << 12) | ((c2 & 0x3F) << 6) | (c3 & 0x3F);
+    }
+    return 0;
+}
+
 } // namespace
 
-bool UIRenderer::Init(int width, int height) {
+bool UIRenderer::Init(int width, int height, const std::string& fontPath) {
     m_width = width;
     m_height = height;
 
-    return CompileShaders() && CreateQuad() && CreateFontTexture();
+    if (!CompileShaders() || !CreateQuad()) return false;
+
+    const std::string resolvedFontPath = fontPath.empty()
+        ? "/System/Library/Fonts/AppleSDGothicNeo.ttc"
+        : fontPath;
+    m_useTrueType = LoadTrueTypeFont(resolvedFontPath);
+    if (!m_useTrueType && !CreateFontTexture()) return false;
+    return true;
 }
 
 void UIRenderer::Shutdown() {
@@ -235,7 +267,8 @@ void UIRenderer::DrawRect(float x, float y, float width, float height, const Vec
 void UIRenderer::DrawText(float x, float y, const std::string& text, int fontSize, const Vec3& color, float alpha) {
     if (m_shader == 0 || m_fontTexture == 0) return;
 
-    const float scale = static_cast<float>(std::max(fontSize, 1));
+    const float scale = m_useTrueType ? static_cast<float>(std::max(fontSize, 1)) * m_fontScale
+                                      : static_cast<float>(std::max(fontSize, 1));
     const float glyphSize = 8.0f * scale;
     float cursor = x;
 
@@ -244,6 +277,49 @@ void UIRenderer::DrawText(float x, float y, const std::string& text, int fontSiz
     glUniform1i(m_uMode, 1);
     glUniform3f(m_uColor, color.x, color.y, color.z);
     glUniform1f(m_uAlpha, alpha);
+
+    if (m_useTrueType) {
+        // fontSize = 1 → 베이킹 크기(20px) 그대로, 2 → 40px
+        const float sizeScale = static_cast<float>(std::max(fontSize, 1)) / m_fontScale;
+        for (size_t i = 0; i < text.size();) {
+            const uint32_t codepoint = DecodeUtf8(text, i);
+
+            stbtt_packedchar* charData = nullptr;
+            int charIndex = -1;
+            if (codepoint >= 32 && codepoint <= 127) {
+                charData  = m_asciiChars;
+                charIndex = static_cast<int>(codepoint) - 32;
+            } else if (codepoint >= 0xAC00 && codepoint <= 0xD7A3) {
+                charData  = m_hangulChars;
+                charIndex = static_cast<int>(codepoint) - 0xAC00;
+            }
+
+            if (charData == nullptr) {
+                cursor += m_fontScale * sizeScale;
+                continue;
+            }
+
+            // GetPackedQuad는 베이킹 크기(20px) 기준 픽셀 좌표를 반환
+            stbtt_aligned_quad q;
+            float cx = 0.0f, cy = 0.0f;
+            stbtt_GetPackedQuad(charData, 4096, 2048, charIndex, &cx, &cy, &q, 1);
+
+            const float qw = (q.x1 - q.x0) * sizeScale;
+            const float qh = (q.y1 - q.y0) * sizeScale;
+            // q.y0는 baseline 기준 음수 — m_fontScale*sizeScale을 더해 y 아래에 그림
+            const float baseline = y + m_fontScale * sizeScale;
+            if (qw > 0.0f && qh > 0.0f) {
+                glUniform2f(m_uTexOffset, q.s0, q.t0);
+                glUniform2f(m_uTexSize,   q.s1 - q.s0, q.t1 - q.t0);
+                glUniform2f(m_uOffset, cursor + q.x0 * sizeScale, baseline + q.y0 * sizeScale);
+                glUniform2f(m_uSize, qw, qh);
+                glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+            }
+
+            cursor += cx * sizeScale;
+        }
+        return;
+    }
 
     for (unsigned char c : text) {
         if (c < 32 || c > 127) {
@@ -382,3 +458,46 @@ bool UIRenderer::CreateFontTexture() {
     return true;
 }
 
+bool UIRenderer::LoadTrueTypeFont(const std::string& path) {
+    // 4096x2048, 20px, 오버샘플링 없이 통일 — 한글 11172자 수용
+    constexpr int atlasW = 4096;
+    constexpr int atlasH = 2048;
+    constexpr float bakedFontSize = 20.0f;
+
+    std::ifstream file(path, std::ios::binary);
+    if (!file) {
+        std::cerr << "Failed to open font: " << path << "\n";
+        return false;
+    }
+
+    std::vector<unsigned char> fontData(
+        (std::istreambuf_iterator<char>(file)),
+        std::istreambuf_iterator<char>());
+    if (fontData.empty()) return false;
+
+    std::vector<unsigned char> atlas(static_cast<size_t>(atlasW) * atlasH, 0);
+    stbtt_pack_context context = {};
+    if (!stbtt_PackBegin(&context, atlas.data(), atlasW, atlasH, 0, 1, nullptr)) return false;
+
+    stbtt_PackSetOversampling(&context, 1, 1);
+    const bool asciiOk  = stbtt_PackFontRange(&context, fontData.data(), 0, bakedFontSize, 32, 96, m_asciiChars) != 0;
+    const bool hangulOk = stbtt_PackFontRange(&context, fontData.data(), 0, bakedFontSize, 0xAC00, 11172, m_hangulChars) != 0;
+    stbtt_PackEnd(&context);
+    if (!asciiOk || !hangulOk) {
+        std::cerr << "[UIRenderer] font bake failed asciiOk=" << asciiOk << " hangulOk=" << hangulOk << "\n";
+        return false;
+    }
+
+    if (m_fontTexture == 0) glGenTextures(1, &m_fontTexture);
+    glBindTexture(GL_TEXTURE_2D, m_fontTexture);
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, atlasW, atlasH, 0, GL_RED, GL_UNSIGNED_BYTE, atlas.data());
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    m_fontScale = bakedFontSize;
+    return true;
+}

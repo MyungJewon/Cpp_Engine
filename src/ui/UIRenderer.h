@@ -2,12 +2,13 @@
 #pragma once
 
 #include "math/Vec3.h"
+#include "../../vendor/stb_truetype.h"
 #include <OpenGL/gl3.h>
 #include <string>
 
 class UIRenderer {
 public:
-    bool Init(int width, int height);
+    bool Init(int width, int height, const std::string& fontPath = "");
     void Shutdown();
 
     void BeginFrame(int width, int height);
@@ -19,12 +20,17 @@ private:
     bool CompileShaders();
     bool CreateQuad();
     bool CreateFontTexture();
+    bool LoadTrueTypeFont(const std::string& path);
     void CacheUniforms();
 
     GLuint m_shader = 0;
     GLuint m_vao = 0;
     GLuint m_vbo = 0;
     GLuint m_fontTexture = 0;
+    stbtt_packedchar m_asciiChars[96];
+    stbtt_packedchar m_hangulChars[11172];
+    bool m_useTrueType = false;
+    float m_fontScale = 1.0f;
     int m_width = 0;
     int m_height = 0;
 

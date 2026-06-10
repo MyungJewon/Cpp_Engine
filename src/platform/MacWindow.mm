@@ -206,7 +206,11 @@ void MacWindow::PollEvents() {
                 || [e type] == NSEventTypeLeftMouseDragged
                 || [e type] == NSEventTypeRightMouseDragged) {
             const NSPoint p = [e locationInWindow];
-            InputManager::Get().OnMouseMove(static_cast<int>(p.x), static_cast<int>(p.y));
+            const float scaleX = (m_width  > 0) ? static_cast<float>(m_pixelWidth)  / static_cast<float>(m_width)  : 1.0f;
+            const float scaleY = (m_height > 0) ? static_cast<float>(m_pixelHeight) / static_cast<float>(m_height) : 1.0f;
+            const int px = static_cast<int>(p.x * scaleX);
+            const int py = static_cast<int>((static_cast<float>(m_height) - static_cast<float>(p.y)) * scaleY);
+            InputManager::Get().OnMouseMove(px, py);
         } else if ([e type] == NSEventTypeScrollWheel) {
             InputManager::Get().OnMouseScroll(static_cast<float>([e scrollingDeltaY]));
         }

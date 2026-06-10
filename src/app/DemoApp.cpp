@@ -12,6 +12,7 @@
 #include "systems/PhysicsSystem.h"
 #include "systems/UISystem.h"
 #include "ui/UIComponent.h"
+#include <iostream>
 
 DemoApp::DemoApp(int width, int height, const char* title)
     : Application(width, height, title)
@@ -133,12 +134,23 @@ void DemoApp::OnInit() {
     Entity uiEntity = m_scene.CreateEntity();
     UIComponent ui;
     ui.type     = UIType::Text;
-    ui.text     = "Cpp_Engine";
+    ui.text     = "안녕하세요_hello";
     ui.x        = 10.0f;
     ui.y        = 10.0f;
     ui.color    = { 1.0f, 1.0f, 1.0f };
-    ui.fontSize = 2;
+    ui.fontSize = 35;
     m_scene.GetRegistry().add<UIComponent>(uiEntity, ui);
+
+    Entity btnEntity = m_scene.CreateEntity();
+    UIComponent btn;
+    btn.type    = UIType::Rect;
+    btn.x       = 10.0f;
+    btn.y       = 50.0f;
+    btn.width   = 120.0f;
+    btn.height  = 40.0f;
+    btn.color   = { 0.2f, 0.6f, 1.0f };
+    btn.onClick = []() { std::cout << "Button clicked!\n"; };
+    m_scene.GetRegistry().add<UIComponent>(btnEntity, btn);
 }
 
 void DemoApp::OnUpdate(float dt) {

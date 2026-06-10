@@ -2,6 +2,7 @@
 #pragma once
 
 #include "math/Vec3.h"
+#include <functional>
 #include <string>
 
 enum class UIType {
@@ -20,4 +21,5 @@ struct UIComponent {
     std::string text;
     int fontSize = 1;
     bool visible = true;
+    std::function<void()> onClick = nullptr;
 };

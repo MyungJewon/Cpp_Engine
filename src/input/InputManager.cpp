@@ -35,7 +35,9 @@ void InputManager::OnKeyUp(KeyCode key) {
 
 void InputManager::OnMouseDown(MouseButton button) {
     if (!IsValid(button)) return;
-    m_mouseDown[static_cast<std::size_t>(button)] = true;
+    const auto index = static_cast<std::size_t>(button);
+    m_mousePressed[index] = true;
+    m_mouseDown[index] = true;
 }
 
 void InputManager::OnMouseUp(MouseButton button) {
@@ -63,6 +65,7 @@ void InputManager::EndFrame() {
 
     std::fill(m_keyPressed.begin(), m_keyPressed.end(), false);
     std::fill(m_keyReleased.begin(), m_keyReleased.end(), false);
+    std::fill(m_mousePressed.begin(), m_mousePressed.end(), false);
     m_mouseDX = 0;
     m_mouseDY = 0;
     m_scrollDelta = 0.0f;
@@ -82,4 +85,8 @@ bool InputManager::JustReleased(KeyCode key) const {
 
 bool InputManager::IsMouseDown(MouseButton button) const {
     return IsValid(button) && m_mouseDown[static_cast<std::size_t>(button)];
+}
+
+bool InputManager::JustMousePressed(MouseButton button) const {
+    return IsValid(button) && m_mousePressed[static_cast<std::size_t>(button)];
 }

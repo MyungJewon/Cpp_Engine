@@ -1,5 +1,16 @@
 # Changelog
 
+## [v0.4.0] - 2026-06-10
+
+### Added
+- UI TrueType 폰트 지원: `stb_truetype` 기반 한글·영문 렌더링 (4096×2048 아틀라스, AppleSDGothicNeo)
+- UI 클릭 감지: `UIComponent.onClick` 콜백, `UISystem`에서 AABB hit test
+- `InputManager::JustMousePressed(MouseButton)` — 마우스 버튼 단일 프레임 감지
+
+### Fixed
+- `UIComponent.fontSize`가 배율이 아닌 px 단위로 동작하도록 수정 (`fontSize=20` → 20px)
+- macOS 마우스 좌표 Cocoa Y축 반전 및 Retina 스케일 보정 (UI 클릭 위치 정확도 수정)
+
 ## [v0.3.0] - 2026-06-10
 
 ### Added

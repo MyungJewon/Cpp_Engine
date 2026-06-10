@@ -20,6 +20,7 @@ public:
     bool JustPressed(KeyCode key) const;
     bool JustReleased(KeyCode key) const;
     bool IsMouseDown(MouseButton button) const;
+    bool JustMousePressed(MouseButton button) const;
 
     int MouseX() const { return m_mouseX; }
     int MouseY() const { return m_mouseY; }
@@ -38,6 +39,7 @@ private:
     std::array<bool, KeyCount> m_keyPressed{};
     std::array<bool, KeyCount> m_keyReleased{};
     std::array<bool, MouseButtonCount> m_mouseDown{};
+    std::array<bool, MouseButtonCount> m_mousePressed{};
 
     int m_mouseX = 0;
     int m_mouseY = 0;
