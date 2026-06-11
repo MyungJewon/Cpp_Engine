@@ -27,6 +27,8 @@ OpenGL 4.1 기반 렌더러, Sparse Set ECS, 계층 Transform, 강체 물리 시
 
 ## 빌드 방법
 
+### macOS
+
 ```bash
 # 처음 한 번만
 cmake -S . -B build
@@ -38,7 +40,30 @@ cmake --build build
 ./build/bin/Cpp_Engine
 ```
 
-> macOS 전용. Xcode Command Line Tools 필요.
+> Xcode Command Line Tools 필요.
+
+### Windows
+
+**사전 요구사항**
+- Visual Studio 2022 (또는 2019) — C++ 데스크톱 개발 워크로드 포함
+- CMake 3.20 이상
+- OpenGL 4.1을 지원하는 GPU 드라이버
+
+```bat
+:: 처음 한 번만 (Visual Studio 2022 기준)
+cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+
+:: 빌드
+cmake --build build --config Release
+
+:: 실행
+build\bin\Release\Cpp_Engine.exe
+```
+
+> Visual Studio 2019를 사용하는 경우 `-G "Visual Studio 16 2019"` 로 변경.
+> MinGW를 사용하는 경우: `cmake -S . -B build -G "MinGW Makefiles"` → `cmake --build build`
+
+**한글 폰트**: Windows에서는 맑은 고딕(`C:\Windows\Fonts\malgun.ttf`)을 기본으로 사용합니다. 폰트가 없으면 한글이 표시되지 않으며, `UIRenderer::Init(w, h, "폰트경로")` 로 직접 지정할 수 있습니다.
 
 ---
 

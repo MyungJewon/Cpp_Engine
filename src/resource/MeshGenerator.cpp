@@ -102,3 +102,43 @@ Mesh MeshGenerator::CreateSphere(int stacks, int slices, float radius) {
 
     return mesh;
 }
+
+Mesh MeshGenerator::CreateBox(float width, float height, float depth) {
+    Mesh mesh;
+    if (width <= 0.0f || height <= 0.0f || depth <= 0.0f) return mesh;
+
+    const float hx = width * 0.5f;
+    const float hy = height * 0.5f;
+    const float hz = depth * 0.5f;
+
+    mesh.vertices.reserve(24);
+    mesh.indices.reserve(36);
+
+    auto addFace = [&mesh](const Vec3& p0, const Vec3& p1, const Vec3& p2, const Vec3& p3,
+                           const Vec3& normal, const Vec3& tangent) {
+        const int base = static_cast<int>(mesh.vertices.size());
+        mesh.vertices.push_back({ p0, { 0.0f, 0.0f }, normal, tangent });
+        mesh.vertices.push_back({ p1, { 1.0f, 0.0f }, normal, tangent });
+        mesh.vertices.push_back({ p2, { 1.0f, 1.0f }, normal, tangent });
+        mesh.vertices.push_back({ p3, { 0.0f, 1.0f }, normal, tangent });
+        mesh.indices.insert(mesh.indices.end(), {
+            base + 0, base + 1, base + 2,
+            base + 0, base + 2, base + 3
+        });
+    };
+
+    addFace({ -hx, -hy,  hz }, {  hx, -hy,  hz }, {  hx,  hy,  hz }, { -hx,  hy,  hz },
+            { 0.0f, 0.0f, 1.0f }, { 1.0f, 0.0f, 0.0f });
+    addFace({  hx, -hy, -hz }, { -hx, -hy, -hz }, { -hx,  hy, -hz }, {  hx,  hy, -hz },
+            { 0.0f, 0.0f, -1.0f }, { -1.0f, 0.0f, 0.0f });
+    addFace({  hx, -hy,  hz }, {  hx, -hy, -hz }, {  hx,  hy, -hz }, {  hx,  hy,  hz },
+            { 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, -1.0f });
+    addFace({ -hx, -hy, -hz }, { -hx, -hy,  hz }, { -hx,  hy,  hz }, { -hx,  hy, -hz },
+            { -1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f });
+    addFace({ -hx,  hy,  hz }, {  hx,  hy,  hz }, {  hx,  hy, -hz }, { -hx,  hy, -hz },
+            { 0.0f, 1.0f, 0.0f }, { 1.0f, 0.0f, 0.0f });
+    addFace({ -hx, -hy, -hz }, {  hx, -hy, -hz }, {  hx, -hy,  hz }, { -hx, -hy,  hz },
+            { 0.0f, -1.0f, 0.0f }, { 1.0f, 0.0f, 0.0f });
+
+    return mesh;
+}

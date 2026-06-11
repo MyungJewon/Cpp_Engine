@@ -1,6 +1,10 @@
 // OpenGL 메시 버퍼와 드로우 래퍼를 선언합니다.
 #pragma once
-#import <OpenGL/gl3.h>
+#ifdef __APPLE__
+  #include <OpenGL/gl3.h>
+#else
+  #include <glad/glad.h>
+#endif
 #include "resource/ObjLoader.h"
 
 class GLMesh {

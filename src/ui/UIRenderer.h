@@ -3,7 +3,11 @@
 
 #include "math/Vec3.h"
 #include "../../vendor/stb_truetype.h"
-#include <OpenGL/gl3.h>
+#ifdef __APPLE__
+  #include <OpenGL/gl3.h>
+#else
+  #include <glad/glad.h>
+#endif
 #include <string>
 
 class UIRenderer {

@@ -1,7 +1,11 @@
 // OpenGL 렌더러의 셰이더와 메시 및 텍스처 캐시 상태를 선언합니다.
 #pragma once
 
-#include <OpenGL/gl3.h>
+#ifdef __APPLE__
+  #include <OpenGL/gl3.h>
+#else
+  #include <glad/glad.h>
+#endif
 #include "math/Mat4.h"
 #include "renderer/gl/GLMesh.h"
 #include "renderer/gl/GLShader.h"
@@ -21,6 +25,7 @@ public:
 
     void Render(Scene& scene, IWindow& window);
     void Render(Registry& reg, const Camera& camera, const Light& light, IWindow& window);
+    void DrawLine(const Vec3& from, const Vec3& to, const Vec3& color = Vec3(1.0f, 1.0f, 1.0f));
 
 private:
     void InitShadowMap();
@@ -40,6 +45,10 @@ private:
     GLuint m_shadowTexture = 0;
     int m_shadowSize = 1024;
     Mat4 m_lightVP;
+    Mat4 m_lineVP;
+    GLuint m_lineProgram = 0;
+    GLuint m_lineVAO = 0;
+    GLuint m_lineVBO = 0;
     bool   m_initialized  = false;
     GLuint m_whiteTex     = 0;
     GLuint m_flatNormalTex= 0;

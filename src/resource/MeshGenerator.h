@@ -8,4 +8,5 @@ public:
     static Mesh CreateGrid(int size, float cellSize);
     static Mesh CreateGrid(int width, int height, float cellSize);
     static Mesh CreateSphere(int stacks = 16, int slices = 16, float radius = 1.0f);
+    static Mesh CreateBox(float width, float height, float depth);
 };

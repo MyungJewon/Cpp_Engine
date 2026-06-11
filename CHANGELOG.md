@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.5.0] - 2026-06-11
+
+### Added
+- `MeshGenerator::CreateBox(width, height, depth)` — 박스 메시 절차적 생성 (6면, 면별 법선·UV)
+- `GLRenderer::DrawLine(from, to, color)` — 3D 월드 공간 선분 렌더링 (GL_LINES, 카메라 VP 행렬 적용)
+- `Timer` 유틸 (`src/core/Timer.h`) — `Start/Stop/Reset/Elapsed` 헤더 온리 타이머
+- Windows 포팅: WGL 기반 OpenGL 4.1 Core Profile 컨텍스트, InputManager 입력 연결
+- GLAD (`vendor/glad/`) — Windows용 OpenGL 함수 로더
+
+### Fixed
+- Windows에서 OpenGL 헤더(`<OpenGL/gl3.h>`) 조건부 분기 (`__APPLE__` / GLAD)
+- `Win32Window` 재작성: 키보드·마우스 이벤트 InputManager 연결, `SwapBuffers` 구현
+
 ## [v0.4.0] - 2026-06-10
 
 ### Added

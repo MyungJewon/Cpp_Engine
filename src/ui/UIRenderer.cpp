@@ -203,7 +203,11 @@ bool UIRenderer::Init(int width, int height, const std::string& fontPath) {
     if (!CompileShaders() || !CreateQuad()) return false;
 
     const std::string resolvedFontPath = fontPath.empty()
+#ifdef _WIN32
+        ? "C:/Windows/Fonts/malgun.ttf"
+#else
         ? "/System/Library/Fonts/AppleSDGothicNeo.ttc"
+#endif
         : fontPath;
     m_useTrueType = LoadTrueTypeFont(resolvedFontPath);
     if (!m_useTrueType && !CreateFontTexture()) return false;

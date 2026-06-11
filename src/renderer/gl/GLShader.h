@@ -1,6 +1,10 @@
 // OpenGL 셰이더 프로그램 관리 기능을 선언합니다.
 #pragma once
-#import <OpenGL/gl3.h>
+#ifdef __APPLE__
+  #include <OpenGL/gl3.h>
+#else
+  #include <glad/glad.h>
+#endif
 #include "math/Mat4.h"
 #include "math/Vec3.h"
 #include <string>

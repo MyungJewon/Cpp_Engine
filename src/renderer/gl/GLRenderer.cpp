@@ -11,11 +11,83 @@
 #include "scene/Transform.h"
 #include "platform/IWindow.h"
 #include <iostream>
+#include <vector>
+
+namespace {
+GLuint CompileLineShader(GLenum type, const char* source) {
+    GLuint shader = glCreateShader(type);
+    glShaderSource(shader, 1, &source, nullptr);
+    glCompileShader(shader);
+
+    GLint success = GL_FALSE;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+    if (success != GL_TRUE) {
+        GLint logLength = 0;
+        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
+        std::vector<char> log(static_cast<size_t>(logLength) + 1);
+        glGetShaderInfoLog(shader, logLength, nullptr, log.data());
+        std::cerr << "라인 셰이더 컴파일 실패\n" << log.data() << "\n";
+        glDeleteShader(shader);
+        return 0;
+    }
+
+    return shader;
+}
+
+GLuint CreateLineProgram() {
+    static const char* vertexSource =
+        "#version 410 core\n"
+        "layout(location = 0) in vec3 aPos;\n"
+        "uniform mat4 uVP;\n"
+        "void main() {\n"
+        "    gl_Position = uVP * vec4(aPos, 1.0);\n"
+        "}\n";
+    static const char* fragmentSource =
+        "#version 410 core\n"
+        "out vec4 FragColor;\n"
+        "uniform vec3 uColor;\n"
+        "void main() {\n"
+        "    FragColor = vec4(uColor, 1.0);\n"
+        "}\n";
+
+    GLuint vertexShader = CompileLineShader(GL_VERTEX_SHADER, vertexSource);
+    if (vertexShader == 0) return 0;
+
+    GLuint fragmentShader = CompileLineShader(GL_FRAGMENT_SHADER, fragmentSource);
+    if (fragmentShader == 0) {
+        glDeleteShader(vertexShader);
+        return 0;
+    }
+
+    GLuint program = glCreateProgram();
+    glAttachShader(program, vertexShader);
+    glAttachShader(program, fragmentShader);
+    glLinkProgram(program);
+
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+
+    GLint success = GL_FALSE;
+    glGetProgramiv(program, GL_LINK_STATUS, &success);
+    if (success != GL_TRUE) {
+        GLint logLength = 0;
+        glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
+        std::vector<char> log(static_cast<size_t>(logLength) + 1);
+        glGetProgramInfoLog(program, logLength, nullptr, log.data());
+        std::cerr << "라인 셰이더 프로그램 링크 실패\n" << log.data() << "\n";
+        glDeleteProgram(program);
+        return 0;
+    }
+
+    return program;
+}
+}
 
 GLRenderer::GLRenderer(int width, int height)
     : m_width(width)
     , m_height(height)
-    , m_lightVP(Mat4::Identity()) {
+    , m_lightVP(Mat4::Identity())
+    , m_lineVP(Mat4::Identity()) {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
 }
@@ -110,6 +182,8 @@ void GLRenderer::ShadowPass(Registry& reg, const Light& light) {
 
 void GLRenderer::OpaquePass(Registry& reg, const Camera& camera, const Light& light) {
 
+    m_lineVP = camera.GetProjection() * camera.GetView();
+
     glViewport(0, 0, m_width, m_height);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glClearColor(0.08f, 0.08f, 0.08f, 1.0f);
@@ -156,6 +230,35 @@ void GLRenderer::OpaquePass(Registry& reg, const Camera& camera, const Light& li
     }
 
     glActiveTexture(GL_TEXTURE0);
+}
+
+void GLRenderer::DrawLine(const Vec3& from, const Vec3& to, const Vec3& color) {
+    if (m_lineProgram == 0) {
+        m_lineProgram = CreateLineProgram();
+        if (m_lineProgram == 0) return;
+    }
+
+    if (m_lineVAO == 0) glGenVertexArrays(1, &m_lineVAO);
+    if (m_lineVBO == 0) glGenBuffers(1, &m_lineVBO);
+
+    const float points[] = {
+        from.x, from.y, from.z,
+        to.x,   to.y,   to.z
+    };
+
+    glUseProgram(m_lineProgram);
+    glUniformMatrix4fv(glGetUniformLocation(m_lineProgram, "uVP"), 1, GL_TRUE, &m_lineVP.m[0][0]);
+    glUniform3f(glGetUniformLocation(m_lineProgram, "uColor"), color.x, color.y, color.z);
+
+    glBindVertexArray(m_lineVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_lineVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_DYNAMIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+    glDrawArrays(GL_LINES, 0, 2);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 }
 
 void GLRenderer::Render(Scene& scene, IWindow& window) {
